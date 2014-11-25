@@ -9,12 +9,12 @@ App.Models.Meme = Backbone.Model.extend({
 	},
 	parse: function(response){
 		if (response.image) {
-			this.image().set( response.image );
+			this.image().set( response.image, { parse: true } );
 			delete response.image;
 		}
 		
 		if (response.captions) {
-			this.captions().set( response.captions );
+			this.captions().set( response.captions, { parse: true } );
 			delete response.captions;
 		}
 		

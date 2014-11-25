@@ -3,38 +3,41 @@ App.Views.MemeShow = Backbone.View.extend({
 	template: JST['memes/show'],
 	initialize: function(){
 		this.captionViews = [];
-		this.model.captions().each(function(element){
-			this.addCaptionView(caption);
-		}.bind(this));
-		this.imageView = new App.Views.ImageView({ model: this.model.image() });
 		this.selected = null;
-		
 		this.listenTo(this.model, "sync", this.render);
 	},
 	render: function(){
-		this.$el.append( imageView.render().$el );
-		
-		captionViews.forEach(function(captionView){
-			this.$el.append( elementView.render().$el );
-		}.bind(this));
-		
+		this.addCaptionViews();
+		this.addImageView();
 		return this;
 	},
-	addcaptionView: function(element, options){
-		options = options || {};
-		
-		var view = new App.Views.CaptionView({ model: caption });
+	addImageView: function(){
+		this.imageView && this.imageView.remove();
+		this.imageView = new App.Views.ImageShow({ model: this.model.image() });
+		this.$el.append( this.imageView.render().$el );
+	},
+	addCaptionViews: function(){
+		this.removeCaptionViews();
+		this.model.captions().each(function(caption){
+			this.addCaptionView(caption);
+		}.bind(this));
+	},
+	removeCaptionViews: function(){
+		if (this.captionViews){
+			this.captionViews.forEach(function(captionView){
+				captionView.remove();
+			})
+			this.captionViews = [];
+		}
+	},
+	addCaptionView: function(caption, options){
+		var view = new App.Views.CaptionShow({ model: caption });
 		this.captionViews.push(view);
 		this.$el.append( view.render().$el );
-		if (options.select) {
+		
+		if (options && options.select) {
 			this.selected = view;
 			view.select();
 		}
-	},
-	select: function(caption){
-		var view = _.find(this.captionViews, function(view){
-			return view.model.cid == caption.data("cid");
-		});
-		view.select();
 	}
 });

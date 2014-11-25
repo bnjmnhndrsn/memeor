@@ -13,3 +13,35 @@
  *= require_tree .
  *= require_self
  */
+
+/* MEME FORM */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.meme-edit {
+	width: 700px;
+}
+
+.meme-container {
+	display: inline-block;
+}
+
+.control-panel {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.meme {
+	height: 500px;
+	width: 500px;
+	overflow: hidden;
+}
+
+.caption .inner {
+	margin: 10px;
+}
+
+.selected {
+	border: 1px solid black;
+}

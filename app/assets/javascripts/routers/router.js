@@ -4,15 +4,24 @@ App.Routers.Router = Backbone.Router.extend({
 	},
 	routes: {
 		"" : "index",
+		"memes/:id/edit" : "edit",
 		"memes/:id" : "show"
 	},
 	index: function(){
 		alert('this doesnt exist yet');
 	},
 	show: function(id){
+	
 		var meme = new App.Models.Meme({ id: id });
 		meme.fetch();
-		//var view = new App.Views.MemeShow({ model: this.meme });
+		var view = new App.Views.MemeShow({ model: meme });
+		this.$rootEl.html( view.render().$el );
 		window.meme = meme;
+	},
+	edit: function(id){
+		var meme = new App.Models.Meme({ id: id });
+		meme.fetch();
+		var view = new App.Views.MemeForm({ model: meme });
+		this.$rootEl.html( view.render().$el );
 	}
 });
