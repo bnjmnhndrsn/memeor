@@ -1,8 +1,8 @@
 class MemesController < ApplicationController
   def show
-     @board = Meme.includes(:image).includes(:captions).find(params[:id])
+     @meme = Meme.includes(:image).includes(:captions).find(params[:id])
      
-     if @board
+     if @meme
        render :show
      else
        render json: ["You aren't a member of this board"], status: 403

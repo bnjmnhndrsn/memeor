@@ -1,0 +1,1 @@
+json.extract!(caption, :id, :styling, :content)
