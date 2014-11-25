@@ -10,7 +10,7 @@ App.Views.MemeForm = Backbone.View.extend({
 		this.$(".meme-container").append( this.memeView.render().$el );
 		return this;
 	},
-	select(arguments){
+	select: function(){
 		console.log(arguments);
 	}
 });

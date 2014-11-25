@@ -8,6 +8,8 @@ App.Views.MemeShow = Backbone.View.extend({
 		}.bind(this));
 		this.imageView = new App.Views.ImageView({ model: this.model.image() });
 		this.selected = null;
+		
+		this.listenTo(this.model, "sync", this.render);
 	},
 	render: function(){
 		this.$el.append( imageView.render().$el );
@@ -32,7 +34,7 @@ App.Views.MemeShow = Backbone.View.extend({
 	select: function(caption){
 		var view = _.find(this.captionViews, function(view){
 			return view.model.cid == caption.data("cid");
-		}
+		});
 		view.select();
 	}
 });
