@@ -26,7 +26,7 @@ class MemesController < ApplicationController
      if @meme
        render :show
      else
-       render json: ["You aren't a member of this board"], status: 403
+       render json: ["No meme!"], status: 404
      end
   end
   
