@@ -6,14 +6,17 @@ App.Views.CaptionForm = Backbone.View.extend({
 		"click .alignment": "align"
 	},
 	template: JST["captions/form"],
+	initialize: function(){
+		
+	},
 	render: function(){
 		var fontSize = this.model.styling().get('font-size'),
+			alignment = this.model.styling().get('text-align')
 			content = this.model.get("content");
 		if (fontSize) {
 			fontSize = +fontSize.replace('px', '');
 		}
-		
-		var rendered = this.template({ fontSize: fontSize, content: content });
+		var rendered = this.template({ alignment: alignment, fontSize: fontSize, content: content });
 		this.$el.html(rendered);
 		return this;
 	},
@@ -34,8 +37,14 @@ App.Views.CaptionForm = Backbone.View.extend({
 		this.model.destroy();
 	},
 	align: function(event){
-		var dir = $(event.currentTarget).attr("name");
-		dir = (dir === "none") ? "" : dir;
-		this.model.trigger("align", dir);
+		var $button = $(event.currentTarget);
+		
+		if ($button.hasClass("btn-primary")) {
+			$button.removeClass("btn-primary");
+		} else {
+			this.$(".alignment").removeClass("btn-primary");
+			$button.addClass("btn-primary");
+		}
+		this.model.trigger("align", $button.attr("name"));
 	}
 });

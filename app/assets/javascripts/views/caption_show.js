@@ -74,10 +74,14 @@ App.Views.CaptionShow = Backbone.View.extend({
 		}
 		return res;
 	},
-	align: function(direction){
+	align: function(alignment){
+		if (this.model.styling().get("text-align") == alignment) {
+			alignment = "";
+		}
+		
 		this.model.styling().set({
-			"left": this.getAlignment(direction),
-			"text-align": direction
+			"left": this.getAlignment(alignment),
+			"text-align": alignment
 		});
 	},
 	resize: function(event, ui){

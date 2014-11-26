@@ -1,15 +1,12 @@
 <div class="form-group">
-		<button name="left" class="alignment btn default-btn">
+		<button name="left" class="alignment btn <%= ('left' == alignment) ? 'btn-primary' : '' %>">
 			<span class="glyphicon glyphicon-align-left"></span>
 		</button>
-		<button name="center" class="alignment btn default-btn">
+		<button name="center" class="alignment btn <%= ('center' == alignment) ? 'btn-primary' : '' %>">
 			<span class="glyphicon glyphicon-align-center"></span>
 		</button>
-		<button name="right" class="alignment btn default-btn">
+		<button name="right" class="alignment btn <%= ('right' == alignment) ? 'btn-primary' : '' %>">
 			<span class="glyphicon glyphicon-align-right"></span>
-		</button>
-		<button name="none" class="alignment btn default-btn">
-			X
 		</button>
 </div>
 <div class="form-group">
