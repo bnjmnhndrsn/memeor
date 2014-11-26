@@ -22,7 +22,7 @@ App.Views.CaptionShow = Backbone.View.extend({
 		return this;
 	},
 	update: function(){
-		this.$(".inner").text( this.model.escape("content") );
+		this.$(".inner").text( this.model.get("content") );
 		
 		if (this.model.styling().get("text-align")){
 			var alignment = this.model.styling().get("text-align");

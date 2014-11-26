@@ -8,7 +8,7 @@ App.Models.Meme = Backbone.Model.extend({
 	image: function(){
 		if (!this._image){
 			this._image = new App.Models.Image();
-			App.Collections.images.add(this._image);
+			!this._image.isNew() && App.Collections.images.add(this._image);
 		}
 		return this._image;
 	},

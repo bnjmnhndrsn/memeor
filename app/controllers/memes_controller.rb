@@ -1,12 +1,12 @@
 class MemesController < ApplicationController
   
   def create
-    @meme = Meme.new
+    @meme = Meme.new(meme_params)
 
-    if @card.save
+    if @meme.save
       render json: @meme
     else
-      render json: @card.errors.full_messages, status: :unprocessable_entity
+      render json: @meme.errors.full_messages, status: :unprocessable_entity
     end
   end
 
