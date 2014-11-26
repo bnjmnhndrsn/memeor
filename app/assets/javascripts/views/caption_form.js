@@ -8,7 +8,6 @@ App.Views.CaptionForm = Backbone.View.extend({
 		var fontSize = this.model.get("styling")['font-size'],
 			content = this.model.get("content"),
 			rendered = this.template({ fontSize: fontSize, content: content });
-		
 		this.$el.html(rendered);
 		return this;
 	},

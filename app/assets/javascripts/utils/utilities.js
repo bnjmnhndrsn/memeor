@@ -1,5 +1,7 @@
 App.Utils = {
 	parseAttr: function(attr){
+		attr = attr.replace(/\s/g, "");
+		console.log(attr);
 		var split = attr.split(";"), 
 			obj = {};
 		
@@ -7,7 +9,7 @@ App.Utils = {
 			var keyValue = pair.split(":");
 			obj[ keyValue[0] ] = keyValue[1];
 		});
-		
 		return obj;
+		
 	}
 }

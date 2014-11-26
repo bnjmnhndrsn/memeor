@@ -36,6 +36,7 @@
 	height: 500px;
 	width: 500px;
 	overflow: hidden;
+	position: relative;
 }
 
 .caption .inner {
@@ -43,5 +44,5 @@
 }
 
 .selected {
-	border: 1px solid black;
+	border: 1px dotted black;
 }
