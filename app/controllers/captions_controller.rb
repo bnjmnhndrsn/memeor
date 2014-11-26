@@ -18,6 +18,15 @@ class CaptionsController < ApplicationController
     end
   end
   
+  def destroy
+    @caption = Caption.find(params[:id])
+    if @caption.destroy
+      render json: @caption
+    else
+      render json: @caption.errors.full_messages, status: :unprocessable_entity 
+    end
+  end
+  
   def caption_params
     params[:caption].permit(:content, :meme_id, :styling)
   end

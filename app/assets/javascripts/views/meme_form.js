@@ -8,7 +8,7 @@ App.Views.MemeForm = Backbone.View.extend({
 	},
 	initialize: function(){
 		this.memeView = new App.Views.MemeShow({ model: this.model });
-		this.listenTo(this.memeView.model.captions(), "beginEditing", this.editCaption)
+		this.listenTo(this.memeView.model.captions(), "beginEditing", this.editCaption);
 	},
 	render: function(){
 		this.$el.html( this.template() );
@@ -17,12 +17,15 @@ App.Views.MemeForm = Backbone.View.extend({
 	},
 	changePanel: function(view){
 		this._panelView && this._panelView.remove();
-		this._panelView = view;
-		this.$('.control-panel').html( this._panelView.render().$el );
+		if (view) {
+			this._panelView = view;
+			this.$('.control-panel').html( this._panelView.render().$el );
+		}
 	},
 	editCaption: function(caption){	
 		this.triggerUnselect();
 		this.selected = caption;
+		this.listenTo(this.selected, "endEditing", this.changePanel)
 		this.triggerSelect();
 		this.changePanel( new App.Views.CaptionForm({model: this.selected}) );
 	},
@@ -32,7 +35,9 @@ App.Views.MemeForm = Backbone.View.extend({
 		var caption = new App.Models.Caption({meme_id: this.memeView.model.id});
 		caption.set("styling", {
 			left: event.offsetX,
-			top: event.offsetY
+			top: event.offsetY,
+			'font-size': '12px',
+			color: 'black'
 		});
 		this.memeView.model.captions().add(caption);
 		caption.trigger("beginEditing", caption);

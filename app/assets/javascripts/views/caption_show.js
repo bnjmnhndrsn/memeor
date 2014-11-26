@@ -9,12 +9,12 @@ App.Views.CaptionShow = Backbone.View.extend({
 		this.listenTo(this.model, "select", this.select);
 		this.listenTo(this.model, "unselect", this.unselect);
 		this.listenTo(this.model, "change", this.render);
+		this.listenTo(this.model, "align", this.align);
 		this.selected = false;
 	},
 	render: function(){
 		var content = this.template({ caption: this.model });
 		this.$el.html(content);
-		console.log(this.model.get("styling"));
 		this.$el.css( this.model.get("styling") );
 		this.$el.css("position", "absolute");
 		return this;
@@ -47,5 +47,18 @@ App.Views.CaptionShow = Backbone.View.extend({
 			}.bind(this)
 		});
 		
+	},
+	align: function(direction){
+		var newLeft;
+		if (direction == "center"){
+			newLeft = 250 - (this.$el.width() / 2) + "px";
+		} else if (direction == "left") {
+			newLeft = "5px"
+		} else if (direction == "right") {
+			newLeft = 495 - (this.$el.width()) + "px";
+		}
+		
+		this.model.get("styling")["left"] = newLeft;
+		this.model.trigger("change");
 	}
 });

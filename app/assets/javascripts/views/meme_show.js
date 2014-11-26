@@ -5,7 +5,8 @@ App.Views.MemeShow = Backbone.View.extend({
 		this.captionViews = [];
 		this.selected = null;
 		this.listenTo(this.model, "sync", this.render);
-		this.listenTo(this.model.captions(), "add", this.addCaptionView)
+		this.listenTo(this.model.captions(), "add", this.addCaptionView);
+		this.listenTo(this.model.captions(), "remove", this.removeCaptionView);
 	},
 	render: function(){
 		this.addCaptionViews();
@@ -22,6 +23,13 @@ App.Views.MemeShow = Backbone.View.extend({
 		this.model.captions().each(function(caption){
 			this.addCaptionView(caption);
 		}.bind(this));
+	},
+	removeCaptionView: function(caption){
+		var view = _.find(this.captionViews, function(view){
+			return caption.cid === view.model.cid;
+		});
+		view.remove();
+		this.captionViews.splice( this.captionViews.indexOf(view), 1 );
 	},
 	removeCaptionViews: function(){
 		if (this.captionViews){

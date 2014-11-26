@@ -1,13 +1,19 @@
 App.Views.CaptionForm = Backbone.View.extend({
 	className: "caption-form",
 	events: {
-		"input input" : "updateCaption"
+		"input input" : "updateCaption",
+		"click .destroy": "destroy",
+		"click .alignment": "align"
 	},
 	template: JST["captions/form"],
 	render: function(){
 		var fontSize = this.model.get("styling")['font-size'],
-			content = this.model.get("content"),
-			rendered = this.template({ fontSize: fontSize, content: content });
+			content = this.model.get("content");
+		if (fontSize) {
+			fontSize = +fontSize.replace('px', '');
+		}
+		
+		var rendered = this.template({ fontSize: fontSize, content: content });
 		this.$el.html(rendered);
 		return this;
 	},
@@ -15,13 +21,22 @@ App.Views.CaptionForm = Backbone.View.extend({
 		var $cur = $(event.currentTarget);
 		var attr = $(event.currentTarget).attr("name"),
 			val = $(event.currentTarget).val();
-		
 		if (attr === "content"){
 			this.model.set("content", val);
-		} else {
-			this.model.get("styling")[attr] = val;
+		} else if (attr == "font-size") {
+			var styling = this.model.get("styling");
+			this.model.get("styling")[attr] = (val + "px");
+			this.model.trigger('change');
 		}
 		
 		return false;
+	},
+	destroy: function(){
+		this.model.trigger("endEditing");
+		this.model.destroy();
+	},
+	align: function(event){
+		var dir = $(event.currentTarget).attr("name");
+		this.model.trigger("align", dir);
 	}
 });
