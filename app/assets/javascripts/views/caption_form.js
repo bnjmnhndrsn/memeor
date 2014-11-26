@@ -35,6 +35,7 @@ App.Views.CaptionForm = Backbone.View.extend({
 	},
 	align: function(event){
 		var dir = $(event.currentTarget).attr("name");
+		dir = (dir === "none") ? "" : dir;
 		this.model.trigger("align", dir);
 	}
 });

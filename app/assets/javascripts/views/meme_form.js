@@ -25,7 +25,7 @@ App.Views.MemeForm = Backbone.View.extend({
 	editCaption: function(caption){	
 		this.triggerUnselect();
 		this.selected = caption;
-		this.listenTo(this.selected, "endEditing", this.changePanel)
+		this.listenTo(this.selected, "endEditing unselect", this.changePanel)
 		this.triggerSelect();
 		this.changePanel( new App.Views.CaptionForm({model: this.selected}) );
 	},

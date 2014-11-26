@@ -2,22 +2,35 @@ App.Views.CaptionShow = Backbone.View.extend({
 	template: JST['captions/show'],
 	events: {
 		"click": "triggerEditing",
-		"dblclick": "triggerEditing"
+		"dblclick": "triggerEditing",
+		"resizestop": "resize",
+		"dragstop": "drag"
 	},
 	className: "caption",
 	initialize: function(){
 		this.listenTo(this.model, "select", this.select);
 		this.listenTo(this.model, "unselect", this.unselect);
-		this.listenTo(this.model, "change", this.render);
+		this.listenTo(this.model, "change", this.update);
 		this.listenTo(this.model, "align", this.align);
 		this.selected = false;
 	},
 	render: function(){
-		var content = this.template({ caption: this.model });
-		this.$el.html(content);
+		var rendered = this.template({ caption: this.model });
+		this.$el.html( rendered );
 		this.$el.css( this.model.styling().attributes );
 		this.$el.css("position", "absolute");
 		return this;
+	},
+	update: function(){
+		this.$(".inner").text( this.model.escape("content") );
+		
+		if (this.model.styling().get("text-align")){
+			var alignment = this.model.styling().get("text-align");
+			this.model.styling().set("left", this.getAlignment(alignment), {silent: true});
+		}
+		
+		this.$el.css( this.model.styling().attributes );
+
 	},
 	select: function(){
 		if (!this.selected){
@@ -32,11 +45,11 @@ App.Views.CaptionShow = Backbone.View.extend({
 		}
 	},
 	triggerEditing: function(event){
-		event.preventDefault();
 		if (!this.selected) {
+			event.preventDefault();
 			this.model.trigger("beginEditing", this.model);
+			return false;
 		}
-		return false;	
 	},
 	save: function(){
 		this.model.save({
@@ -48,16 +61,35 @@ App.Views.CaptionShow = Backbone.View.extend({
 		});
 		
 	},
-	align: function(direction){
-		var newLeft;
+	getAlignment: function(direction){
+		var res;
 		if (direction == "center"){
-			newLeft = 250 - (this.$el.width() / 2) + "px";
+			res = 250 - (this.$el.width() / 2) + "px";
 		} else if (direction == "left") {
-			newLeft = "5px"
+			res = "5px"
 		} else if (direction == "right") {
-			newLeft = 495 - (this.$el.width()) + "px";
+			res = 495 - (this.$el.width()) + "px";
+		} else {
+			res = this.model.styling().get("left");
 		}
-		
-		this.model.styling().set("left", newLeft);
+		return res;
+	},
+	align: function(direction){
+		this.model.styling().set({
+			"left": this.getAlignment(direction),
+			"text-align": direction
+		});
+	},
+	resize: function(event, ui){
+		this.model.styling().set({
+			"width": ui.element.width() + "px",
+			"height": ui.element.height() + "px"
+		}, {silent: true});
+	},
+	drag: function(event, ui){
+		this.model.styling().set({
+			"left": ui.position.left + "px",
+			"top": ui.position.top + "px"
+		});
 	}
 });
