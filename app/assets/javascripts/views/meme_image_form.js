@@ -1,4 +1,7 @@
 App.Views.MemeImageForm = Backbone.CompositeView.extend({
+	events: {
+		"click .meme-image-item": "changeImage"
+	},
 	className: "meme-image-form",
 	template: JST["memes/image_form"],
 	initialize: function(){
@@ -18,5 +21,8 @@ App.Views.MemeImageForm = Backbone.CompositeView.extend({
 	addMemeView: function(meme){
 		var view = new App.Views.MemeImageItem({ model: meme });
 		this.addSubview(".image-items", view);
+	},
+	changeImage: function(event){
+		this.model.set("image_id", $(event.currentTarget).data("id"));
 	}
 });

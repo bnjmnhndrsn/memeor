@@ -4,6 +4,7 @@ App.Views.MemeImageItem = Backbone.View.extend({
 	render: function(){
 		var content = this.template({ image: this.model });
 		this.$el.html(content);
+		this.$el.data("id", this.model.id);
 		return this;
 	}
 });

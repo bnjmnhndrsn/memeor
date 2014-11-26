@@ -59,6 +59,6 @@ App.Views.MemeForm = Backbone.View.extend({
 		event.preventDefault();
 		this.triggerUnselect();
 		App.Collections.images.fetch();
-		this.changePanel( new App.Views.MemeImageForm({ collection: App.Collections.images }) );
+		this.changePanel( new App.Views.MemeImageForm({ model: this.memeView.model, collection: App.Collections.images }) );
 	}
 });

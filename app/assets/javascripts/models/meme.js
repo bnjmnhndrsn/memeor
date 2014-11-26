@@ -1,4 +1,6 @@
 App.Models.Meme = Backbone.Model.extend({
+	initialize: function(){
+	},
 	image: function(){
 		this._image = this._image || new App.Models.Image();
 		return this._image;
