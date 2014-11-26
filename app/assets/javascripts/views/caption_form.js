@@ -7,7 +7,7 @@ App.Views.CaptionForm = Backbone.View.extend({
 	},
 	template: JST["captions/form"],
 	render: function(){
-		var fontSize = this.model.get("styling")['font-size'],
+		var fontSize = this.model.styling().get('font-size'),
 			content = this.model.get("content");
 		if (fontSize) {
 			fontSize = +fontSize.replace('px', '');
@@ -24,9 +24,7 @@ App.Views.CaptionForm = Backbone.View.extend({
 		if (attr === "content"){
 			this.model.set("content", val);
 		} else if (attr == "font-size") {
-			var styling = this.model.get("styling");
-			this.model.get("styling")[attr] = (val + "px");
-			this.model.trigger('change');
+			this.model.styling().set("font-size", val + "px");
 		}
 		
 		return false;

@@ -1,6 +1,13 @@
 App.Models.Caption = Backbone.Model.extend({
+	styling: function(){
+		this._styling = this._styling || new App.Models.Styling({}, { meme: this });
+		return this._styling;
+	},
 	parse: function(response){	
-		response.styling = App.Utils.parseAttr(response.styling);;
+		if (response.styling) {
+			this.styling().set( App.Utils.parseAttr(response.styling), { parse: true } );
+			delete response.styling;
+		}
 		return response;
 	},
 	urlRoot: "/captions"

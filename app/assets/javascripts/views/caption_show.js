@@ -15,7 +15,7 @@ App.Views.CaptionShow = Backbone.View.extend({
 	render: function(){
 		var content = this.template({ caption: this.model });
 		this.$el.html(content);
-		this.$el.css( this.model.get("styling") );
+		this.$el.css( this.model.styling().attributes );
 		this.$el.css("position", "absolute");
 		return this;
 	},
@@ -58,7 +58,6 @@ App.Views.CaptionShow = Backbone.View.extend({
 			newLeft = 495 - (this.$el.width()) + "px";
 		}
 		
-		this.model.get("styling")["left"] = newLeft;
-		this.model.trigger("change");
+		this.model.styling().set("left", newLeft);
 	}
 });

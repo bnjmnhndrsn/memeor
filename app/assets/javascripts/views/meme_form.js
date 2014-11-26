@@ -33,7 +33,7 @@ App.Views.MemeForm = Backbone.View.extend({
 		event.preventDefault();
 		this.triggerUnselect();
 		var caption = new App.Models.Caption({meme_id: this.memeView.model.id});
-		caption.set("styling", {
+		caption.styling().set({
 			left: event.offsetX,
 			top: event.offsetY,
 			'font-size': '12px',
