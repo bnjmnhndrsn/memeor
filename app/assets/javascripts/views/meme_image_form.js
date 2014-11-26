@@ -23,6 +23,9 @@ App.Views.MemeImageForm = Backbone.CompositeView.extend({
 		this.addSubview(".image-items", view);
 	},
 	changeImage: function(event){
-		this.model.set("image_id", $(event.currentTarget).data("id"));
+		var id = $(event.currentTarget).data("id"),
+			newImage = App.Collections.images.get(id);
+			
+		this.model.image().set( newImage.attributes );
 	}
 });

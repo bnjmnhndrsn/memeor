@@ -2,6 +2,8 @@ PicturesWithWords
 =================
 TODO
 -limit resizability to x axis
--meme image form item view
--create meme-image-form view
--add functionality to meme-form to allow for opening image edit
+
+-have meme add image to collection upon parsing
+
+-add image uploading
+-add new meme view
