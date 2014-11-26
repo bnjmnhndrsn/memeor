@@ -10,13 +10,7 @@ App.Views.CaptionForm = Backbone.View.extend({
 		
 	},
 	render: function(){
-		var fontSize = this.model.styling().get('font-size'),
-			alignment = this.model.styling().get('text-align')
-			content = this.model.get("content");
-		if (fontSize) {
-			fontSize = +fontSize.replace('px', '');
-		}
-		var rendered = this.template({ alignment: alignment, fontSize: fontSize, content: content });
+		var rendered = this.template({ caption: this.model });
 		this.$el.html(rendered);
 		return this;
 	},
@@ -27,7 +21,9 @@ App.Views.CaptionForm = Backbone.View.extend({
 		if (attr === "content"){
 			this.model.set("content", val);
 		} else if (attr == "font-size") {
-			this.model.styling().set("font-size", val + "px");
+			this.model.styling().set(attr, val + "px");
+		} else {
+			this.model.styling().set(attr, val);
 		}
 		
 		return false;
