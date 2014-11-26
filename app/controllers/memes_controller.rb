@@ -2,6 +2,8 @@ class MemesController < ApplicationController
   
   def create
     @meme = Meme.new(meme_params)
+    
+    p captions
 
     if @meme.save
       render json: @meme
@@ -32,5 +34,9 @@ class MemesController < ApplicationController
   
   def meme_params
     params[:meme].permit(:image_id, :title)
+  end
+  
+  def captions
+    params[:meme].permit(:captions)
   end
 end

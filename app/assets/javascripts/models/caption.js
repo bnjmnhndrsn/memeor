@@ -1,4 +1,8 @@
 App.Models.Caption = Backbone.Model.extend({
+	serialize: function(){
+		this.set("styling", this.styling().attributes);
+		console.log('getting called');
+	},
 	styling: function(){
 		this._styling = this._styling || new App.Models.Styling({}, { meme: this });
 		return this._styling;

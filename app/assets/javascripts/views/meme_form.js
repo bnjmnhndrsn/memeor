@@ -14,6 +14,9 @@ App.Views.MemeForm = Backbone.View.extend({
 	render: function(){
 		this.$el.html( this.template() );
 		this.$(".meme-container").append( this.memeView.render().$el );
+		if (this.memeView.model.isNew()){
+			this.changeImage();
+		}
 		return this;
 	},
 	changePanel: function(view){

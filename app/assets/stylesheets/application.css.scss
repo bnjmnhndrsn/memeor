@@ -21,30 +21,52 @@
 /* MEME FORM */
 
 .meme-edit {
-	width: 700px;
-}
+	padding: 5px;
+	> div {
+		padding: 5px;
+	}
+	.options {
+	
+	}
 
-.meme-container {
-	display: inline-block;
-}
+	.meme-container {
+		display: inline-block;
+	
+	}
 
-.control-panel {
-	display: inline-block;
-	vertical-align: top;
+	.control-panel {
+		height: 500px;
+		margin: 5px;
+		display: inline-block;
+		vertical-align: top;
+	}
 }
 
 /*MEME IMAGE FORM*/
 
+.image-items {
+	width: 220px;
+	background-color: white;	
+	border-radius: 5px;
+	max-height: 400px;
+	overflow-y: auto;
+}
 .meme-image-item {
 	width: 100px;
 	height: 100px;
 	overflow: hidden;
+	margin: 5px;
+	display: inline-block;
+	border: 1px solid transparent;
+	
+	&:hover {
+		border: 1px solid black;
+	}
 	
 	img {
 		max-width:100%;
 	}
 }
-
 
 
 /* MEME SHOW */
@@ -54,6 +76,7 @@
 	width: 500px;
 	overflow: hidden;
 	position: relative;
+	border: 3px black solid;
 }
 
 

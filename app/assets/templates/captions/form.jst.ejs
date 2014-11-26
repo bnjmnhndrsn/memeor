@@ -1,4 +1,6 @@
-<div class="form-group">
+<header><h3>Captions Options</h3></header>
+<label>Alignment</label>
+<div class="form-group text-center">
 		<button name="left" class="alignment btn <%= ('left' == alignment) ? 'btn-primary' : '' %>">
 			<span class="glyphicon glyphicon-align-left"></span>
 		</button>
@@ -9,6 +11,7 @@
 			<span class="glyphicon glyphicon-align-right"></span>
 		</button>
 </div>
+<label>Font size</label>
 <div class="form-group">
 	<input type="number" 
 		   class="form-control" 
@@ -17,6 +20,7 @@
 		   value="<%= fontSize %>"
 	>
 </div>
+<label>Caption text</label>
 <div class="form-group">
 	<input class="form-control"
 		   autofocus	 
@@ -26,7 +30,8 @@
 		   value="<%= content %>"
 	>
 </div>
-<div class="form-group">
+<div class="form-group text-center">
 	<button class="btn btn-danger destroy">DESTROY</button>
+	<button class="btn btn-success save">SAVE</button>
 </div>
 

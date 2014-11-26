@@ -47,10 +47,10 @@ App.Views.MemeShow = Backbone.View.extend({
 	},
 	save: function(){
 		this.model.save({
-			image_id: this.model.image().id
+			image_id: this.model.image().id,
+			captions: this.model.captions().serialize()
 		}, {
 			success: function(){
-				console.log("success");
 				this.captionViews.forEach(function(view){
 					view.save();
 				});
