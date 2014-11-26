@@ -4,6 +4,7 @@ App.Routers.Router = Backbone.Router.extend({
 	},
 	routes: {
 		"" : "index",
+		"memes/new" : "new",
 		"memes/:id/edit" : "edit",
 		"memes/:id" : "show"
 	},
@@ -16,7 +17,6 @@ App.Routers.Router = Backbone.Router.extend({
 		meme.fetch();
 		var view = new App.Views.MemeShow({ model: meme });
 		this.$rootEl.html( view.render().$el );
-		window.meme = meme;
 	},
 	edit: function(id){
 		var meme = new App.Models.Meme({ id: id });

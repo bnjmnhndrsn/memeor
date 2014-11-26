@@ -1,8 +1,15 @@
 App.Models.Meme = Backbone.Model.extend({
 	initialize: function(){
 	},
+	setImage: function(newImage){
+		this._image = newImage;
+		this.trigger("change:image");
+	},
 	image: function(){
-		this._image = this._image || new App.Models.Image();
+		if (!this._image){
+			this._image = new App.Models.Image();
+			App.Collections.images.add(this._image);
+		}
 		return this._image;
 	},
 	captions: function(){
