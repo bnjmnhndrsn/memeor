@@ -9,11 +9,16 @@
 <div>
 	<label>Or add your own!</label>
 	<div class="image-options">
-		<div class="form-group">
-			<input class="form-control" type="url">
-		</div>
-		<div class="form-group">
-			<button class="btn default-btn">Create!</button>
-		</div>
+		<form class="create">
+			<div class="form-group">
+				<input class="form-control" type="url" name="image[src]">
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="text" name="image[title]">
+			</div>  
+			<div class="form-group">
+				<input type="submit" class="btn default-btn" value="Create!">
+			</div>
+		</form>
 	</div>
 </div>

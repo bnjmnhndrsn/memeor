@@ -1,6 +1,7 @@
 App.Views.MemeImageForm = Backbone.CompositeView.extend({
 	events: {
-		"click .meme-image-item": "changeImage"
+		"click .meme-image-item": "changeImage",
+		"submit .create": "createImage"
 	},
 	className: "meme-image-form",
 	template: JST["memes/image_form"],
@@ -27,5 +28,20 @@ App.Views.MemeImageForm = Backbone.CompositeView.extend({
 			newImage = App.Collections.images.get(id);
 			
 		this.model.setImage(newImage);
+	},
+	createImage: function(event){
+		event.preventDefault();
+		
+		var data = $(event.currentTarget).serializeJSON(),
+			image = new App.Models.Image(data.image),
+			that = this;
+		
+		image.save({}, {
+			success: function(){
+				that.collection.add(image);
+				that.model.setImage(image);
+			} 
+		});
+		
 	}
 });

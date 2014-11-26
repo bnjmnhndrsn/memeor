@@ -1,9 +1,8 @@
 class MemesController < ApplicationController
+  wrap_parameters format: [:json]
   
   def create
     @meme = Meme.new(meme_params)
-    
-    p captions
 
     if @meme.save
       render json: @meme
@@ -14,6 +13,7 @@ class MemesController < ApplicationController
 
   def update
     @meme = Meme.find(params[:id])
+    
     
     if @meme.update(meme_params)
       render json: @meme
@@ -33,10 +33,7 @@ class MemesController < ApplicationController
   end
   
   def meme_params
-    params[:meme].permit(:image_id, :title)
+    params[:meme].permit(:image_id, :title, :id, captions_attributes: [:styling, :id, :content])
   end
   
-  def captions
-    params[:meme].permit(:captions)
-  end
 end

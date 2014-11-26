@@ -29,6 +29,13 @@ App.Models.Meme = Backbone.Model.extend({
 		
 		return response;
 	},
+	toJSON: function(){
+		var json = Backbone.Model.prototype.toJSON.call(this);
+		json.image_id = this.image().id;
+		json.captions_attributes = this.captions().toJSON();
+		return json;
+	},
+	
 	urlRoot: "/memes"
 });
 	

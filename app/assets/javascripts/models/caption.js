@@ -1,7 +1,8 @@
 App.Models.Caption = Backbone.Model.extend({
-	serialize: function(){
-		this.set("styling", this.styling().attributes);
-		console.log('getting called');
+	toJSON: function(){
+		var json = Backbone.Model.prototype.toJSON.call(this);
+		json.styling = JSON.stringify( this.styling().toJSON() );
+		return json;
 	},
 	styling: function(){
 		this._styling = this._styling || new App.Models.Styling({}, { meme: this });
@@ -9,7 +10,8 @@ App.Models.Caption = Backbone.Model.extend({
 	},
 	parse: function(response){	
 		if (response.styling) {
-			this.styling().set( App.Utils.parseAttr(response.styling), { parse: true } );
+		
+			this.styling().set( JSON.parse(response.styling), { parse: true } );
 			delete response.styling;
 		}
 		return response;
