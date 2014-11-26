@@ -14,10 +14,11 @@
  *= require_self
  */
 
-/* MEME FORM */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+/* MEME FORM */
 
 .meme-edit {
 	width: 700px;
@@ -32,12 +33,31 @@
 	vertical-align: top;
 }
 
+/*MEME IMAGE FORM*/
+
+.meme-image-item {
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+	
+	img {
+		max-width:100%;
+	}
+}
+
+
+
+/* MEME SHOW */
+
 .meme {
 	height: 500px;
 	width: 500px;
 	overflow: hidden;
 	position: relative;
 }
+
+
+/*CAPTION SHOW*/
 
 .caption .inner {
 	margin: 10px;

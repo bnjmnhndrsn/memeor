@@ -4,7 +4,8 @@ App.Views.MemeForm = Backbone.View.extend({
 	events: {
 		"dblclick .meme": "newCaption",
 		"click .meme": "triggerUnselect",
-		"click .save": "save"
+		"click .save": "save",
+		"click .change-image": "changeImage"
 	},
 	initialize: function(){
 		this.memeView = new App.Views.MemeShow({ model: this.model });
@@ -51,6 +52,13 @@ App.Views.MemeForm = Backbone.View.extend({
 		return false;
 	},
 	save: function(){
+		event.preventDefault();
 		this.memeView.save();
+	},
+	changeImage: function(){
+		event.preventDefault();
+		this.triggerUnselect();
+		App.Collections.images.fetch();
+		this.changePanel( new App.Views.MemeImageForm({ collection: App.Collections.images }) );
 	}
 });
