@@ -36,7 +36,7 @@ App.Views.MemeForm = Backbone.View.extend({
 		caption.styling().set({
 			left: event.offsetX,
 			top: event.offsetY,
-			'font-size': '12px',
+			'font-size': '24px',
 			color: 'black'
 		});
 		this.memeView.model.captions().add(caption);
