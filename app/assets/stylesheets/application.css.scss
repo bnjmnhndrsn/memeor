@@ -18,6 +18,16 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+/* MODAL */
+
+.block-page {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.6);
+	z-index: 10;
+}
+
 /* MEME FORM */
 
 .meme-edit {
