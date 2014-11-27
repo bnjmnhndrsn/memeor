@@ -23,3 +23,6 @@ TODO
 	-create model methods to duplicate memes
 
 -add modal view for editing/new
+	-automatically resize block page based on page resizing
+
+-

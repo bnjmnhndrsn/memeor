@@ -4,7 +4,7 @@ App.Views.BlockPage = Backbone.View.extend({
 	render: function(){
 		var pageHeight = $(document).height(),
 			pageWidth = $(window).width();
-		
+		this.$el.html( this.template() );
 		this.$el.css({
 			height: pageHeight,
 			width: pageWidth

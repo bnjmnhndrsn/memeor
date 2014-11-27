@@ -11,7 +11,7 @@ App.Routers.Router = Backbone.Router.extend({
 		"modal": "modal" 
 	},
 	new: function(){
-		meme = new App.Models.Meme();
+		var meme = new App.Models.Meme();
 		var view = new App.Views.MemeForm({ model: meme });
 		this._switchView(view);
 	},
@@ -33,8 +33,9 @@ App.Routers.Router = Backbone.Router.extend({
 		this._switchView(view);
 	},
 	modal: function(){
-		this._toggleModalView(true);
-		
+		var meme = new App.Models.Meme();
+		var view = new App.Views.MemeForm({ model: meme });
+		this._toggleModalView(view);
 	},
 	_switchView: function(view){
 		this._view && this._view.remove();
@@ -50,7 +51,9 @@ App.Routers.Router = Backbone.Router.extend({
 				this.$modal.append( this._blockPage.render().$el );
 			}
 			
-		
+			this._modalView = view;
+			this._blockPage.$('.popup-container').append( this._modalView.render().$el.addClass("modal-popup") );
+			
 		} else {
 			this._blockPage && this._blockPage.remove();
 			this._blockPage = null;

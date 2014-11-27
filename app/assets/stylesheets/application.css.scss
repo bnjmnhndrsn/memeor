@@ -18,6 +18,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+/* GLOBAL */
+.clearfix {
+	clear: both;
+}
+
 /* MODAL */
 
 .block-page {
@@ -28,20 +33,27 @@
 	z-index: 10;
 }
 
+.modal-popup {
+	margin-left: 10%;
+	display: inline-block;
+}
+
 /* MEME FORM */
 
 .meme-edit {
 	padding: 5px;
+	background-color: transparent;
 	
-	> div {
-		float: left;
-		border: 2px solid black;
+	>div {
+		background-color: white;
 	}
 	.options {
 		border-right: 0px;
 		vertical-align: top;
 		padding: 10px;
 		border-radius: 10px 0 0 10px;
+		float: left;
+		border: 2px solid black;
 		
 		> button {
 			display: block;
@@ -51,6 +63,8 @@
 
 	.meme-container {
 		vertical-align: top;
+		float: left;
+		border: 2px solid black;
 	}
 
 	.control-panel {
@@ -60,6 +74,8 @@
 		vertical-align: top;
 		padding: 10px;
 		border-radius: 0 10px 10px 0;
+		float: left;
+		border: 2px solid black;
 		
 		ul {
 			list-style-position: inside;
