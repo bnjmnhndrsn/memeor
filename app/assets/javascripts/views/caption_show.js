@@ -40,8 +40,14 @@ App.Views.CaptionShow = Backbone.View.extend({
 	},
 	unselect: function(){
 		if (this.selected) {
-			this.selected = false;
-			this.$el.removeClass("selected").draggable('destroy').resizable('destroy');
+			if (!this.model.get("content")) {
+				this.model.destroy();
+				this.remove();
+			} else {
+				this.selected = false;
+				this.$el.removeClass("selected").draggable('destroy').resizable('destroy');
+			}
+
 		}
 	},
 	triggerEditing: function(event){

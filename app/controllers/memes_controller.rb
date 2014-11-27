@@ -1,5 +1,4 @@
 class MemesController < ApplicationController
-  wrap_parameters format: [:json]
   
   def create
     @meme = Meme.new(meme_params)

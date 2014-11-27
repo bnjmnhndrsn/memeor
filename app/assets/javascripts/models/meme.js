@@ -33,7 +33,8 @@ App.Models.Meme = Backbone.Model.extend({
 		var json = Backbone.Model.prototype.toJSON.call(this);
 		json.image_id = this.image().id;
 		json.captions_attributes = this.captions().toJSON();
-		return json;
+		
+		return { meme: json };
 	},
 	
 	urlRoot: "/memes"
