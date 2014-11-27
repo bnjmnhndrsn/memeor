@@ -14,7 +14,9 @@ App.Routers.Router = Backbone.Router.extend({
 		this.$rootEl.html( view.render().$el );
 	},
 	index: function(){
-		alert('this doesnt exist yet');
+		App.Collections.memes.fetch();
+		var view = new App.Views.MemesIndex({ collection: App.Collections.memes });
+		this.$rootEl.html( view.render().$el );
 	},
 	show: function(id){
 		var meme = new App.Models.Meme({ id: id });

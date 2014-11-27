@@ -10,8 +10,8 @@ App.Models.Caption = Backbone.Model.extend({
 	},
 	parse: function(response){	
 		if (response.styling) {
-		
-			this.styling().set( JSON.parse(response.styling), { parse: true } );
+			var parsed = JSON.parse(response.styling);
+			this.styling().set( parsed, { parse: true } );
 			delete response.styling;
 		}
 		return response;

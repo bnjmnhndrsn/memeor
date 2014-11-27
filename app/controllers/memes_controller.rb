@@ -1,5 +1,9 @@
 class MemesController < ApplicationController
-  
+  def index
+    @memes = Meme.all.includes(:image).includes(:captions)
+    render 'index'
+  end
+    
   def create
     @meme = Meme.new(meme_params)
 
