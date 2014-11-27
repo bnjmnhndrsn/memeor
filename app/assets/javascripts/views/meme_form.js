@@ -1,6 +1,7 @@
 App.Views.MemeForm = Backbone.View.extend({
 	className: "meme-edit",
 	template: JST["memes/form"],
+	defaultPanel: JST["memes/default_panel"],
 	events: {
 		"dblclick .meme": "newCaption",
 		"click .meme": "triggerUnselect",
@@ -13,6 +14,7 @@ App.Views.MemeForm = Backbone.View.extend({
 	},
 	render: function(){
 		this.$el.html( this.template() );
+		this.changePanel();
 		this.$(".meme-container").append( this.memeView.render().$el );
 		if (this.memeView.model.isNew()){
 			this.changeImage();
@@ -24,6 +26,8 @@ App.Views.MemeForm = Backbone.View.extend({
 		if (view) {
 			this._panelView = view;
 			this.$('.control-panel').html( this._panelView.render().$el );
+		} else {
+			this.$('.control-panel').html( this.defaultPanel() )
 		}
 	},
 	editCaption: function(caption){	
@@ -54,9 +58,17 @@ App.Views.MemeForm = Backbone.View.extend({
 		this.selected && this.selected.trigger("select");
 		return false;
 	},
-	save: function(){
+	save: function(event){
 		event.preventDefault();
-		this.memeView.save();
+		var callback = function(){
+			Backbone.history.navigate("", { trigger: true })
+		};
+		if ( $(event.currentTarget).hasClass("redirect") ){
+			this.memeView.save(callback);
+		} else {
+			this.memeView.save();
+		}
+		
 	},
 	changeImage: function(){
 		event.preventDefault();

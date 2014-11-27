@@ -45,11 +45,16 @@ App.Views.MemeShow = Backbone.View.extend({
 		this.captionViews.push(view);
 		this.$el.append( view.render().$el );
 	},
-	save: function(){
-		this.model.save({}, {
-			success: function(){
+	save: function(callback){
+		var success = function(){
 				Backbone.history.navigate("/memes/" + this.model.id + "/edit");
-			}.bind(this)
+		}.bind(this);
+		
+		success = (callback) ? callback : success;
+			 
+		this.model.save({}, {
+			success: success
+			
 		});
 	}
 });

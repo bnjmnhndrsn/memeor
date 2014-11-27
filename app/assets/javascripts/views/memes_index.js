@@ -16,7 +16,7 @@ App.Views.MemesIndex = Backbone.CompositeView.extend({
 		return this;
 	},
 	addMemeView: function(meme){
-		var view = new App.Views.MemeShow({ model: meme });
+		var view = new App.Views.MemeIndexItem({ model: meme });
 		this.addSubview(".memes", view);
 	}
 });

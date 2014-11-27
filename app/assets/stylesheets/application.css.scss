@@ -22,23 +22,44 @@
 
 .meme-edit {
 	padding: 5px;
+	
 	> div {
-		padding: 5px;
+		float: left;
+		border: 2px solid black;
 	}
 	.options {
-	
+		border-right: 0px;
+		vertical-align: top;
+		padding: 10px;
+		border-radius: 10px 0 0 10px;
+		
+		> button {
+			display: block;
+			margin: 2px;
+		}
 	}
 
 	.meme-container {
-		display: inline-block;
-	
+		vertical-align: top;
 	}
 
 	.control-panel {
-		height: 500px;
-		margin: 5px;
-		display: inline-block;
+		border-left: 0px;
+		max-width: 260px;
+		height: 504px;
 		vertical-align: top;
+		padding: 10px;
+		border-radius: 0 10px 10px 0;
+		
+		ul {
+			list-style-position: inside;
+			font-size: 125%;
+		}
+		
+		li {
+			margin: 25px 0;
+		}
+		
 	}
 }
 
@@ -76,7 +97,6 @@
 	width: 500px;
 	overflow: hidden;
 	position: relative;
-	border: 3px black solid;
 }
 
 
