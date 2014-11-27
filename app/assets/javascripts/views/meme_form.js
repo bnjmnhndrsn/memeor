@@ -6,7 +6,8 @@ App.Views.MemeForm = Backbone.View.extend({
 		"dblclick .meme": "newCaption",
 		"click .meme": "triggerUnselect",
 		"click .save": "save",
-		"click .change-image": "changeImage"
+		"click .change-image": "changeImage",
+		"click .cancel": "cancel"
 	},
 	initialize: function(){
 		this.memeView = new App.Views.MemeShow({ model: this.model });
@@ -75,5 +76,8 @@ App.Views.MemeForm = Backbone.View.extend({
 		this.triggerUnselect();
 		App.Collections.images.fetch();
 		this.changePanel( new App.Views.MemeImageForm({ model: this.memeView.model, collection: App.Collections.images }) );
+	},
+	cancel: function(){
+		Backbone.history.navigate("", { trigger: true } );
 	}
 });
