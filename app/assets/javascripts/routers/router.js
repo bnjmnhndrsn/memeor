@@ -18,8 +18,8 @@ App.Routers.Router = Backbone.Router.extend({
 	index: function(){
 		this._toggleModalView();
 		App.Collections.memes.fetch();
-		var view = new App.Views.MemesIndex({ collection: App.Collections.memes });
-		this._switchView(view);
+		this._indexView = this._indexView || new App.Views.MemesIndex({ collection: App.Collections.memes });
+		this._switchView(this._indexView);
 	},
 	show: function(id){
 		var meme = new App.Models.Meme({ id: id });
@@ -34,9 +34,11 @@ App.Routers.Router = Backbone.Router.extend({
 		this._toggleModalView(view);
 	},
 	_switchView: function(view){
-		this._view && this._view.remove();
-		this._view = view;
-		this.$rootEl.html( this._view.render().$el );
+		if (this._view !== view){
+			this._view && this._view.remove();
+			this._view = view;
+			this.$rootEl.html( this._view.render().$el );
+		}
 	},
 	_toggleModalView: function(view){
 		this._modalView && this._modalView.remove();

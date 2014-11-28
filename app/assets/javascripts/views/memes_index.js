@@ -2,7 +2,7 @@ App.Views.MemesIndex = Backbone.CompositeView.extend({
 	events: {},
 	template: JST["memes/index"],
 	initialize: function(){
-		
+		console.log("new index view");
 		this.collection.each(function(meme){
 			this.addMemeView(meme);
 		}.bind(this));
