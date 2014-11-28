@@ -3,7 +3,7 @@ App.Views.MemeIndexItem = Backbone.CompositeView.extend({
 		"click" : "beginEdits"
 	},
 	template: JST['memes/index_item'],
-	className: "meme-index-item",
+	className: "meme-index-item row",
 	initialize: function(){
 		this.addMemeView();
 	},
@@ -16,7 +16,7 @@ App.Views.MemeIndexItem = Backbone.CompositeView.extend({
 	addMemeView: function(){
 		this.memeView && this.memeView.remove();
 		this.memeView = new App.Views.MemeShow({ model: this.model });
-		this.$el.append( this.memeView.render().$el );
+		this.$(".meme-container").html( this.memeView.render().$el );
 	},
 	beginEdits: function(){
 		Backbone.history.navigate("/memes/" + this.model.id + "/edit", { trigger: true });

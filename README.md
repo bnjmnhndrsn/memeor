@@ -9,7 +9,12 @@ TODO
 
 -allow models to send styling as JSON, validate and stringify within models by overriding setter methods
 	-send styling as JSON
--add dependent destroy
+
+-edit page
+	-change default font (impact?)
+	-add text shadow
+	-include "meme saved popup"
+	-have something display when image has not yet been selected
 
 -figure out image conversion/storage
 
@@ -24,5 +29,4 @@ TODO
 
 -add modal view for editing/new
 	-automatically resize block page based on page resizing
-
--
+	-return to edited item after editing

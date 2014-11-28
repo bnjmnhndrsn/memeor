@@ -36,7 +36,7 @@ class MemesController < ApplicationController
   end
   
   def meme_params
-    params[:meme].permit(:image_id, :title, :id, captions_attributes: [:styling, :id, :content])
+    params[:meme].permit(:cached_image, :image_id, :title, :id, captions_attributes: [:styling, :id, :content])
   end
   
 end

@@ -1,4 +1,4 @@
-json.extract!(meme, :id, :title)
+json.extract!(meme, :id, :title, :cached_image)
 json.image do 
 	json.partial! 'images/image', image: meme.image
 end

@@ -10,8 +10,8 @@ App.Views.MemeShow = Backbone.View.extend({
 		this.listenTo(this.model.captions(), "remove", this.removeCaptionView);
 	},
 	render: function(){
-		this.addCaptionViews();
 		this.addImageView();
+		this.addCaptionViews();
 		return this;
 	},
 	addImageView: function(){
@@ -50,11 +50,21 @@ App.Views.MemeShow = Backbone.View.extend({
 				Backbone.history.navigate("/memes/" + this.model.id + "/edit");
 		}.bind(this);
 		
-		success = (callback) ? callback : success;
+		var that = this;
+		html2canvas(this.$el, {
+			allowTaint: true,
+		    onrendered: function(canvas) {
+				var image = canvas.toDataURL("image/png");
+				
+				success = (callback) ? callback : success;
 			 
-		this.model.save({}, {
-			success: success
-			
+				that.model.save({ cached_image: image}, {
+					success: success
+				});
+		        
+		    }
 		});
+		
+	
 	}
 });
