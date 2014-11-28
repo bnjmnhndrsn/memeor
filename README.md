@@ -15,6 +15,7 @@ TODO
 	-add text shadow
 	-include "meme saved popup"
 	-have something display when image has not yet been selected
+	-remove selected box from all text before saving
 
 -figure out image conversion/storage
 
