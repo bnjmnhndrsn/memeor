@@ -16,4 +16,4 @@
 /tmp
 
 # Ignore uploaded images
-/public/system
+/public/system/**
