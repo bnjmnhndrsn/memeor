@@ -13,9 +13,10 @@ App.Routers.Router = Backbone.Router.extend({
 	new: function(){
 		var meme = new App.Models.Meme();
 		var view = new App.Views.MemeForm({ model: meme });
-		this._switchView(view);
+		this._toggleModalView(view);
 	},
 	index: function(){
+		this._toggleModalView();
 		App.Collections.memes.fetch();
 		var view = new App.Views.MemesIndex({ collection: App.Collections.memes });
 		this._switchView(view);
@@ -29,11 +30,6 @@ App.Routers.Router = Backbone.Router.extend({
 	edit: function(id){
 		var meme = new App.Models.Meme({ id: id });
 		meme.fetch();
-		var view = new App.Views.MemeForm({ model: meme });
-		this._switchView(view);
-	},
-	modal: function(){
-		var meme = new App.Models.Meme();
 		var view = new App.Views.MemeForm({ model: meme });
 		this._toggleModalView(view);
 	},
@@ -49,6 +45,7 @@ App.Routers.Router = Backbone.Router.extend({
 			if (!this._blockPage) {
 				this._blockPage = new App.Views.BlockPage();
 				this.$modal.append( this._blockPage.render().$el );
+				$("body").addClass("modal-open");
 			}
 			
 			this._modalView = view;
@@ -56,6 +53,7 @@ App.Routers.Router = Backbone.Router.extend({
 			
 		} else {
 			this._blockPage && this._blockPage.remove();
+			$("body").removeClass("modal-open");
 			this._blockPage = null;
 			this._modalView = null;
 			
