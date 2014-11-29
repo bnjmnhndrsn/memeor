@@ -203,6 +203,32 @@ $pgray: #9E9E9E;
 }
 
 
+/* MEME DISPLAY */
+
+.meme-display {
+	
+	.info-container {
+		button {
+			width: 100%;
+			&:hover {
+				color: $pdark;
+				border-color: $pdark;
+				background-color: $pdark-trans;
+			}
+		}
+	}
+	
+	.image-container {
+	
+		img {
+			width: 100%;
+			max-width: 500px;
+		}
+	}	
+}
+
+
+
 /*CAPTION SHOW*/
 
 .caption .inner {

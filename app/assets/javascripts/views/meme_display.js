@@ -4,7 +4,7 @@ App.Views.MemeDisplay = Backbone.View.extend({
 		"click .fork" : "beginEdits"
 	},
 	template: JST['memes/display'],
-	className: "meme-index-item col-xs-12",
+	className: "meme-display container",
 	initialize: function(){
 		this.listenTo(this.model, "sync change", this.render)
 	},

@@ -1,8 +1,14 @@
-<div class="meme-container">
+<div class="page-header text-center">
+	<h2><%= meme.image().get("title") %></h2>
+</div>
+<div class="row">
+	<div class="info-container col-xs-4">
+	<p><h4>Created <%= meme.get("time_words")%> ago by <a href="#">user</a></h4></p>
+	<p><button class="btn btn-lg btn-default">Fork it!</button></p>
+	<p><button class="btn btn-lg btn-default">New one!</button></p>
+	<p><button class="btn btn-lg btn-default">Share it!</button></p>
+	</div>
+	<div class="image-container col-xs-8 text-center">
 	<img src="<%= meme.get("cached_image") %>">
-	<div class="button-container">
-		<span><%= meme.get("time_words")%> ago</span>
-		<button class="btn btn-xs btn-default edit"><span class="glyphicon glyphicon-pencil"></span></button>
-		<button class="btn btn-xs btn-default fork"><span class="glyphicon glyphicon-picture"></span></button>
 	</div>
 </div>
