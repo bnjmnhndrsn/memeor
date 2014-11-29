@@ -45,10 +45,42 @@
 	
 }
 
-
-.meme-index-item-content {
+.meme-index-item {
+	padding-bottom: 25px;
+		
+	.meme-container {
+		border: 1px solid black;
+		width: 100%;
+		position: relative;
+		overflow: hidden;
+		
+		img {
+			border: 1px solid black;
+			width: 100%;
+		}
+		
+		&:hover .button-container {
+			top: 2px;
+		}
+	}
 	
+	.button-container {
+		padding: 5px;
+		color: white;
+		background-color: rgba(0, 0, 0, .3);
+		right: 2px;
+		top: -32px;
+		position: absolute;
+		transition: top .5s ease;
+		
+		button {
+			border-color: white;
+			color: white;
+			background-color: transparent;
+		}
+	}
 }
+
 
 /* MEME FORM */
 

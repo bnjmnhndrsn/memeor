@@ -1,7 +1,8 @@
-<div class="col-xs-6 col-xs-offset-3">
-	<div class="info-container">
-	</div>
-	<div class="meme-container">
-		<img src="<%= meme.get("cached_image") %>">
+<div class="meme-container">
+	<img src="<%= meme.get("cached_image") %>">
+	<div class="button-container">
+		<span><%= meme.get("time_words")%> ago</span>
+		<button class="btn btn-xs btn-default edit"><span class="glyphicon glyphicon-pencil"></span></button>
+		<button class="btn btn-xs btn-default fork"><span class="glyphicon glyphicon-picture"></span></button>
 	</div>
 </div>
