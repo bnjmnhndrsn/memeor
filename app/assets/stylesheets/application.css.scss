@@ -18,6 +18,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$pdark: #3A3276;
+$pdark-trans: rgba(10, 0, 78, .1);
+$pgray: #9E9E9E;
+
 /* GLOBAL */
 .clearfix {
 	clear: both;
@@ -39,6 +43,27 @@
 	display: inline-block;
 }
 
+/*NAVBAR*/
+.navbar {
+	background-color: white;
+	border-bottom: 1px solid $pdark;
+	box-shadow: 0px 3px 6px $pdark-trans;
+	
+	a.navbar-brand, .nav li a  {
+		color: black;
+		&:hover {
+			color: $pdark;
+		};
+	}
+	
+}
+
+/*CONTENT*/
+#content {
+	margin-top: 60px;
+}
+
+
 /* MEME INDEX */
 
 .memes {
@@ -49,19 +74,21 @@
 	padding-bottom: 25px;
 		
 	.meme-container {
-		border: 1px solid black;
+		border: 2px solid white;
 		width: 100%;
 		position: relative;
 		overflow: hidden;
 		max-width: 500px;
 		
 		img {
-			border: 1px solid black;
 			width: 100%;
 		}
 		
-		&:hover .button-container {
-			top: 2px;
+		&:hover {
+			border: 2px solid $pdark;
+			.button-container {
+				top: 0px;
+			}
 		}
 	}
 	
@@ -69,8 +96,8 @@
 		padding: 5px;
 		color: white;
 		background-color: rgba(0, 0, 0, .3);
-		right: 2px;
-		top: -32px;
+		right: 0px;
+		top: -30px;
 		position: absolute;
 		transition: top .5s ease;
 		
@@ -78,6 +105,11 @@
 			border-color: white;
 			color: white;
 			background-color: transparent;
+			
+			&:hover {
+				border-color: $gray;
+				color: $pgray;
+			}
 		}
 	}
 }

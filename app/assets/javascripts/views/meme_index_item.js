@@ -4,7 +4,7 @@ App.Views.MemeIndexItem = Backbone.CompositeView.extend({
 		"click .fork" : "beginEdits"
 	},
 	template: JST['memes/index_item'],
-	className: "meme-index-item col-md-3 col-xs-4",
+	className: "meme-index-item col-md-3 col-sm-4 col-xs-6",
 	initialize: function(){
 	},
 	render: function(){
