@@ -24,7 +24,7 @@ App.Routers.Router = Backbone.Router.extend({
 	show: function(id){
 		var meme = new App.Models.Meme({ id: id });
 		meme.fetch();
-		var view = new App.Views.MemeShow({ model: meme });
+		var view = new App.Views.MemeDisplay({ model: meme });
 		this._switchView(view);
 	},
 	edit: function(id){

@@ -1,7 +1,5 @@
 <div class="meme-container">
-	<a href="<%= "/#/memes/" + meme.id %>" >
-		<img src="<%= meme.get("cached_image") %>">
-	</a>
+	<img src="<%= meme.get("cached_image") %>">
 	<div class="button-container">
 		<span><%= meme.get("time_words")%> ago</span>
 		<button class="btn btn-xs btn-default edit"><span class="glyphicon glyphicon-pencil"></span></button>

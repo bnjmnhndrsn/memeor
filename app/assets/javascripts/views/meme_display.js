@@ -1,11 +1,12 @@
-App.Views.MemeIndexItem = Backbone.CompositeView.extend({
+App.Views.MemeDisplay = Backbone.View.extend({
 	events: {
 		"click .edit" : "beginEdits",
 		"click .fork" : "beginEdits"
 	},
-	template: JST['memes/index_item'],
-	className: "meme-index-item col-md-3 col-xs-4",
+	template: JST['memes/display'],
+	className: "meme-index-item col-xs-12",
 	initialize: function(){
+		this.listenTo(this.model, "sync change", this.render)
 	},
 	render: function(){
 		var content = this.template({ meme: this.model });
