@@ -1,7 +1,6 @@
 App.Views.MemeEditor = Backbone.View.extend({
 	className: "meme-edit row",
-	template: JST["memes/form"],
-	defaultPanel: JST["memes/default_panel"],
+	template: JST["memes/editor"],
 	events: {
 		"dblclick .meme": "newCaption",
 		"click .meme": "triggerUnselect",
@@ -11,11 +10,12 @@ App.Views.MemeEditor = Backbone.View.extend({
 	},
 	initialize: function(){
 		this.memeView = new App.Views.MemeShow({ model: this.model });
+		this.memeForm = new App.Views.MemeForm({ model: this.model });
 		this.listenTo(this.memeView.model.captions(), "beginEditing", this.editCaption);
 	},
 	render: function(){
 		this.$el.html( this.template({ meme: this.model }) );
-		this.changePanel();
+		this.changePanel( this.memeForm );
 		this.$(".meme-container").append( this.memeView.render().$el );
 		if (this.memeView.model.isNew()){
 			this.changeImage();
@@ -28,7 +28,7 @@ App.Views.MemeEditor = Backbone.View.extend({
 			this._panelView = view;
 			this.$('.control-panel').html( this._panelView.render().$el );
 		} else {
-			this.$('.control-panel').html( this.defaultPanel() )
+			this.changePanel( this.memeForm );
 		}
 	},
 	editCaption: function(caption){	
