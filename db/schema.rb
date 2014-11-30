@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128204744) do
+ActiveRecord::Schema.define(version: 20141130210437) do
 
   create_table "captions", force: true do |t|
     t.integer  "meme_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20141128204744) do
     t.string   "cached_image_content_type"
     t.integer  "cached_image_file_size"
     t.datetime "cached_image_updated_at"
+    t.text     "styling"
   end
 
 end
