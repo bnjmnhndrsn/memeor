@@ -1,8 +1,47 @@
-<header>
-	<h3>You're making a meme!</h3>
-</header>
-<ul>
-	<li>Click on the image to add text wherever you want!</li>
-	<li>Click on text to edit it!</li>
-	<li>Use the image button to change the background image!</li>
-</ul>
+<header><h3>Meme Options</h3></header>
+<label>Alignment</label>
+<div class="form-group text-center">
+		<button name="left" class="alignment">
+			<span class="glyphicon glyphicon-align-left"></span>
+		</button>
+		<button name="center" class="alignment">
+			<span class="glyphicon glyphicon-align-center"></span>
+		</button>
+		<button name="right" class="alignment">
+			<span class="glyphicon glyphicon-align-right"></span>
+		</button>
+</div>
+<label>Font size</label>
+<div class="form-group">
+	<input type="number" 
+		   class="form-control" 
+		   name="font-size" 
+		   placeholder="size"
+	>
+</div>
+<label>Font color</label>
+<div class="form-group">
+	<input type="text" 
+		   class="form-control" 
+		   name="color" 
+		   placeholder="color"
+	>
+</div>
+<label>Caption text</label>
+<div class="form-group">
+	<input class="form-control"
+		   autofocus	 
+	       name="content" 
+		   placeholder="text" 
+		   type="text"
+	>
+</div>
+<div class="form-group text-center">
+	<button class="btn btn-success save">Save Meme</button>
+</div>
+<div class="form-group text-center">
+	<button class="btn btn-danger destroy">Delete Meme</button>
+</div>
+<div class="form group text-center">
+	<button class="btn btn-info change-image">Change Image</button>
+</div>

@@ -38,8 +38,7 @@ $pgray: #9E9E9E;
 }
 
 .modal-popup {
-	margin-top: 5%;
-	margin-left: 10%;
+	margin-top: 80px;
 	display: inline-block;
 }
 
@@ -123,35 +122,37 @@ body {
 	background-color: transparent;
 	
 
-	.options {
-		position: absolute;
-		background-color: rgba(0, 0, 0, .3);
-		padding: 5px;
-		top: 0;
-		left: 0;
-		z-index: 15;
-		
-		> button {
-			margin: 2px;
-		}
-	}
 
 	.meme-container {
 		position: relative;
-		background-color: white;
+		background-color: transparent;
 		vertical-align: top;
-		border: 2px solid black;
+		
+		.meme {
+			border: 1px solid black;
+		}
+		
+		.options {
+			position: absolute;
+			background-color: rgba(0, 0, 0, .3);
+			padding: 5px;
+			top: 0;
+			left: 15px;
+			z-index: 15;
+		
+			> button {
+				margin: 2px;
+			}
+		}
 	}
 
 	.control-panel {
+		border: 1px solid black;
+		border-radius: 5px;
 		background-color: white;
-		border-left: 0px;
-		max-width: 260px;
-		height: 504px;
+		height: 500px;
 		vertical-align: top;
 		padding: 10px;
-		border-radius: 0 10px 10px 0;
-		border: 2px solid black;
 		
 		ul {
 			list-style-position: inside;
@@ -168,12 +169,12 @@ body {
 /*MEME IMAGE FORM*/
 
 .image-items {
-	width: 240px;
 	background-color: white;	
 	border-radius: 5px;
 	max-height: 250px;
 	overflow-y: auto;
 }
+
 .meme-image-item {
 	width: 100px;
 	height: 100px;
