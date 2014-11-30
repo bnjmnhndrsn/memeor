@@ -1,4 +1,4 @@
-App.Models.Meme = Backbone.Model.extend({
+App.Models.Meme = Backbone.Stylable.extend({
 	initialize: function(){
 	},
 	setImage: function(newImage){
@@ -17,6 +17,8 @@ App.Models.Meme = Backbone.Model.extend({
 		return this._captions;
 	},
 	parse: function(response){
+		response = Backbone.Stylable.prototype.parse.call(this, response);
+		
 		if (response.image) {
 			this.image().set( response.image, { parse: true } );
 			delete response.image;
@@ -30,7 +32,7 @@ App.Models.Meme = Backbone.Model.extend({
 		return response;
 	},
 	toJSON: function(){
-		var json = Backbone.Model.prototype.toJSON.call(this);
+		var json = Backbone.Model.Stylable.toJSON.call(this);
 		json.image_id = this.image().id;
 		json.captions_attributes = this.captions().toJSON();
 		
