@@ -5,12 +5,11 @@ TODO
 
 -limit resizability to x axis
 
--add default meme options for meme unselected view
-
 -allow models to send styling as JSON, validate and stringify within models by overriding setter methods
 	-send styling as JSON
 
 -edit page
+	-make caption panel close on "save caption"
 	-change default font (impact?)
 	-add text shadow
 	-include "meme saved popup"

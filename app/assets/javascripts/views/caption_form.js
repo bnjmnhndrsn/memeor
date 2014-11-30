@@ -3,7 +3,8 @@ App.Views.CaptionForm = Backbone.View.extend({
 	events: {
 		"input input" : "updateCaption",
 		"click .destroy": "destroy",
-		"click .alignment": "align"
+		"click .alignment": "align",
+		"click .save" : "unselect"
 	},
 	template: JST["captions/form"],
 	initialize: function(){
@@ -42,5 +43,8 @@ App.Views.CaptionForm = Backbone.View.extend({
 			$button.addClass("btn-primary");
 		}
 		this.model.trigger("align", $button.attr("name"));
+	},
+	unselect: function(){
+		this.model.trigger("unselect");
 	}
 });
