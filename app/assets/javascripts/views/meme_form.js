@@ -14,7 +14,7 @@ App.Views.MemeForm = Backbone.View.extend({
 		this.listenTo(this.memeView.model.captions(), "beginEditing", this.editCaption);
 	},
 	render: function(){
-		this.$el.html( this.template() );
+		this.$el.html( this.template({ meme: this.model }) );
 		this.changePanel();
 		this.$(".meme-container").append( this.memeView.render().$el );
 		if (this.memeView.model.isNew()){

@@ -31,7 +31,7 @@ App.Routers.Router = Backbone.Router.extend({
 		var meme = new App.Models.Meme({ id: id });
 		meme.fetch();
 		var view = new App.Views.MemeForm({ model: meme });
-		this._toggleModalView(view);
+		this._switchView(view);
 	},
 	_switchView: function(view){
 		if (this._view !== view){

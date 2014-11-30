@@ -120,24 +120,20 @@ body {
 .meme-edit {
 	padding: 5px;
 	background-color: transparent;
-	
-
+	text-align: center;
 
 	.meme-container {
+		display: inline-block;
 		position: relative;
 		background-color: transparent;
 		vertical-align: top;
-		
-		.meme {
-			border: 1px solid black;
-		}
 		
 		.options {
 			position: absolute;
 			background-color: rgba(0, 0, 0, .3);
 			padding: 5px;
 			top: 0;
-			left: 15px;
+			left: 0;
 			z-index: 15;
 		
 			> button {
@@ -196,6 +192,7 @@ body {
 /* MEME SHOW */
 
 .meme {
+	background-color: rgba(0,0,0,.3);
 	height: 500px;
 	width: 500px;
 	overflow: hidden;
