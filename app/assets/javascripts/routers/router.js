@@ -12,7 +12,7 @@ App.Routers.Router = Backbone.Router.extend({
 	},
 	new: function(){
 		var meme = new App.Models.Meme();
-		var view = new App.Views.MemeForm({ model: meme });
+		var view = new App.Views.MemeEditor({ model: meme });
 		this._switchView(view);
 	},
 	index: function(){
@@ -30,7 +30,7 @@ App.Routers.Router = Backbone.Router.extend({
 	edit: function(id){
 		var meme = new App.Models.Meme({ id: id });
 		meme.fetch();
-		var view = new App.Views.MemeForm({ model: meme });
+		var view = new App.Views.MemeEditor({ model: meme });
 		this._switchView(view);
 	},
 	_switchView: function(view){

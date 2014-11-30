@@ -1,4 +1,4 @@
-App.Views.MemeForm = Backbone.View.extend({
+App.Views.MemeEditor = Backbone.View.extend({
 	className: "meme-edit row",
 	template: JST["memes/form"],
 	defaultPanel: JST["memes/default_panel"],
