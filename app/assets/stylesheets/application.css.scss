@@ -122,37 +122,35 @@ body {
 	padding: 5px;
 	background-color: transparent;
 	
-	>div {
-		background-color: white;
-	}
+
 	.options {
-		border-right: 0px;
-		vertical-align: top;
-		padding: 10px;
-		border-radius: 10px 0 0 10px;
-		float: left;
-		border: 2px solid black;
+		position: absolute;
+		background-color: rgba(0, 0, 0, .3);
+		padding: 5px;
+		top: 0;
+		left: 0;
+		z-index: 15;
 		
 		> button {
-			display: block;
 			margin: 2px;
 		}
 	}
 
 	.meme-container {
+		position: relative;
+		background-color: white;
 		vertical-align: top;
-		float: left;
 		border: 2px solid black;
 	}
 
 	.control-panel {
+		background-color: white;
 		border-left: 0px;
 		max-width: 260px;
 		height: 504px;
 		vertical-align: top;
 		padding: 10px;
 		border-radius: 0 10px 10px 0;
-		float: left;
 		border: 2px solid black;
 		
 		ul {

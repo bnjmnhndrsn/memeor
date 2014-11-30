@@ -23,11 +23,12 @@ TODO
 	-add buttons/link for show page (permalink), fork
 	-add information (user, title, etc)
 
--add true show page
+-display view
+	-make buttons do things
 
 -create fork views
 	-create model methods to duplicate memes
 
 -add modal view for editing/new
-	-automatically resize block page based on page resizing
+	-check about automatically resizing item
 	-return to edited item after editing
