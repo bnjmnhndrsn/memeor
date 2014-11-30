@@ -12,6 +12,7 @@ App.Views.MemeEditor = Backbone.View.extend({
 		this.memeView = new App.Views.MemeShow({ model: this.model });
 		this.memeForm = new App.Views.MemeForm({ model: this.model });
 		this.listenTo(this.memeView.model.captions(), "beginEditing", this.editCaption);
+		this.listenTo(this.model, "change:image", this.openDefaultPanel);
 	},
 	render: function(){
 		this.$el.html( this.template({ meme: this.model }) );
@@ -24,17 +25,16 @@ App.Views.MemeEditor = Backbone.View.extend({
 	},
 	changePanel: function(view){
 		this._panelView && this._panelView.remove();
-		if (view) {
-			this._panelView = view;
-			this.$('.control-panel').html( this._panelView.render().$el );
-		} else {
-			this.changePanel( this.memeForm );
-		}
+		this._panelView = view;
+		this.$('.control-panel').html( this._panelView.render().$el );
+	},
+	openDefaultPanel: function() {
+		this.changePanel( this.memeForm );
 	},
 	editCaption: function(caption){	
 		this.triggerUnselect();
 		this.selected = caption;
-		this.listenTo(this.selected, "endEditing unselect", this.changePanel)
+		this.listenTo(this.selected, "endEditing unselect", this.openDefaultPanel)
 		this.triggerSelect();
 		this.changePanel( new App.Views.CaptionForm({model: this.selected}) );
 	},
