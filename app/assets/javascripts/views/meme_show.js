@@ -53,11 +53,12 @@ App.Views.MemeShow = Backbone.View.extend({
 	},
 	save: function(callback){
 		var success = function(){
+			App.Collections.memes.add(this.model);
+			
 			if (callback){
 				callback();
 			} else {
 				Backbone.history.navigate("/memes/" + this.model.id + "/edit");
-				App.Collections.memes.add(this.model);
 			}
 				
 		}.bind(this);
