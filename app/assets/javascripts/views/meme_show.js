@@ -53,7 +53,13 @@ App.Views.MemeShow = Backbone.View.extend({
 	},
 	save: function(callback){
 		var success = function(){
+			if (callback){
+				callback();
+			} else {
 				Backbone.history.navigate("/memes/" + this.model.id + "/edit");
+				App.Collections.memes.add(this.model);
+			}
+				
 		}.bind(this);
 		
 		var that = this;
@@ -61,8 +67,6 @@ App.Views.MemeShow = Backbone.View.extend({
 			allowTaint: true,
 		    onrendered: function(canvas) {
 				var image = canvas.toDataURL("image/png");
-				
-				success = (callback) ? callback : success;
 			 
 				that.model.save({ cached_image: image}, {
 					success: success

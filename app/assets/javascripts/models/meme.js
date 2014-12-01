@@ -64,18 +64,14 @@ App.Models.Meme = Backbone.Stylable.extend({
 		var cloned = new App.Models.Meme();
 		var json = this.toJSON().meme;
 		delete json.id;
-		
 		_.each(json.captions_attributes, function(caption){
 			delete caption.id;
 		});
 		cloned.captions().set( json.captions_attributes, { parse: true } );
 		delete json.captions_attributes;
-		debugger;
 		cloned.setImage( App.Collections.images.getOrFetch(json.image_id) );
 		delete json.image_id;
-		
 		cloned.set(json);
-		
 		return cloned;
 	}
 });
