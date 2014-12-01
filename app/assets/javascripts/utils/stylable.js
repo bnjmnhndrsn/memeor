@@ -32,4 +32,23 @@ Backbone.Stylable = Backbone.Model.extend({
 		}
 		return response;
 	},
+	getAlignment: function(){
+		//implement in child class
+	},
+	align: function(alignment){
+		if (this.css("text-align") == alignment) {
+			alignment = "";
+		}
+		this.css("text-align", alignment);
+		
+		this.css("left", this.getAlignment());
+	},
+	width: function(width){
+		if (arguments.length == 0) {
+			return this._width;
+		} else {
+			this._width = width;
+		}
+ 			
+	} 
 });

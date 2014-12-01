@@ -17,5 +17,18 @@ App.Models.Caption = Backbone.Stylable.extend({
 		delete json.meme;
 		return json;
 	},
+	getAlignment: function(){
+		debugger;
+		switch( this.css("text-align") ){
+			case "center": 
+				return ( (this.meme.width() - this.width()) / 2 ) + "px";
+			case "left":
+				return "5px";
+			case "right":
+				return (this.meme.width() - this.width()) + "px";
+			default:
+				return this.css("left");
+		} 
+	},
 	urlRoot: "/captions"
 });

@@ -47,7 +47,12 @@ App.Models.Meme = Backbone.Stylable.extend({
 		
 		return { meme: json };
 	},
-	
+	getAlignment: function(){
+		return "";
+	},
+	width: function(){
+		return 500;
+	},
 	urlRoot: "/memes"
 });
 	

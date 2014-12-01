@@ -13,6 +13,7 @@ App.Views.MemeShow = Backbone.View.extend({
 		this.$el.css( this.model.css() );
 		this.addImageView();
 		this.addCaptionViews();
+		this.model.width( this.$el.width );
 		return this;
 	},
 	addImageView: function(){

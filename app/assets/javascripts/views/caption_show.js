@@ -19,16 +19,19 @@ App.Views.CaptionShow = Backbone.View.extend({
 		this.$el.html( rendered );
 		this.$el.css( this.model.css() );
 		this.$el.css("position", "absolute");
+		this.model.width( this.$el.width() );
 		return this;
 	},
 	update: function(){
 		this.$(".inner").text( this.model.get("content") );
+		this.model.width( this.$el.width() );
+		
 		if (this.model.css("text-align")){
 			var alignment = this.model.css("text-align");
-			this.model.css("left", this.getAlignment(alignment), {silent: true});
+			this.model.css("left", this.model.getAlignment(), {silent: true});
 		}
 		
-		this.$el.css( this.model.styling().attributes );
+		this.$el.css( this.model.css() );		
 
 	},
 	select: function(){
@@ -65,29 +68,6 @@ App.Views.CaptionShow = Backbone.View.extend({
 			}.bind(this)
 		});
 		
-	},
-	getAlignment: function(direction){
-		var res;
-		if (direction == "center"){
-			res = 250 - (this.$el.width() / 2) + "px";
-		} else if (direction == "left") {
-			res = "5px"
-		} else if (direction == "right") {
-			res = 495 - (this.$el.width()) + "px";
-		} else {
-			res = this.model.css("left");
-		}
-		return res;
-	},
-	align: function(alignment){
-		if (this.model.css("text-align") == alignment) {
-			alignment = "";
-		}
-		
-		this.model.css({
-			"left": this.getAlignment(alignment),
-			"text-align": alignment
-		});
 	},
 	resize: function(event, ui){
 		this.model.css({
