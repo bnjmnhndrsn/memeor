@@ -101,14 +101,14 @@ body {
 		position: absolute;
 		transition: top .5s ease;
 		
-		button {
+		.btn {
 			border-color: white;
 			color: white;
 			background-color: transparent;
 			
 			&:hover {
-				border-color: $gray;
-				color: $pgray;
+				border-color: $pdark;
+				color: $pdark;
 			}
 		}
 	}
@@ -205,7 +205,7 @@ body {
 .meme-display {
 	
 	.info-container {
-		button {
+		.btn {
 			width: 100%;
 			&:hover {
 				color: $pdark;

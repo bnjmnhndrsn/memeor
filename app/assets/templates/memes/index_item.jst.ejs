@@ -4,7 +4,15 @@
 	</a>
 	<div class="button-container">
 		<span><%= meme.get("time_words")%> ago</span>
-		<button class="btn btn-xs btn-default edit"><span class="glyphicon glyphicon-pencil"></span></button>
-		<button class="btn btn-xs btn-default fork"><span class="glyphicon glyphicon-picture"></span></button>
+		<a 	href="<%= "/#/memes/" + meme.id + "/fork" %>" 
+			class="fork btn btn-xs btn-default"
+		>
+			<span class="glyphicon glyphicon-pencil"></span>
+		</a>
+		<a 	href="<%= "/#/memes/new/" + meme.image().id %>"  
+			class="btn btn-xs btn-default fork"
+		>
+			<span class="glyphicon glyphicon-picture"></span>
+		</a>
 	</div>
 </div>
