@@ -6,11 +6,13 @@ App.Routers.Router = Backbone.Router.extend({
 	routes: {
 		"" : "index",
 		"memes/new" : "new",
+		"memes/new/:id": "new",
 		"memes/:id/edit" : "edit",
 		"memes/:id" : "show"
 	},
-	new: function(){
-		var meme = new App.Models.Meme();
+	new: function(image_id){
+		var attrs = (image_id) ? { image_id: image_id} : {};
+		var meme = new App.Models.Meme(attrs);
 		var view = new App.Views.MemeEditor({ model: meme });
 		this._switchView(view);
 	},

@@ -6,6 +6,13 @@ App.Models.Meme = Backbone.Stylable.extend({
 		"text-align" : "center"
 	},
 	initialize: function(){
+		var image_id = this.get("image_id");
+
+		if (image_id) {
+			var image = App.Collections.images.getOrFetch(image_id);
+			this.setImage(image);
+		}
+		
 		if (this.isNew()){
 			this.styling().set( this.defaultStyling, { parse: true } );
 		}

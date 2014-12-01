@@ -18,7 +18,8 @@ App.Views.MemeEditor = Backbone.View.extend({
 		this.$el.html( this.template({ meme: this.model }) );
 		this.changePanel( this.memeForm );
 		this.$(".meme-container").append( this.memeView.render().$el );
-		if (this.memeView.model.isNew()){
+		
+		if (this.memeView.model.isNew() && this.memeView.model.image().isNew()){
 			this.changeImage();
 		}
 		return this;

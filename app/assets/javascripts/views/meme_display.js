@@ -1,7 +1,8 @@
 App.Views.MemeDisplay = Backbone.View.extend({
 	events: {
-		"click .edit" : "beginEdits",
-		"click .fork" : "beginEdits"
+		"click .edit" : "edit",
+		"click .fork" : "edit",
+		"click .new" : "new"
 	},
 	template: JST['memes/display'],
 	className: "meme-display container",
@@ -13,7 +14,10 @@ App.Views.MemeDisplay = Backbone.View.extend({
 		this.$el.html(content);
 		return this;
 	},
-	beginEdits: function(){
+	edit: function(){
 		Backbone.history.navigate("/memes/" + this.model.id + "/edit", { trigger: true });
+	},
+	new : function(){
+		Backbone.history.navigate("/memes/new/" + this.model.image().id, { trigger: true });
 	}
 });
