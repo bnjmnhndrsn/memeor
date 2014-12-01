@@ -7,8 +7,7 @@ App.Routers.Router = Backbone.Router.extend({
 		"" : "index",
 		"memes/new" : "new",
 		"memes/:id/edit" : "edit",
-		"memes/:id" : "show",
-		"modal": "modal" 
+		"memes/:id" : "show"
 	},
 	new: function(){
 		var meme = new App.Models.Meme();
@@ -16,10 +15,9 @@ App.Routers.Router = Backbone.Router.extend({
 		this._switchView(view);
 	},
 	index: function(){
-		this._toggleModalView();
 		App.Collections.memes.fetch();
-		this._indexView = this._indexView || new App.Views.MemesIndex({ collection: App.Collections.memes });
-		this._switchView(this._indexView);
+		var view = new App.Views.MemesIndex({ collection: App.Collections.memes });
+		this._switchView(view);
 	},
 	show: function(id){
 		var meme = new App.Models.Meme({ id: id });
@@ -33,12 +31,10 @@ App.Routers.Router = Backbone.Router.extend({
 		var view = new App.Views.MemeEditor({ model: meme });
 		this._switchView(view);
 	},
-	_switchView: function(view){
-		if (this._view !== view){
-			this._view && this._view.remove();
-			this._view = view;
-			this.$rootEl.html( this._view.render().$el );
-		}
+	_switchView: function(view){	
+		this._view && this._view.remove();
+		this._view = view;
+		this.$rootEl.html( this._view.render().$el );
 	},
 	_toggleModalView: function(view){
 		this._modalView && this._modalView.remove();
