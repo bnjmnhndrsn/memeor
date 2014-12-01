@@ -17,16 +17,16 @@ App.Views.CaptionShow = Backbone.View.extend({
 	render: function(){
 		var rendered = this.template({ caption: this.model });
 		this.$el.html( rendered );
-		this.$el.css( this.model.styling().attributes );
+		this.$el.css( this.model.css() );
 		this.$el.css("position", "absolute");
 		return this;
 	},
 	update: function(){
 		this.$(".inner").text( this.model.get("content") );
 		
-		if (this.model.styling().get("text-align")){
+		if (this.model.css("text-align")){
 			var alignment = this.model.styling().get("text-align");
-			this.model.styling().set("left", this.getAlignment(alignment), {silent: true});
+			this.model.css("left", this.getAlignment(alignment), {silent: true});
 		}
 		
 		this.$el.css( this.model.styling().attributes );
@@ -76,12 +76,12 @@ App.Views.CaptionShow = Backbone.View.extend({
 		} else if (direction == "right") {
 			res = 495 - (this.$el.width()) + "px";
 		} else {
-			res = this.model.styling().get("left");
+			res = this.model.css("left");
 		}
 		return res;
 	},
 	align: function(alignment){
-		if (this.model.styling().get("text-align") == alignment) {
+		if (this.model.css("text-align") == alignment) {
 			alignment = "";
 		}
 		
@@ -91,13 +91,13 @@ App.Views.CaptionShow = Backbone.View.extend({
 		});
 	},
 	resize: function(event, ui){
-		this.model.styling().set({
+		this.model.css({
 			"width": ui.element.width() + "px",
 			"height": ui.element.height() + "px"
 		}, {silent: true});
 	},
 	drag: function(event, ui){
-		this.model.styling().set({
+		this.model.css({
 			"left": ui.position.left + "px",
 			"top": ui.position.top + "px"
 		});

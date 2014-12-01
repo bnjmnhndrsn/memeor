@@ -22,9 +22,9 @@ App.Views.CaptionForm = Backbone.View.extend({
 		if (attr === "content"){
 			this.model.set("content", val);
 		} else if (attr == "font-size") {
-			this.model.styling().set(attr, val + "px");
+			this.model.css(attr, val + "px");
 		} else {
-			this.model.styling().set(attr, val);
+			this.model.css(attr, val);
 		}
 		
 		return false;
