@@ -4,13 +4,14 @@ App.Routers.Router = Backbone.Router.extend({
 		this.$modal = $("#modal");
 	},
 	routes: {
-		"" : "index",
-		"memes/new" : "new",
+		"": "index",
+		"memes/new": "new",
 		"memes/new/:id": "new",
-		"memes/:id/edit" : "edit",
-		"memes/:id/fork" : "fork",
-		"memes/:id" : "show",
-		"images" : "imageIndex"
+		"memes/:id/edit": "edit",
+		"memes/:id/fork": "fork",
+		"memes/:id": "show",
+		"images": "imageIndex",
+		"images/:id": "imageShow"
 	},
 	new: function(image_id){
 		var attrs = (image_id) ? { image_id: image_id} : {};
@@ -24,8 +25,7 @@ App.Routers.Router = Backbone.Router.extend({
 		this._switchView(view);
 	},
 	show: function(id){
-		var meme = new App.Models.Meme({ id: id });
-		meme.fetch();
+		var meme = App.Collections.memes.getOrFetch(id);
 		var view = new App.Views.MemeDisplay({ model: meme });
 		this._switchView(view);
 	},
@@ -43,6 +43,11 @@ App.Routers.Router = Backbone.Router.extend({
 	imageIndex: function(){
 		App.Collections.images.fetch();
 		var view = new App.Views.ImagesIndex({ collection: App.Collections.images });
+		this._switchView(view);
+	},
+	imageShow: function(id){
+		var image = App.Collections.images.getOrFetch(id);
+		var view = new App.Views.ImageDisplay({ model: image });
 		this._switchView(view);
 	},
 	_switchView: function(view){	
