@@ -1,8 +1,8 @@
 class ImagesController < ApplicationController
   def show
-    @image = Image.find(params[:id])
+    @image = Image.includes(:memes).find(params[:id])
     if @image
-      render json: @image
+      render :show
     else
       render json: ["No image!"], status: 404
     end

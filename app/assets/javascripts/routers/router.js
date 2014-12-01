@@ -46,8 +46,10 @@ App.Routers.Router = Backbone.Router.extend({
 		this._switchView(view);
 	},
 	imageShow: function(id){
-		var image = App.Collections.images.getOrFetch(id);
-		var view = new App.Views.ImageDisplay({ model: image });
+		var image = App.Collections.images.getOrFetch(id),
+			memes = image.memes();
+		var view = new App.Views.ImageDisplay({ model: image, collection: memes });
+		
 		this._switchView(view);
 	},
 	_switchView: function(view){	
