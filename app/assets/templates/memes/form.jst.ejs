@@ -17,6 +17,7 @@
 		   class="form-control" 
 		   name="font-size" 
 		   placeholder="size"
+		   value="<%= meme.css('font-size').replace('px', '')  %>"
 	>
 </div>
 <label>Font color</label>
@@ -25,6 +26,7 @@
 		   class="form-control" 
 		   name="color" 
 		   placeholder="color"
+		   value="<%= meme.css('color') %>"
 	>
 </div>
 <label>Font family</label>
@@ -33,6 +35,7 @@
 		   class="form-control" 
 		   name="font-family" 
 		   placeholder="font family"
+		   value="<%= meme.css('font-family') %>"
 	>
 </div>
 <br>

@@ -5,13 +5,14 @@ Backbone.StylableForm = Backbone.View.extend({
 		"click .alignment": "align"
 	},
 	initialize: function(){
-		
+		this.listenTo( this.model, "sync", this.render);
 	},
 	render: function(){
 		var templateObj = {};
 		templateObj[this.modelName] = this.model;
 		var rendered = this.template(templateObj);
 		this.$el.html(rendered);
+		this.highlightAlignedButton();
 		return this;
 	},
 	updateModel: function(event){
@@ -42,5 +43,11 @@ Backbone.StylableForm = Backbone.View.extend({
 			$button.addClass("btn-primary");
 		}
 		this.model.align( $button.attr("name") );
+	},
+	highlightAlignedButton: function(){
+		if (this.model.css("text-align")) {
+			var $button = this.$("button[name='" + this.model.css("text-align") + "']");
+			$button.addClass("btn-primary");
+		}
 	}
 });

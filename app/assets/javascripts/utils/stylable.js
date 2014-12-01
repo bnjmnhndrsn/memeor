@@ -40,7 +40,6 @@ Backbone.Stylable = Backbone.Model.extend({
 			alignment = "";
 		}
 		this.css("text-align", alignment);
-		
 		this.css("left", this.getAlignment());
 	},
 	width: function(width){
