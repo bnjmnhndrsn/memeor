@@ -236,3 +236,28 @@ body {
 .selected {
 	border: 1px dotted black;
 }
+
+/* IMAGES INDEX */
+.memes {
+	
+}
+
+.image-index-item {
+	padding-bottom: 25px;
+		
+	.image-container {
+		border: 2px solid white;
+		height: 250px;
+		width: 250px;
+		overflow: hidden;
+		
+		img {
+			width: 100%;
+		}
+		
+		&:hover {
+			border: 2px solid $pdark;
+		}
+	}
+	
+}
