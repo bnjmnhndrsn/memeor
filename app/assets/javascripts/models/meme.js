@@ -42,6 +42,7 @@ App.Models.Meme = Backbone.Stylable.extend({
 	},
 	toJSON: function(){
 		var json = Backbone.Stylable.prototype.toJSON.call(this);
+		debugger;
 		json.image_id = this.image().id;
 		json.captions_attributes = this.captions().toJSON();
 		

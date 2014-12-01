@@ -1,7 +1,11 @@
 Backbone.Stylable = Backbone.Model.extend({
+	defaultStyling: {
+		
+	},
 	css: function(property, value){
 		if (arguments.length == 1) {
-			return this.styling().get(property);
+			var val = this.styling().get(property);
+			return (val) ? val : this.defaultStyling[property];
 		} else if (arguments.length == 2) {
 			this.styling().set(property, value)
 		}
@@ -10,6 +14,7 @@ Backbone.Stylable = Backbone.Model.extend({
 	toJSON: function(){
 		var json = Backbone.Model.prototype.toJSON.call(this);
 		json.styling = JSON.stringify( this.styling().toJSON() );
+		debugger;
 		return json;
 	},
 	styling: function(){
