@@ -30,6 +30,7 @@ App.Views.MemeEditor = Backbone.View.extend({
 	},
 	openDefaultPanel: function() {
 		this.changePanel( this.memeForm );
+		this.memeForm.delegateEvents();
 	},
 	editCaption: function(caption){	
 		this.triggerUnselect();

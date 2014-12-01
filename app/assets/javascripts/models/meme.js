@@ -44,7 +44,6 @@ App.Models.Meme = Backbone.Stylable.extend({
 		var json = Backbone.Stylable.prototype.toJSON.call(this);
 		json.image_id = this.image().id;
 		json.captions_attributes = this.captions().toJSON();
-		
 		return { meme: json };
 	},
 	getAlignment: function(){

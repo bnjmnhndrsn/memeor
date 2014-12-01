@@ -5,6 +5,7 @@ App.Views.MemeShow = Backbone.View.extend({
 		this.captionViews = [];
 		this.selected = null;
 		this.listenTo(this.model, "change:image", this.addImageView);
+		this.listenTo(this.model, "change", this.update);
 		this.listenTo(this.model, "sync", this.render);
 		this.listenTo(this.model.captions(), "add", this.addCaptionView);
 		this.listenTo(this.model.captions(), "remove", this.removeCaptionView);
@@ -15,6 +16,9 @@ App.Views.MemeShow = Backbone.View.extend({
 		this.addCaptionViews();
 		this.model.width( this.$el.width );
 		return this;
+	},
+	update: function(){
+		this.$el.css( this.model.css() );
 	},
 	addImageView: function(){
 		this.imageView && this.imageView.remove();
