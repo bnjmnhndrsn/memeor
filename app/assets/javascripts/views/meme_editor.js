@@ -59,10 +59,16 @@ App.Views.MemeEditor = Backbone.View.extend({
 	},
 	save: function(event){
 		event.preventDefault();
+		var $button = $(event.currentTarget);
+		if ($button.hasClass("unselect")){
+			this.selected.trigger("unselect");
+		}
+		
 		var callback = function(){
 			Backbone.history.navigate("", { trigger: true })
 		};
-		if ( $(event.currentTarget).hasClass("redirect") ){
+		
+		if ( $button.hasClass("redirect") ){
 			this.memeView.save(callback);
 		} else {
 			this.memeView.save();
