@@ -1,7 +1,7 @@
 <header><h3>Captions Options</h3></header>
 <label>Alignment</label>
 <div class="form-group text-center">
-		<% var alignment = caption.styling().get('alignment'); %>
+		<% var alignment = caption.css('text-align'); %>
 		<button name="left" class="alignment btn <%= ('left' == alignment) ? 'btn-primary' : '' %>">
 			<span class="glyphicon glyphicon-align-left"></span>
 		</button>
@@ -18,7 +18,7 @@
 		   class="form-control" 
 		   name="font-size" 
 		   placeholder="size"
-		   value="<%= caption.styling().get('font-size').replace("px", "") %>"
+		   value="<%= caption.css('font-size').replace("px", "") %>"
 	>
 </div>
 <label>Font color</label>
@@ -27,7 +27,7 @@
 		   class="form-control" 
 		   name="color" 
 		   placeholder="color"
-		   value="<%= caption.styling().get('color') %>"
+		   value="<%= caption.css('color') %>"
 	>
 </div>
 <label>Caption text</label>

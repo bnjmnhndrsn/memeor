@@ -41,12 +41,10 @@ App.Views.MemeEditor = Backbone.View.extend({
 	newCaption: function(event){
 		event.preventDefault();
 		this.triggerUnselect();
-		var caption = new App.Models.Caption({meme_id: this.memeView.model.id});
+		var caption = new App.Models.Caption({ meme: this.memeView.model });
 		caption.styling().set({
 			left: event.offsetX,
-			top: event.offsetY,
-			'font-size': '24px',
-			color: 'black'
+			top: event.offsetY
 		});
 		this.memeView.model.captions().add(caption);
 		caption.trigger("beginEditing", caption);

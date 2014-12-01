@@ -1,5 +1,14 @@
 App.Models.Meme = Backbone.Stylable.extend({
+	defaultStyling: {
+		"color": "white",
+		"font-size" : "32px",
+		"font-family" : "Impact, Charcoal, sans-serif",
+		"text-align" : "center"
+	},
 	initialize: function(){
+		if (this.isNew()){
+			this.styling().set( this.defaultStyling, { parse: true } );
+		}
 	},
 	setImage: function(newImage){
 		this._image = newImage;
@@ -13,7 +22,7 @@ App.Models.Meme = Backbone.Stylable.extend({
 		return this._image;
 	},
 	captions: function(){
-		this._captions = this._captions || new App.Collections.Captions();
+		this._captions = this._captions || new App.Collections.Captions([], { meme: this });
 		return this._captions;
 	},
 	parse: function(response){
@@ -32,7 +41,7 @@ App.Models.Meme = Backbone.Stylable.extend({
 		return response;
 	},
 	toJSON: function(){
-		var json = Backbone.Model.Stylable.toJSON.call(this);
+		var json = Backbone.Stylable.prototype.toJSON.call(this);
 		json.image_id = this.image().id;
 		json.captions_attributes = this.captions().toJSON();
 		

@@ -1,9 +1,9 @@
 App.Models.Styling = Backbone.Model.extend({
 	initialize: function(attributes, options){
-		if (options.meme){
-			this.meme = options.meme;
+		if (options.parentModel){
+			this.parentModel = options.parentModel;
 			this.on("change", function(){
-				this.meme.trigger("change");
+				this.parentModel.trigger("change");
 			}.bind(this))
 		}
 	}

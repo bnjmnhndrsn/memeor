@@ -15,6 +15,7 @@ App.Views.CaptionShow = Backbone.View.extend({
 		this.selected = false;
 	},
 	render: function(){
+		debugger;
 		var rendered = this.template({ caption: this.model });
 		this.$el.html( rendered );
 		this.$el.css( this.model.styling().attributes );
