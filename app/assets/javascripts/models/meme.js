@@ -59,6 +59,20 @@ App.Models.Meme = Backbone.Stylable.extend({
 	width: function(){
 		return 500;
 	},
-	urlRoot: "/memes"
+	urlRoot: "/memes",
+	duplicate: function(){
+		var cloned = new App.Models.Meme();
+		var json = this.toJSON().meme;
+		delete json.id;
+		_.each(json.captions_attributes, function(caption){
+			delete caption.id;
+		});
+		cloned.nestedSet(json);
+		return cloned;
+	},
+	nestedSet: function(json){
+		this.parse(json);
+		this.set(json);
+	}
 });
 	

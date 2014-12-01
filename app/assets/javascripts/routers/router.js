@@ -8,6 +8,7 @@ App.Routers.Router = Backbone.Router.extend({
 		"memes/new" : "new",
 		"memes/new/:id": "new",
 		"memes/:id/edit" : "edit",
+		"memes/:id/fork" : "fork",
 		"memes/:id" : "show"
 	},
 	new: function(image_id){
@@ -28,7 +29,12 @@ App.Routers.Router = Backbone.Router.extend({
 		this._switchView(view);
 	},
 	edit: function(id){
-		var meme = new App.Models.Meme({ id: id });
+		var meme = App.Collections.memes.getOrFetch(id);
+		var view = new App.Views.MemeEditor({ model: meme });
+		this._switchView(view);
+	},
+	fork: function(id){
+		var original = new App.Models.Meme({ id: id });
 		meme.fetch();
 		var view = new App.Views.MemeEditor({ model: meme });
 		this._switchView(view);
