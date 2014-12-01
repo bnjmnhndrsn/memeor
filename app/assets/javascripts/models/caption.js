@@ -18,7 +18,6 @@ App.Models.Caption = Backbone.Stylable.extend({
 		return json;
 	},
 	getAlignment: function(){
-		debugger;
 		switch( this.css("text-align") ){
 			case "center": 
 				return ( (this.meme.width() - this.width()) / 2 ) + "px";

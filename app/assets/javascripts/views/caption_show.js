@@ -59,16 +59,6 @@ App.Views.CaptionShow = Backbone.View.extend({
 			return false;
 		}
 	},
-	save: function(){
-		this.model.save({
-			styling: this.$el.attr("style")
-		}, {
-			success: function(model){
-				this.model = model;
-			}.bind(this)
-		});
-		
-	},
 	resize: function(event, ui){
 		this.model.css({
 			"width": ui.element.width() + "px",
