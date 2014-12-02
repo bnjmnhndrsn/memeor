@@ -30,15 +30,23 @@ App.Routers.Router = Backbone.Router.extend({
 		this._switchView(view);
 	},
 	edit: function(id){
-		var meme = App.Collections.memes.getOrFetch(id);
-		var view = new App.Views.MemeEditor({ model: meme });
-		this._switchView(view);
+		var meme = new App.Models.Meme({ id: id });
+		this._blockUntilFetched(meme, function(meme){
+			var view = new App.Views.MemeEditor({ model: meme });
+			this._switchView(view);
+		});
+		
 	},
 	fork: function(id){
-		var original = App.Collections.memes.getOrFetch(id);
-		var forked = original.fork();
-		var view = new App.Views.MemeEditor({ model: forked });
-		this._switchView(view);
+		var original = new App.Models.Meme({ id: id });
+		
+		this._blockUntilFetched(original, function(meme){
+			App.Collections.memes.add(meme);
+			var forked = meme.fork();
+			var view = new App.Views.MemeEditor({ model: forked });
+			this._switchView(view);
+		})
+		
 	},
 	imageIndex: function(){
 		App.Collections.images.fetch();
@@ -51,6 +59,20 @@ App.Routers.Router = Backbone.Router.extend({
 		var view = new App.Views.ImageDisplay({ model: image, collection: memes });
 		
 		this._switchView(view);
+	},
+	
+	//displays block page until model is fetched, then runs callback
+	_blockUntilFetched: function(model, callback){
+		var blockview = new App.Views.BlockPage();
+		var that = this;
+		$("body").append( blockview.render().$el );
+		
+		model.fetch({
+			success: function(){
+				blockview.remove();
+				callback.call(that, model);
+			}
+		});
 	},
 	_switchView: function(view){	
 		this._view && this._view.remove();
