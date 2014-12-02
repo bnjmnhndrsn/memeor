@@ -9,12 +9,12 @@
 <div>
 	<label>Or add your own!</label>
 	<div class="image-options">
-		<form class="create">
+		<form class="create" enctype="multipart/form-data">
 			<div class="form-group">
-				<input class="form-control" placeholder="title" type="title" name="image[title]">
+				<input class="form-control" placeholder="title" type="text" name="title">
 			</div>
 			<div class="form-group">
-				<input class="form-control" placeholder="url" type="src" name="image[src]">
+				<input class="form-control" placeholder="file" type="file" name="image_src">
 			</div>  
 			<div class="form-group">
 				<input type="submit" class="btn default-btn" value="Create!">

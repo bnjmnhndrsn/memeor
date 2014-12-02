@@ -1,7 +1,4 @@
 App.Views.ImageDisplay = Backbone.View.extend({
-	events: {
-		"click .new" : "new"
-	},
 	template: JST['images/display'],
 	className: "image-display container",
 	initialize: function(){
@@ -13,8 +10,5 @@ App.Views.ImageDisplay = Backbone.View.extend({
 		this.$el.html(content);
 		this.$el.append( this.memesIndex.render().$el );
 		return this;
-	},
-	new: function(){
-		Backbone.history.navigate("/memes/new/" + this.model.id, { trigger: true });
 	}
 });

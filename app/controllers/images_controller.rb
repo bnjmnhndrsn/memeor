@@ -19,13 +19,13 @@ class ImagesController < ApplicationController
   
   def index
     @images = Image.all
-    render json: @images
+    render :index
   end
   
   private
   
   def image_params
-    params[:image].permit(:id, :title, :src)
+    params.permit(:title, :image_src)
   end
   
 end

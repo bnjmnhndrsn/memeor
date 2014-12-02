@@ -26,7 +26,6 @@ Backbone.StylableForm = Backbone.View.extend({
 		} else {
 			this.model.css(attr, val);
 		}
-		console.log(this.model.css());
 		return false;
 	},
 	destroy: function(){

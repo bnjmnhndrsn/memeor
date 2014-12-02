@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141130210437) do
+ActiveRecord::Schema.define(version: 20141201231807) do
 
   create_table "captions", force: true do |t|
     t.integer  "meme_id"
@@ -23,9 +23,12 @@ ActiveRecord::Schema.define(version: 20141130210437) do
 
   create_table "images", force: true do |t|
     t.string   "title"
-    t.string   "src",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_src_file_name"
+    t.string   "image_src_content_type"
+    t.integer  "image_src_file_size"
+    t.datetime "image_src_updated_at"
   end
 
   create_table "memes", force: true do |t|

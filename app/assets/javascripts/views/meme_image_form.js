@@ -31,12 +31,27 @@ App.Views.MemeImageForm = Backbone.CompositeView.extend({
 	},
 	createImage: function(event){
 		event.preventDefault();
+		var $form = $(event.currentTarget);
+		var values = {};
+	    var csrf_param = $('meta[name=csrf-param]').attr('content');
+	    var csrf_token = $('meta[name=csrf-token]').attr('content');
+	    var values_with_csrf;
 		
-		var data = $(event.currentTarget).serializeJSON(),
-			image = new App.Models.Image(data.image),
-			that = this;
+	    _.each($form.serializeArray(), function(input){
+	         values[ input.name ] = input.value;
+	    });
+		
+
+		values_with_csrf = _.extend({}, values)
+    	values_with_csrf[csrf_param] = csrf_token
+		   		   
+		var image = new App.Models.Image(values);
+		var that = this;
 		
 		image.save({}, {
+			iframe: true,
+			files: $form.find(":file"),
+			data: values_with_csrf,
 			success: function(){
 				that.collection.add(image);
 				that.model.setImage(image);

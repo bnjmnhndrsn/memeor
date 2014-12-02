@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require jquery-ui.min
 //= require jQuery.serializeJSON
+//= require jquery.iframe-transport
 //= require html2canvas.js
 //= require underscore
 //= require backbone
