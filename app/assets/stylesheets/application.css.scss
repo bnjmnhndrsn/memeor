@@ -35,6 +35,13 @@ $pgray: #9E9E9E;
 	left: 0;
 	background-color: rgba(0,0,0,0.6);
 	z-index: 10;
+	
+	.loading-holder {
+		margin: 300px auto;
+		width: 120px;
+		height: 128px;
+		background-image: url('loading.gif');
+	}
 }
 
 .modal-popup {
@@ -294,3 +301,11 @@ body {
 		}
 	}
 }
+
+
+/* FLASH */
+.flash {
+	position: fixed;
+	top: 70px;
+}
+

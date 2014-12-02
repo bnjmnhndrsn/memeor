@@ -21,7 +21,6 @@ App.Utils.Canvasify.prototype.addImage = function($image){
 	this._delay = true;
 	var imageObj = new Image();
 	var layer = new Kinetic.Layer();
-	debugger;
     imageObj.onload = function(){
 		
 		var image = new Kinetic.Image({
@@ -83,7 +82,6 @@ App.Utils.Canvasify.prototype.addCaption = function($caption){
 
 App.Utils.Canvasify.prototype.toDataUrl = function(callback){
 	var fn = function(){
-		debugger;
 		this.stage.toDataURL({
 			callback: callback
 		});

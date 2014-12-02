@@ -96,6 +96,8 @@ App.Views.MemeShow = Backbone.View.extend({
 	},
 	save: function(options){
 		
+		var blockpage = new App.Views.BlockPage();
+		$("body").append(blockpage.render().$el);
 		var canvasify = new App.Utils.Canvasify({
 			container: "meme-canvas",
 	        width: this.model.width(),
@@ -112,8 +114,8 @@ App.Views.MemeShow = Backbone.View.extend({
 		
 		var success = function(){
 			App.Collections.memes.add(that.model);
-			var route = "/memes/" + that.model.id + (options.redirect ? "" : "/edit");
-			Backbone.history.navigate(route, { trigger: true });
+			Backbone.history.navigate("/memes/" + that.model.id, { trigger: true });
+			blockpage.remove();
 		};
 		
 		canvasify.toDataUrl(function(dataUrl){

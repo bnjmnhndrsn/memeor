@@ -15,8 +15,7 @@ class MemesController < ApplicationController
   end
 
   def update
-    @meme = Meme.find(params[:id])
-    
+    @meme = Meme.find(params[:id])    
     
     if @meme.update(meme_params)
       render json: @meme
