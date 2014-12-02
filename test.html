@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="578" height="200"></canvas>
+    <script>
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+      var x = 80;
+      var y = 110;
+
+      context.font = '60pt Impact';
+      context.lineWidth = 3;
+      // stroke color
+      context.strokeStyle = 'black';
+	  context.strokeText('Hello World!', x, y);
+	  context.fillStyle = 'white';
+      context.fillText('Hello World!', x, y);
+    </script>
+  </body>
+</html> 

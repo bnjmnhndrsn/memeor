@@ -17,6 +17,7 @@
 //= require jQuery.serializeJSON
 //= require jquery.iframe-transport
 //= require html2canvas.js
+//= require kinetic.js
 //= require underscore
 //= require backbone
 //= require app

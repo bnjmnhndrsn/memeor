@@ -228,8 +228,6 @@ body {
 	.image-container {
 	
 		img {
-			width: 100%;
-			max-width: 500px;
 		}
 	}
 	
@@ -242,6 +240,16 @@ body {
 .caption .inner {
 	margin: 10px;
 	z-index: 15;
+	text-shadow: 2px 2px 2px #000,
+				-2px -2px 2px #000,
+				2px -2px 2px #000,
+				-2px 2px 2px #000,
+				2px -2px 2px #000,
+				2px 2px 2px #000,
+				-2px -2px 0 #000,
+				2px -2px 0 #000,
+				-2px 2px 0 #000,
+				2px -2px 0 #000;
 }
 
 .selected {
@@ -282,7 +290,7 @@ body {
 		height: 400px;
 		
 		img {
-			height: 100%;
+			max-height: 400px;
 		}
 	}
 }

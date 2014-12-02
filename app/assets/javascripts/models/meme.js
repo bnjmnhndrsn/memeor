@@ -59,6 +59,9 @@ App.Models.Meme = Backbone.Stylable.extend({
 	width: function(){
 		return this.image().get("width");
 	},
+	height: function(){
+		return this.image().get("height");
+	},
 	urlRoot: "/memes",
 	fork: function(){
 		var cloned = new App.Models.Meme();
