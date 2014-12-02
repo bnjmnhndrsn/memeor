@@ -11,7 +11,7 @@ class ImagesController < ApplicationController
   def create
     @image = Image.new(image_params)
     if @image.save
-      render json: @image
+      render :show
     else
       render json: @image.errors.full_messages, status: 422
     end
