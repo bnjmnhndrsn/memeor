@@ -95,109 +95,34 @@ App.Views.MemeShow = Backbone.View.extend({
 		this.$el.append( view.render().$el );
 	},
 	save: function(callback){
-		var success = function(){
-			App.Collections.memes.add(this.model);
-			if (callback){
-				callback();
-			} else {
-				Backbone.history.navigate("/memes/" + this.model.id + "/edit");
-			}
-				
-		}.bind(this);
+		
 		var canvasify = new App.Utils.Canvasify({
 			container: "meme-canvas",
 	        width: this.model.width(),
 	        height: this.model.height()
 		});
 		
-		canvasify.addImage
-	    var stage = new Kinetic.Stage({
-			
-	         });
-	         var layer = new Kinetic.Layer();
-
-			 var $el = $(".caption");
-
-			var $image = $(".image img");
-			var imageObj = new Image();
-		    imageObj.onload = function(){
-				var image = new Kinetic.Image({
-				          x: 0,
-				          y: 0,
-				          image: imageObj,
-				          width: stage.width(),
-					height: stage.height()
-				        });
-						
-					 layer.add(image);
-						
-						
-			         var complexText = new Kinetic.Text({
-			           x:  +$el.css('left').replace("px","") + 10,
-			           y: +$el.css('top').replace("px","") + 10,
-			           text: $el.find('.inner').text(),
-						 fontSize: $el.css("font-size").replace("px",""),
-			           fontFamily: $el.css("font-family"),
-						 stroke: "black",
-			           fill: $el.css("color"),
-			           width: $el.width(),
-			           padding: 0,
-						strokeWidth: 2,
-			           align: $el.css('text-align')
-			         });
-
-	        		layer.add(complexText);
-	         		stage.add(layer);
-				    stage.toDataURL({
-				             callback: function(dataUrl) {
-				               /*
-				                * here you can do anything you like with the data url.
-				                * In this tutorial we'll just open the url with the browser
-				                * so that you can see the result as an image
-				                */
-				               window.open(dataUrl);
-						   }
-					 });
-			};
-			imageObj.src = $image.attr("src");
-			
-		// var that = this;
-	//
-	// 	var canvas = document.createElement("CANVAS");
-	// 	canvas.width = this.model.width();
-	// 	canvas.height = this.model.height();
-	//
-	// 	var context = canvas.getContext('2d');
-	// 	var $image = $(".image img");
-	//
-	//
-	// 	var imageObj = new Image();
-	//     imageObj.onload = function(){
-	//          context.drawImage(imageObj, 0, 0);
-	//
-	//  		$(".caption").each(function(i, el){
-	//
-	// 			var $el = $(el),
-	// 				x = +$el.css('left').replace("px","") + 10,
-	// 				y = +$el.css('top').replace("px","") + 10,
-	// 				text = $el.find('.inner').text();
-	// 			context.textBaseline = "top";
-	//  			context.font = $el.css('font');
-	//  			context.lineWidth = 3;
-	//  		    context.strokeStyle = 'black';
-	// 			context.fillStyle = 'white';
-	// 			context.strokeAndFillText(text, x, y, 1);
-	// 			var image = canvas.toDataURL("image/png");
-	//
-	// 			that.model.save({ cached_image: image}, {
-	// 				success: success
-	// 			});
-	//
-	//  		});
-	// 	};
-	// 	imageObj.src = $image.attr("src");
+		canvasify.addImage( $(".image img") );
 		
-
-	
+		$(".caption").each(function(){
+			canvasify.addCaption( $(this) );
+		});
+		
+		var that = this;
+		
+		var success = function(){
+			App.Collections.memes.add(that.model);
+			if (callback){
+				callback();
+			} else {
+				Backbone.history.navigate("/memes/" + that.model.id + "/edit");
+			}	
+		};
+		
+		canvasify.toDataUrl(function(dataUrl){
+			that.model.save({ cached_image: dataUrl}, {
+				success: success
+			});
+		});
 	}
 });
