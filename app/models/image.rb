@@ -1,8 +1,11 @@
 class Image < ActiveRecord::Base
   has_many :memes, dependent: :destroy
   has_attached_file :image_src,  :styles => {
-      :meme => "600x600>"
+      :meme => "500x500>",
+      :feed => "200x200#",
+      :thumb => "100x100#"
   }
+  
   validates_attachment_content_type :image_src, :content_type => /\Aimage\/.*\Z/
   before_save :extract_dimensions
   

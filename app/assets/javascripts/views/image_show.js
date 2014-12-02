@@ -5,7 +5,7 @@ App.Views.ImageShow = Backbone.View.extend({
 		this.listenTo(this.model, "change", this.render);
 	},
 	render: function(){
-		var content = this.template({image: this.model});
+		var content = this.template({ image: this.model });
 		this.$el.html(content);
 		return this;
 	}

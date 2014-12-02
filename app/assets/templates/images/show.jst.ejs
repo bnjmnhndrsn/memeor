@@ -1,1 +1,5 @@
-<img src=<%= image.get("image_src") %>>
+<% if (image.isNew()) { %>
+	<div class="no-meme">Select a meme!</div>
+<% } else { %>
+	<img src=<%= image.get("image_src") %>>
+<% } %>
