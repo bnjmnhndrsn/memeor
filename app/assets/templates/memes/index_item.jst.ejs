@@ -1,18 +1,18 @@
 <div class="meme-container">
 	<a href="<%= "/#/memes/" + meme.id %>" >
-		<img src="<%= meme.get("cached_image") %>">
+		<img src="<%= meme.get("cached_image_feed") %>">
 	</a>
 	<div class="button-container">
 		<span><%= meme.get("time_words")%> ago</span>
-		<a 	href="<%= "/#/memes/" + meme.id + "/fork" %>" 
+		<!-- <a 	href="<%= "/#/memes/" + meme.id + "/fork" %>"
 			class="fork btn btn-xs btn-default"
 		>
 			<span class="glyphicon glyphicon-pencil"></span>
 		</a>
-		<a 	href="<%= "/#/memes/new/" + meme.image().id %>"  
+		<a 	href="<%= "/#/memes/new/" + meme.image().id %>"
 			class="btn btn-xs btn-default fork"
 		>
 			<span class="glyphicon glyphicon-picture"></span>
-		</a>
+		</a> -->
 	</div>
 </div>

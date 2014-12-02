@@ -57,7 +57,7 @@ App.Models.Meme = Backbone.Stylable.extend({
 		return "";
 	},
 	width: function(){
-		return 500;
+		return this.image().get("width");
 	},
 	urlRoot: "/memes",
 	fork: function(){

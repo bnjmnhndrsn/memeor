@@ -1,6 +1,6 @@
 App.Views.MemeIndexItem = Backbone.CompositeView.extend({
 	template: JST['memes/index_item'],
-	className: "meme-index-item col-md-3 col-sm-4 col-xs-6",
+	className: "meme-index-item col-md-2 col-sm-3 col-xs-4",
 	initialize: function(){
 		this.listenTo(this.model, "change", this.render );
 	},
