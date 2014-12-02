@@ -94,7 +94,7 @@ App.Views.MemeShow = Backbone.View.extend({
 		this.captionViews.push(view);
 		this.$el.append( view.render().$el );
 	},
-	save: function(callback){
+	save: function(options){
 		
 		var canvasify = new App.Utils.Canvasify({
 			container: "meme-canvas",
@@ -112,14 +112,14 @@ App.Views.MemeShow = Backbone.View.extend({
 		
 		var success = function(){
 			App.Collections.memes.add(that.model);
-			if (callback){
-				callback();
-			} else {
-				Backbone.history.navigate("/memes/" + that.model.id + "/edit");
-			}	
+			var route = "/memes/" + that.model.id + (options.redirect ? "" : "/edit");
+			Backbone.history.navigate(route, { trigger: true });
 		};
 		
 		canvasify.toDataUrl(function(dataUrl){
+			
+			that.$el.find("#meme-canvas").empty();
+			
 			that.model.save({ cached_image: dataUrl}, {
 				success: success
 			});
