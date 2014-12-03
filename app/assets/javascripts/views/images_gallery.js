@@ -14,13 +14,20 @@ App.Views.ImagesGallery = Backbone.CompositeView.extend({
 		return this;
 	},
 	sort: function(event){
+		this.$(".sort").css("font-weight", "normal");
+		$(event.currentTarget).css("font-weight", "bold");
 		var key = $(event.currentTarget).data("sort");
 		this.collection.comparator = this.sortFunctions[key];
 		this.collection.sort()
 	},
 	sortFunctions: {
-		recent: function(model){
-			return new Date(model.get('updated_at'));
+		newest: function(model){
+			var d = new Date(model.get('updated_at'));
+			return -d;
+		},
+		oldest: function(model){
+			var d = new Date(model.get('updated_at'));
+			return d;
 		},
 		popularity: function(model){
 			return -model.get("total_memes");
