@@ -5,7 +5,9 @@ App.Views.MemeDisplay = Backbone.View.extend({
 		this.listenTo(this.model, "sync change", this.render)
 	},
 	render: function(){
-		var content = this.template({ meme: this.model });
+		var editable = (App.current_user.id == this.model.get("user_id"));
+		debugger;
+		var content = this.template({ meme: this.model, editable: editable });
 		this.$el.html(content);
 		return this;
 	}

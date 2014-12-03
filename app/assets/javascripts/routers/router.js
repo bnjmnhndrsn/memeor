@@ -60,8 +60,13 @@ App.Routers.Router = Backbone.Router.extend({
 	edit: function(id){
 		var meme = new App.Models.Meme({ id: id });
 		this._blockUntilFetched(meme, function(meme){
-			var view = new App.Views.MemeEditor({ model: meme });
-			this._switchView(view);
+			if (meme.get("user_id") !== App.current_user.id) {
+				Backbone.history.navigate("", { trigger: true })
+			} else {
+				var view = new App.Views.MemeEditor({ model: meme });
+				this._switchView(view);
+			}
+	
 		});	
 		
 	},

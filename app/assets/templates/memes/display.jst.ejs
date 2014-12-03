@@ -15,6 +15,7 @@
 				Fork it!
 			</a>
 		</p>
+		<% if (editable) { %>
 		<p>
 			<a 
 			href="<%= "/#/memes/" + meme.id + "/edit" %>"
@@ -22,6 +23,7 @@
 				Edit it!
 			</a>
 		</p>
+		<% } %>
 		<p>
 			<a 
 			href="#"

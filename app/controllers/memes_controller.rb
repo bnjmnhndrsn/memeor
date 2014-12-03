@@ -10,7 +10,7 @@ class MemesController < ApplicationController
   end
     
   def create
-    @meme = Meme.new(meme_params)
+    @meme = current_user.memes.create(meme_params)
 
     if @meme.save
       render json: @meme

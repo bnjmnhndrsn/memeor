@@ -21,5 +21,6 @@
 </nav>
 <div id="content" class="container"></div>
 <script>
-<%= current_user.id %>
+var user_id = <%= current_user.id %>
+App.current_user = new App.Models.User({id: user_id });
 </script>
