@@ -1,8 +1,11 @@
 App.Views.Landing = Backbone.CompositeView.extend({
 	template: JST["shared/landing"],
-	initialize: function(){
-		var imagesIndex = new App.Views.ImagesIndex({ collection: App.Collections.images });
-		var memesIndex = new App.Views.MemesIndex({ collection: App.Collections.memes });
+	initialize: function(options){
+		this.images = options.images;
+		this.memes = options.memes;
+		
+		var imagesIndex = new App.Views.ImagesIndex({ collection: this.images });
+		var memesIndex = new App.Views.MemesIndex({ collection: this.memes });
 		this.addSubview(".images-index-container", imagesIndex);
 		this.addSubview(".memes-index-container", memesIndex);
 	},

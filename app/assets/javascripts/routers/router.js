@@ -15,9 +15,28 @@ App.Routers.Router = Backbone.Router.extend({
 		"images/:id": "imageShow"
 	},
 	landing: function(){
-		App.Collections.memes.fetch();
-		App.Collections.images.fetch();
-		var view = new App.Views.Landing();
+		var memes = new App.Collections.Memes(),
+			images = new App.Collections.Images();
+		
+		memes.fetch({
+			data: {
+				
+			},
+			success: function(collection){
+				App.Collections.memes.add( collection.models );
+			}
+		});
+		
+		images.fetch({
+			data: {
+				
+			},
+			success: function(collection){
+				App.Collections.images.add( collection.models );
+			}
+		});
+		
+		var view = new App.Views.Landing({images: images, memes: memes});
 		this._switchView(view);
 	},
 	new: function(image_id){
