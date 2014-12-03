@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-
-
 gem 'rails', '4.1.7'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -19,3 +17,5 @@ gem "paperclip", "~> 4.2"
 gem 'rails_12factor', group: :production
 gem 'pg'
 gem 'bcrypt', '~> 3.1.7'
+gem 'figaro'
+gem 'aws-sdk'

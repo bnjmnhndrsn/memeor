@@ -20,9 +20,10 @@ App.Utils.Canvasify.prototype._clearQueue = function(){
 App.Utils.Canvasify.prototype.addImage = function($image){
 	this._delay = true;
 	var imageObj = new Image();
+	imageObj.crossOrigin = 'anonymous';
 	var layer = new Kinetic.Layer();
     imageObj.onload = function(){
-		
+		debugger;
 		var image = new Kinetic.Image({
 			x: 0,
 			y: 0,
