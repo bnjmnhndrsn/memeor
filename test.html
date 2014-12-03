@@ -9,20 +9,16 @@
     </style>
   </head>
   <body>
-    <canvas id="myCanvas" width="578" height="200"></canvas>
+    <canvas id="myCanvas" width="578" height="400"></canvas>
     <script>
       var canvas = document.getElementById('myCanvas');
       var context = canvas.getContext('2d');
-      var x = 80;
-      var y = 110;
+      var imageObj = new Image();
 
-      context.font = '60pt Impact';
-      context.lineWidth = 3;
-      // stroke color
-      context.strokeStyle = 'black';
-	  context.strokeText('Hello World!', x, y);
-	  context.fillStyle = 'white';
-      context.fillText('Hello World!', x, y);
+      imageObj.onload = function() {
+        context.drawImage(imageObj, 69, 50);
+      };
+      imageObj.src = 'http://www.html5canvastutorials.com/demos/assets/darth-vader.jpg';
     </script>
   </body>
-</html> 
+</html>     

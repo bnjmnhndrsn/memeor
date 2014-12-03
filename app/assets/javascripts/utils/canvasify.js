@@ -43,26 +43,26 @@ App.Utils.Canvasify.prototype.addCaption = function($caption){
 	var fn = function(){
 		var layer = new Kinetic.Layer();
         var textInner = new Kinetic.Text({
-			x:  +$caption.css('left').replace("px","") + 10,
-			y: +$caption.css('top').replace("px","") + 10,
+			x:  +$caption.css('left').replace("px",""),
+			y: +$caption.css('top').replace("px",""),
 			text: $caption.find('.inner').text(),
 			fontSize: $caption.css("font-size").replace("px",""),
 			fontFamily: $caption.css("font-family"),
 			fill: $caption.css("color"),
-			width: $caption.width(),
-			padding: 0,
+			width: $caption.width() + 2,
+			padding: 10,
 			align: $caption.css('text-align')
         });
 		
         var textOuter = new Kinetic.Text({
-			x:  +$caption.css('left').replace("px","") + 10,
-			y: +$caption.css('top').replace("px","") + 10,
+			x:  +$caption.css('left').replace("px",""),
+			y: +$caption.css('top').replace("px",""),
 			text: $caption.find('.inner').text(),
 			fontSize: $caption.css("font-size").replace("px",""),
 			fontFamily: $caption.css("font-family"),
 			stroke: "black",
-			width: $caption.width(),
-			padding: 0,
+			width: $caption.width() + 2,
+			padding: 10,
 			strokeWidth: 5,
 			lineJoin:'round',
 			align: $caption.css('text-align')

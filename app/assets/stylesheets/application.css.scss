@@ -32,6 +32,17 @@ $pgray: #9E9E9E;
 	border-color: $pdark;
 }
 
+/* LANDING */
+
+.landing-buttons {
+	
+	a {
+		margin-top: 5px;
+		font-size: 120%;
+	}
+}
+
+
 /* MODAL */
 
 .block-page {
@@ -253,6 +264,9 @@ body {
 
 
 /*CAPTION SHOW*/
+.caption {
+	border: 1px solid transparent;
+}
 
 .caption .inner {
 	margin: 10px;
