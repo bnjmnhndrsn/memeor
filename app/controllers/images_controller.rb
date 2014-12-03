@@ -20,6 +20,9 @@ class ImagesController < ApplicationController
   
   def index
     @images = (params[:memes_count]) ?  Image.by_memes_count : Image.all.order(:created_at)
+    if params[:limit]
+      @images = @images.limit(params[:limit])
+    end
     render :index
   end
   

@@ -1,6 +1,11 @@
 class MemesController < ApplicationController
   def index
-    @memes = Meme.all.includes(:image).includes(:captions)
+    @memes = Meme.all.includes(:image).includes(:captions).order('created_at DESC')
+    
+    if params[:limit]
+      @memes = @memes.limit(params[:limit])
+    end
+    
     render 'index'
   end
     
