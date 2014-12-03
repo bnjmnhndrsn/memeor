@@ -10,6 +10,11 @@ App.Views.ImageNew = Backbone.View.extend({
 	},
 	submit: function(event){
 		event.preventDefault();
+		
+		
+		var blockview = new App.Views.BlockPage();
+		$("body").append(blockview.render().$el);
+		
 		var $form = $(event.currentTarget);
 		var values = {};
 	    var csrf_param = $('meta[name=csrf-param]').attr('content');
@@ -33,7 +38,8 @@ App.Views.ImageNew = Backbone.View.extend({
 			data: values_with_csrf,
 			success: function(){
 				that.collection.add(image);
-				Backbone.history.navigate("/images/" + image.id);
+				blockview.remove();
+				Backbone.history.navigate("/images/" + image.id, { trigger: true });
 			} 
 		});
 		
