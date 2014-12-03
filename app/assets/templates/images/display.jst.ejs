@@ -4,7 +4,7 @@
 <div class="row">
 	<div class="info-container col-xs-6 text-center">
 	<h3>
-		First added <%= image.get("time_words")%> ago by <a href="#">User</a>
+		First added <%= image.get("time_words")%> ago.
 	</h3>
 	<h4>
 		Has been used in <%= image.get("total_memes") %> memes.
@@ -15,7 +15,7 @@
 	<p>
 		<a 
 		href="<%= "/#/memes/new/" + image.id %>"
-		class="btn btn-lg btn-default new">
+		class="btn btn-lg btn-success new">
 			Make a new meme with this image!
 		</a>
 	</p>
