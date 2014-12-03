@@ -4,7 +4,8 @@ App.Routers.Router = Backbone.Router.extend({
 		this.$modal = $("#modal");
 	},
 	routes: {
-		"": "index",
+		"": "landing",
+		"memes" : "index",
 		"memes/new": "new",
 		"memes/new/:id": "new",
 		"memes/:id/edit": "edit",
@@ -12,6 +13,12 @@ App.Routers.Router = Backbone.Router.extend({
 		"memes/:id": "show",
 		"images": "imageIndex",
 		"images/:id": "imageShow"
+	},
+	landing: function(){
+		App.Collections.memes.fetch();
+		App.Collections.images.fetch();
+		var view = new App.Views.Landing();
+		this._switchView(view);
 	},
 	new: function(image_id){
 		var attrs = (image_id) ? { image_id: image_id} : {};
