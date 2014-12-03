@@ -3,17 +3,18 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   
   def set_session_token
-    user = User.find_by(session_token: session[:session_token])
-    if user.nil?
-      session[:session_token] = SecureRandom::urlsafe_base64
-      user = User.new(session_token: session[:session_token], anon: true)
-      debugger;
-      user.save!
-    end
+    session[:session_token] = SecureRandom::urlsafe_base64
+    user = User.new(session_token: session[:session_token], anon: true)
+    user.save!
+    user
   end
   
   def current_user
     user = User.find_by(session_token: session[:session_token])
+    if user.nil? || session[:session_token].nil? 
+     user = set_session_token
+    end
+    user
   end
   
 end

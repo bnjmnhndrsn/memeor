@@ -31,7 +31,6 @@ gem "paperclip", "~> 4.2"
 gem 'rails_12factor', group: :production
 gem 'pg', group: :production
 gem 'bcrypt', '~> 3.1.7'
-
 # Use unicorn as the app server
 # gem 'unicorn'
 
