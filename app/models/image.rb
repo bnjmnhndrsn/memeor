@@ -1,5 +1,7 @@
 class Image < ActiveRecord::Base
   has_many :memes, dependent: :destroy
+  belongs_to :user
+  
   has_attached_file :image_src,  :styles => {
       :meme => "500x500>",
       :feed => "200x200#",
