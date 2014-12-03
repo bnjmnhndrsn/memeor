@@ -33,8 +33,9 @@ $pgray: #9E9E9E;
 	position: fixed;
 	top: 0;
 	left: 0;
-	background-color: rgba(0,0,0,0.6);
-	z-index: 10;
+	background-color: white;
+	opacity: .7;
+	z-index: 50;
 	
 	.loading-holder {
 		margin: 300px auto;
@@ -68,6 +69,7 @@ $pgray: #9E9E9E;
 
 body {
 	padding-top: 60px;
+
 }
 
 
@@ -87,6 +89,8 @@ body {
 		overflow: hidden;
 		height: 144px;
 		width: 144px;
+		border-radius: 100px;
+		transition: border-radius .5s ease;
 
 		
 		img {
@@ -95,9 +99,10 @@ body {
 		}
 		
 		&:hover {
-			border: 2px solid $pdark;
+			
+			border-radius: 0px;
 			.button-container {
-				top: 0px;
+				bottom: 0px;
 			}
 		}
 	}
@@ -105,12 +110,12 @@ body {
 	.button-container {
 		padding: 5px;
 		color: white;
-		background-color: rgba(0, 0, 0, .3);
+		background-color: rgba(0, 0, 0, .5);
 		right: 0px;
-		top: -32px;
+		bottom: 40px;
 		position: absolute;
 		font-size: 80%;
-		transition: top .5s ease;
+		transition: bottom .5s ease;
 		
 		.btn {
 			border-color: white;
@@ -176,8 +181,7 @@ body {
 /*MEME IMAGE FORM*/
 
 .image-items {
-	background-color: white;	
-	border-radius: 5px;
+	background-color: white;
 	max-height: 250px;
 	overflow-y: auto;
 }
@@ -188,10 +192,11 @@ body {
 	overflow: hidden;
 	margin: 5px;
 	display: inline-block;
-	border: 1px solid transparent;
+	border-radius: 50px;
+	transition: border-radius .5s ease;
 	
 	&:hover {
-		border: 1px solid black;
+		border-radius: 0px;
 	}
 	
 	img {
@@ -272,19 +277,42 @@ body {
 	padding-bottom: 25px;
 		
 	.image-container {
-		border: 2px solid white;
 		height: 250px;
 		width: 250px;
 		overflow: hidden;
+		position: relative;
 		
 		img {
+			border-radius: 150px;
 			width: 100%;
+			transition: border-radius .5s ease;
+			
+			
+			&:hover {
+				border-radius: 0px;
+			}
 		}
 		
 		&:hover {
-			border: 2px solid $pdark;
+			
+			.title-container {
+				bottom: 0%;
+			}
+		}
+		
+		.title-container {
+			transition: bottom .5s ease;
+			background-color: rgba(0,0,0,.3);
+			color: white;
+			position: absolute;
+			font-size: 125%;
+			bottom: 40%;
+			left: 0;
+			text-align: center;
+			width: 100%;
 		}
 	}
+	
 	
 }
 

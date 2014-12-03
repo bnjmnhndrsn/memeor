@@ -34,7 +34,7 @@ App.Routers.Router = Backbone.Router.extend({
 		this._blockUntilFetched(meme, function(meme){
 			var view = new App.Views.MemeEditor({ model: meme });
 			this._switchView(view);
-		});
+		});	
 		
 	},
 	fork: function(id){

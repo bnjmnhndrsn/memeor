@@ -1,6 +1,6 @@
 class Meme < ActiveRecord::Base
   has_attached_file :cached_image, :styles => {
-      :feed => "144x144>",
+      :feed => "144x144#",
   }
   
   validates_attachment_content_type :cached_image, :content_type => /\Aimage/

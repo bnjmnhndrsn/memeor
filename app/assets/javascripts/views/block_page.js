@@ -8,7 +8,7 @@ App.Views.BlockPage = Backbone.View.extend({
 		
 		this.$el.css({
 			height: pageHeight,
-			width: pageWidth
+			width: pageWidth,
 		});
 		
 		$(window).resize(function(){
