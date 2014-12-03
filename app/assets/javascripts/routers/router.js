@@ -12,6 +12,7 @@ App.Routers.Router = Backbone.Router.extend({
 		"memes/:id/fork": "fork",
 		"memes/:id": "show",
 		"images": "imageIndex",
+		"images/new": "imageNew",
 		"images/:id": "imageShow"
 	},
 	landing: function(){
@@ -87,7 +88,10 @@ App.Routers.Router = Backbone.Router.extend({
 		
 		this._switchView(view);
 	},
-	
+	imageNew: function(){
+		var view = new App.Views.ImageNew({ collection: App.Collections.images });
+		this._switchView(view);
+	},
 	//displays block page until model is fetched, then runs callback
 	_blockUntilFetched: function(model, callback){
 		var blockview = new App.Views.BlockPage();
