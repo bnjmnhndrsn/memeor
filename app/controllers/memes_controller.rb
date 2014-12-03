@@ -20,7 +20,12 @@ class MemesController < ApplicationController
   end
 
   def update
-    @meme = Meme.find(params[:id])    
+    @meme = Meme.find(params[:id]) 
+    
+    if @meme.user_id != current_user.id
+      render json: ["Forbidden"], status: 403
+      return
+    end
     
     if @meme.update(meme_params)
       render json: @meme
