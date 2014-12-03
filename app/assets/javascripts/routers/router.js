@@ -21,7 +21,7 @@ App.Routers.Router = Backbone.Router.extend({
 	},
 	index: function(){
 		App.Collections.memes.fetch();
-		var view = new App.Views.MemesIndex({ collection: App.Collections.memes });
+		var view = new App.Views.MemesGallery({ collection: App.Collections.memes });
 		this._switchView(view);
 	},
 	show: function(id){
@@ -50,7 +50,7 @@ App.Routers.Router = Backbone.Router.extend({
 	},
 	imageIndex: function(){
 		App.Collections.images.fetch();
-		var view = new App.Views.ImagesIndex({ collection: App.Collections.images });
+		var view = new App.Views.ImagesGallery({ collection: App.Collections.images });
 		this._switchView(view);
 	},
 	imageShow: function(id){

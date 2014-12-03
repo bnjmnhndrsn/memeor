@@ -27,6 +27,11 @@ $pgray: #9E9E9E;
 	clear: both;
 }
 
+.jumbotron {
+	background-color: $pdark-trans;
+	border-color: $pdark;
+}
+
 /* MODAL */
 
 .block-page {
