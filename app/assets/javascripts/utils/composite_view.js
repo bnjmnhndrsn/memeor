@@ -52,7 +52,9 @@ Backbone.CompositeView = Backbone.View.extend({
     var subviews = this.subviews(selector);
     subviews.splice(subviews.indexOf(subview), 1);
   },
-
+  sortSubviews: function (selector, comparator) {
+	  this._subviews[selector] = _.sortBy(this._subviews[selector], comparator);
+  },
   subviews: function (selector) {
     // Map of selectors to subviews that live inside that selector.
     // Optionally pass a selector and I'll initialize/return an array

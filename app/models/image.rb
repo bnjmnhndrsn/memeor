@@ -9,6 +9,16 @@ class Image < ActiveRecord::Base
   validates_attachment_content_type :image_src, :content_type => /\Aimage\/.*\Z/
   before_save :extract_dimensions
   
+  
+  def self.by_memes_count
+    Image
+    .select('images.*, COUNT(memes.id) AS memes_count')
+    .joins(:memes)
+    .group("images.id")
+    .having("memes_count > 0")
+    .order("memes_count DESC")
+  end
+  
   private
 
   def extract_dimensions

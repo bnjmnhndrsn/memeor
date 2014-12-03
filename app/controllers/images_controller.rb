@@ -16,9 +16,10 @@ class ImagesController < ApplicationController
       render json: @image.errors.full_messages, status: 422
     end
   end
+
   
   def index
-    @images = Image.all
+    @images = (params[:memes_count]) ?  Image.by_memes_count : Image.all.order(:created_at)
     render :index
   end
   
