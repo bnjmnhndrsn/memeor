@@ -11,18 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203173446) do
+ActiveRecord::Schema.define(version: 20141203193103) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "captions", force: true do |t|
     t.integer  "meme_id"
-    t.text     "content"
+    t.text     "content",    null: false
     t.text     "styling"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "images", force: true do |t|
-    t.string   "title"
+    t.string   "title",                  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_src_file_name"
@@ -31,7 +34,7 @@ ActiveRecord::Schema.define(version: 20141203173446) do
     t.datetime "image_src_updated_at"
     t.integer  "width"
     t.integer  "height"
-    t.integer  "user_id"
+    t.integer  "user_id",                null: false
   end
 
   create_table "memes", force: true do |t|
@@ -44,16 +47,18 @@ ActiveRecord::Schema.define(version: 20141203173446) do
     t.integer  "cached_image_file_size"
     t.datetime "cached_image_updated_at"
     t.text     "styling"
-    t.integer  "user_id"
+    t.integer  "user_id",                   null: false
   end
 
   create_table "users", force: true do |t|
-    t.boolean  "anon"
+    t.boolean  "anon",            null: false
     t.string   "username"
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "session_token"
+    t.string   "session_token",   null: false
   end
+
+  add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
 
 end
