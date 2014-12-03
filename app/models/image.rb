@@ -14,11 +14,11 @@ class Image < ActiveRecord::Base
   
   def self.by_memes_count
     Image
-    .select('images.*, COUNT(memes.id) AS memes_count')
+    .select('images.*')
     .joins(:memes)
     .group("images.id")
-    .having("memes_count > 0")
-    .order("memes_count DESC")
+    .having("COUNT(memes.id) > 0")
+    .order("COUNT(memes.id) DESC")
   end
   
   private
