@@ -5,8 +5,8 @@ App.Views.MemePanel = Backbone.PanelView.extend({
 		"input input" : "updateModel",
 		"click .alignment": "align",
 		"click .expand": "expand",
-		"click": "expand",
-		"click .retract": "retract"
+		"click .retract": "retract",
+		"click .panel-header": "toggle"
 	},
 	initialize: function(){
 		this.listenTo( this.model, "sync", this.render);

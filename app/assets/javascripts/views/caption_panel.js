@@ -4,8 +4,8 @@ App.Views.CaptionPanel = Backbone.PanelView.extend({
 		"input input": "updateModel",
 		"click .delete": "delete",
 		"click .expand": "select",
-		"click": "select",
-		"click .retract": "retract"
+		"click .retract": "retract",
+		"click .panel-header": "toggle"
 	},
 	template: JST["captions/panel"],
 	initialize: function(){
