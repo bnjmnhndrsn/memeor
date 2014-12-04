@@ -3,7 +3,10 @@ App.Views.MemePanel = Backbone.PanelView.extend({
 	template: JST["memes/panel"],
 	events: {
 		"input input" : "updateModel",
-		"click .alignment": "align"
+		"click .alignment": "align",
+		"click .expand": "expand",
+		"click": "expand",
+		"click .retract": "retract"
 	},
 	initialize: function(){
 		this.listenTo( this.model, "sync", this.render);
@@ -11,6 +14,7 @@ App.Views.MemePanel = Backbone.PanelView.extend({
 	render: function(){
 		var rendered = this.template({ meme: this.model });
 		this.$el.html( rendered );
+		this.$(".panel-header").html( this.header({title: "Meme Options"}) );
 		this.highlightAlignedButton();
 		return this;
 	},

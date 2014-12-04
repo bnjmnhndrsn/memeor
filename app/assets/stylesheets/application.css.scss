@@ -157,6 +157,22 @@ body {
 	.panel {
 		border: 1px solid black;
 		padding: 10px;
+		
+		.panel-header {
+			text-align: left;
+			
+			.title {
+				font-size: 120%;
+				font-weight: bold;
+			}
+	
+			.btn {
+				border-radius: 20px;
+				font-size: 50%;
+				vertical-align: text-top;
+			}	
+			
+		}
 	}
 
 	.meme-container {

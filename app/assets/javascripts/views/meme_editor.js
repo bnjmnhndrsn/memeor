@@ -15,8 +15,10 @@ App.Views.MemeEditor = Backbone.CompositeView.extend({
 		this.render();
 		this.memeView = new App.Views.MemeShow({ model: this.model });
 		this.addSubview(".meme-container", this.memeView);
+		
 		this.memePanel = new App.Views.MemePanel({ model: this.model });
 		this.addSubview(".meme-panel", this.memePanel);
+		
 		this.imagePanel = new App.Views.MemeImagePanel({ model: this.memeView.model, collection: App.Collections.images });
 		this.addSubview(".images-panel", this.imagePanel);
 		
@@ -29,7 +31,7 @@ App.Views.MemeEditor = Backbone.CompositeView.extend({
 		return this;
 	},
 	addCaptionPanel: function(caption){
-		var view = new App.Views.CaptionForm({ model: caption });
+		var view = new App.Views.CaptionPanel({ model: caption });
 		this.$(".caption-panels").append( view.render().$el );
 	},
 	newCaption: function(event){

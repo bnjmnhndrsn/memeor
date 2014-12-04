@@ -1,7 +1,10 @@
 App.Views.MemeImagePanel = Backbone.PanelView.extend({
 	events: {
 		"click .meme-image-item": "changeImage",
-		"submit .create": "createImage"
+		"submit .create": "createImage",
+		"click .expand": "expand",
+		"click": "expand",
+		"click .retract": "retract"
 	},
 	className: "meme-image-form panel",
 	template: JST["memes/image_panel"],
@@ -17,6 +20,7 @@ App.Views.MemeImagePanel = Backbone.PanelView.extend({
 	render: function(){
 		var rendered = this.template();
 		this.$el.html(rendered);
+		this.$(".panel-header").html( this.header({title: "Image"}) );
 		this.attachSubviews();
 		return this;
 	},
