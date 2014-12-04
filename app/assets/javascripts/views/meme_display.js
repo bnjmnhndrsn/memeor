@@ -1,6 +1,7 @@
 App.Views.MemeDisplay = Backbone.View.extend({
 	events: {
-		"click .selectable": "selectText"
+		"click .selectable": "selectText",
+		"click .delete": "delete"
 	},
 	template: JST['memes/display'],
 	className: "meme-display container",
@@ -20,5 +21,19 @@ App.Views.MemeDisplay = Backbone.View.extend({
 	},
 	selectText: function(event){
 		$(event.currentTarget).find("input").select();
+	},
+	delete: function(){
+		var blockpage = App.Views.BlockPage();
+		$("body").append( blockpage.render().$el );
+		this.model.destroy({
+			success: function(){
+				blockpage.remove();
+				Backbone.history.navigate("/images", { trigger: true });
+			},
+			error: function(){
+				blockpage.remove();
+				alert("error!");
+			}
+		});
 	}
 });

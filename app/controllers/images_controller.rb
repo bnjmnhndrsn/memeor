@@ -26,6 +26,16 @@ class ImagesController < ApplicationController
     render :index
   end
   
+  def destroy
+    @image = Image.find(params[:id])
+    if @image.user_id == current_user.id
+      @image.destroy
+      render json: @image
+    else
+      render json: ["Forbidden"], status: 403
+    end
+  end
+  
   private
   
   def image_params

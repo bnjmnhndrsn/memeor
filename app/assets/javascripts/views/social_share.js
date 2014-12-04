@@ -1,7 +1,6 @@
 App.Views.SocialShare = Backbone.View.extend({
 	template: JST["shared/social_share"],
 	initialize: function(options){
-		debugger;
 		this.url = options.url;
 		this.title = options.title;
 	},
