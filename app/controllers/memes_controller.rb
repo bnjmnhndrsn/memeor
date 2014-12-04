@@ -44,8 +44,22 @@ class MemesController < ApplicationController
      end
   end
   
+  def destroy
+    @meme = Meme.find(params[:id])
+    
+    if @meme && @meme.user_id == current_user.id
+      @meme.destroy
+      render json: @meme
+    else
+      render json: ["FORBIDDEN"], status: 403
+    end
+  end
+  
+  private
+  
   def meme_params
-    params[:meme].permit(:styling, :cached_image, :image_id, :title, :id, captions_attributes: [:styling, :id, :content])
+    params[:meme].permit(:styling, :cached_image, :image_id, :title, :id,
+      captions_attributes: [:styling, :id, :content])
   end
   
 end

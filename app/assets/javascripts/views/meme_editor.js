@@ -7,7 +7,8 @@ App.Views.MemeEditor = Backbone.View.extend({
 		"click .unselect": "triggerUnselect",
 		"click .save": "save",
 		"click .change-image": "changeImage",
-		"click .cancel": "cancel"
+		"click .cancel": "cancel",
+		"click .delete": "delete"
 	},
 	initialize: function(){
 		this.memeView = new App.Views.MemeShow({ model: this.model });
@@ -83,5 +84,24 @@ App.Views.MemeEditor = Backbone.View.extend({
 	},
 	cancel: function(){
 		Backbone.history.navigate("", { trigger: true } );
+	},
+	delete: function(){
+		if (this.model.isNew()){
+			this.cancel();
+			return;
+		}
+		
+		var blockpage = new App.Views.BlockPage();
+		$("body").append( blockpage.render().$el );
+		this.model.destroy({
+			success: function(){
+				blockpage.remove();
+				Backbone.history.navigate("", { trigger: true });
+			},
+			error: function(){
+				blockpage.remove();
+				alert("error!");
+			}
+		});
 	}
 });
