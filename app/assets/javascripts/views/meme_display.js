@@ -1,4 +1,7 @@
 App.Views.MemeDisplay = Backbone.View.extend({
+	events: {
+		"click .selectable": "selectText"
+	},
 	template: JST['memes/display'],
 	className: "meme-display container",
 	initialize: function(){
@@ -10,5 +13,8 @@ App.Views.MemeDisplay = Backbone.View.extend({
 		var content = this.template({ meme: this.model, editable: editable });
 		this.$el.html(content);
 		return this;
+	},
+	selectText: function(event){
+		$(event.currentTarget).find("input").select();
 	}
 });

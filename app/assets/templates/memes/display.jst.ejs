@@ -9,6 +9,12 @@
 			</h4>
 		</p>
 		<p>
+			<div class="form-inline selectable">
+				<span class="glyphicon glyphicon-link"></span>
+				<input type="text" class="form-control" readonly value="<%= meme.get("cached_image") %>">
+			</div>
+		</p>
+		<p>
 			<a 
 			href="<%= "/#/memes/" + meme.id + "/fork" %>"
 			class="btn btn-lg btn-success fork">

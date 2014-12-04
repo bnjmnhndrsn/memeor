@@ -1,4 +1,7 @@
 App.Views.ImageDisplay = Backbone.View.extend({
+	events: {
+		"click .selectable": "selectText"
+	},
 	template: JST['images/display'],
 	className: "image-display container",
 	initialize: function(){
@@ -10,5 +13,8 @@ App.Views.ImageDisplay = Backbone.View.extend({
 		this.$el.html(content);
 		this.$el.append( this.memesIndex.render().$el );
 		return this;
+	},
+	selectText: function(event){
+		$(event.currentTarget).find("input").select();
 	}
 });
