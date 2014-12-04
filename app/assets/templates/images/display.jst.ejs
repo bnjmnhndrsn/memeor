@@ -10,12 +10,10 @@
 		Has been used in <%= image.get("total_memes") %> memes.
 	</h4>
 	<br>
-	<p>
-		<div class="form-inline selectable">
-			<span class="glyphicon glyphicon-link"></span>
-			<input type="text" class="form-control" readonly value="<%= image.get("image_src") %>">
-		</div>
-	</p>
+	<div class="form-inline selectable">
+		<input type="text" class="form-control" readonly value="<%= image.get("image_src") %>">
+		<span class="glyphicon glyphicon-link"></span>
+	</div>
 	<br>
 	<p>
 		<a 
@@ -24,6 +22,9 @@
 			Make a new meme with this image!
 		</a>
 	</p>
+	<br>
+	<div class="shares">
+	</div>
 	</div>
 	<div class="image-container col-xs-6 text-center">
 		<img src="<%= image.get("image_src") %>">

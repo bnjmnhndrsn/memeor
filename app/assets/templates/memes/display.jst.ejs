@@ -8,12 +8,14 @@
 				Created <%= meme.get("time_words")%> ago.
 			</h4>
 		</p>
+		<br>
 		<p>
 			<div class="form-inline selectable">
-				<span class="glyphicon glyphicon-link"></span>
 				<input type="text" class="form-control" readonly value="<%= meme.get("cached_image") %>">
+				<span class="glyphicon glyphicon-link"></span>
 			</div>
 		</p>
+		<br>
 		<p>
 			<a 
 			href="<%= "/#/memes/" + meme.id + "/fork" %>"
@@ -30,13 +32,9 @@
 			</a>
 		</p>
 		<% } %>
-		<p>
-			<a 
-			href="#"
-			class="btn btn-lg btn-info">
-				Share this meme!
-			</a>
-		</p>
+		<br>
+		<div class="shares">
+		</div>
 	</div>
 	<div class="image-container col-xs-6 text-center">
 	<img src="<%= meme.get("cached_image") %>">
