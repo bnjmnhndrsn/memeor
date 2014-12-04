@@ -3,18 +3,15 @@ App.Views.MemeEditor = Backbone.CompositeView.extend({
 	template: JST["memes/editor"],
 	events: {
 		"dblclick .meme": "newCaption",
-		"click .meme": "triggerUnselect",
-		"click .unselect": "triggerUnselect",
-		"click .image-panel": "triggerUnselect",
 		"click .save": "save",
 		"click .change-image": "changeImage",
 		"click .cancel": "cancel",
-		"click .delete": "delete"
+		"click .delete": "delete",
 	},
 	initialize: function(){
 		this.render();
 		this.memeView = new App.Views.MemeShow({ model: this.model });
-		this.addSubview(".meme-container", this.memeView);
+		this.addSubview(".meme-show-container", this.memeView);
 		
 		this.memePanel = new App.Views.MemePanel({ model: this.model });
 		this.addSubview(".meme-panel", this.memePanel);
@@ -23,6 +20,7 @@ App.Views.MemeEditor = Backbone.CompositeView.extend({
 		this.addSubview(".images-panel", this.imagePanel);
 		
 		this.listenTo(this.memeView.model.captions(), "add", this.addCaptionPanel);
+		this.listenTo(this.memeView.model.captions(), "select", this.changeSelected)
 	},
 	render: function(){
 		var rendered = this.template({ meme: this.model });
@@ -33,6 +31,7 @@ App.Views.MemeEditor = Backbone.CompositeView.extend({
 	addCaptionPanel: function(caption){
 		var view = new App.Views.CaptionPanel({ model: caption });
 		this.$(".caption-panels").append( view.render().$el );
+		caption.trigger("select", caption);
 	},
 	newCaption: function(event){
 		event.preventDefault();
@@ -43,23 +42,19 @@ App.Views.MemeEditor = Backbone.CompositeView.extend({
 			top: event.offsetY
 		});
 		this.memeView.model.captions().add(caption);
-		caption.trigger("beginEditing", caption);
 	},
 	triggerUnselect: function(event){
 		this.selected && this.selected.trigger("unselect");
+		this.selected = null;
 		return false;
 	},
-	triggerSelect: function(event){
-		this.selected && this.selected.trigger("select");
-		return false;
+	changeSelected: function(caption){
+		this.selected && this.selected.trigger("unselect");
+		this.selected = caption;
 	},
 	save: function(event){
 		event.preventDefault();
 		var $button = $(event.currentTarget);
-		
-		if ($button.hasClass("unselect")){
-			this.selected.trigger("unselect");
-		}
 		
 		var options = {
 			redirect: $button.hasClass("redirect")

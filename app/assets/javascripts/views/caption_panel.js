@@ -11,8 +11,7 @@ App.Views.CaptionPanel = Backbone.PanelView.extend({
 	initialize: function(){
 		this.listenTo( this.model, "sync", this.render);
 		this.listenTo( this.model, "destroy", this.remove);
-		this.listenTo( this.model, "beginEditing", this.expand);
-		this.listenTo( this.model, "endEditing", this.retract);
+		this.listenTo( this.model, "select", this.expand);
 	},
 	render: function(){
 		var rendered = this.template({ caption: this.model });
@@ -34,7 +33,6 @@ App.Views.CaptionPanel = Backbone.PanelView.extend({
 		return false;
 	},
 	delete: function(){
-		this.model.trigger("endEditing");
 		this.model.destroy();
 	},
 });

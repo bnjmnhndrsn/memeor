@@ -274,28 +274,29 @@ body {
 
 /*CAPTION SHOW*/
 .caption {
-	border: 1px solid transparent;
-	word-wrap: word;
-}
-
-.caption .inner {
-	margin: 10px;
-	z-index: 15;
-	text-shadow: 2px 2px 2px #000,
-				-2px -2px 2px #000,
-				2px -2px 2px #000,
-				-2px 2px 2px #000,
-				2px -2px 2px #000,
-				2px 2px 2px #000,
-				-2px -2px 0 #000,
-				2px -2px 0 #000,
-				-2px 2px 0 #000,
-				2px -2px 0 #000;
-}
-
-.selected {
 	border: 1px dotted white;
+	word-wrap: word;
+	
+	&.selected{
+		border-color: blue;
+	}
+	
+	.inner {
+		margin: 10px;
+		z-index: 15;
+		text-shadow: 2px 2px 2px #000,
+					-2px -2px 2px #000,
+					2px -2px 2px #000,
+					-2px 2px 2px #000,
+					2px -2px 2px #000,
+					2px 2px 2px #000,
+					-2px -2px 0 #000,
+					2px -2px 0 #000,
+					-2px 2px 0 #000,
+					2px -2px 0 #000;
+	}
 }
+
 
 /* IMAGES INDEX */
 .memes {

@@ -33,6 +33,8 @@ App.Views.MemeImagePanel = Backbone.PanelView.extend({
 			newImage = App.Collections.images.get(id);
 			
 		this.model.setImage(newImage);
+		console.log("asdf");
+		this.retract();
 	},
 	createImage: function(event){
 		event.preventDefault();

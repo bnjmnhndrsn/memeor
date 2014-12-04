@@ -1,8 +1,7 @@
 App.Views.CaptionShow = Backbone.View.extend({
 	template: JST['captions/show'],
 	events: {
-		"click": "triggerEditing",
-		"dblclick": "triggerEditing",
+		"mousedown" : "triggerSelect",
 		"resizestop": "resize",
 		"dragstop": "drag"
 	},
@@ -20,6 +19,11 @@ App.Views.CaptionShow = Backbone.View.extend({
 		this.$el.css( this.model.css() );
 		this.$el.css("position", "absolute");
 		this.model.width( this.$el.width() );
+		setTimeout(function(){
+			this.$el.draggable({
+				containment: "parent"
+			}).resizable();
+		}.bind(this), 1)
 		return this;
 	},
 	update: function(){
@@ -34,45 +38,25 @@ App.Views.CaptionShow = Backbone.View.extend({
 		this.$el.css( this.model.css() );		
 
 	},
+	triggerSelect: function(event){
+		this.model.trigger("select");
+	},
 	select: function(){
-		if (!this.selected){
-			this.selected = true;
-			this.$el.addClass("selected").draggable({
-				containment: "parent"
-			}).resizable();
-		}
+		this.$el.addClass("selected");
+		console.log("select");
 	},
 	unselect: function(){
-		if (this.selected) {
-			if (!this.model.get("content")) {
-				this.model.destroy();
-				this.remove();
-			} else {
-				this.selected = false;
-				this.$el.removeClass("selected").draggable('destroy').resizable('destroy');
-			}
-
-		}
-	},
-	triggerEditing: function(event){
-		if (!this.selected) {
-			event.preventDefault();
-			this.model.trigger("beginEditing", this.model);
-			return false;
-		}
+		this.$el.removeClass("selected");
+		console.log("unselect");
 	},
 	resize: function(event, ui){
 		var width = ui.element.find(".inner").width() + 20;
 		var height = ui.element.find(".inner").height() + 20;
 		
-		
 		this.model.css({
 			"width": width + "px",
 			"height": height + "px"
 		}, {silent: false});
-		setTimeout(function(){
-			this.model.trigger("beginEditing", this.model);
-		}.bind(this), 10)
 	},
 	drag: function(event, ui){
 		this.model.css({

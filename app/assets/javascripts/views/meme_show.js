@@ -3,7 +3,6 @@ App.Views.MemeShow = Backbone.View.extend({
 	template: JST['memes/show'],
 	initialize: function(){
 		this.captionViews = [];
-		this.selected = null;
 		this.listenTo(this.model, "change:image", this.addImageView);
 		this.listenTo(this.model, "change", this.update);
 		this.listenTo(this.model, "sync", this.render);
