@@ -9,6 +9,7 @@ class Image < ActiveRecord::Base
   }
   
   validates_attachment_content_type :image_src, :content_type => /\Aimage\/.*\Z/
+  before_create :randomize_file_name
   before_save :extract_dimensions
   
   
@@ -22,6 +23,11 @@ class Image < ActiveRecord::Base
   end
   
   private
+  
+  def randomize_file_name
+    extension = File.extname(image_src_file_name).downcase
+    self.image_src.instance_write(:file_name, "#{SecureRandom::urlsafe_base64(8)}#{extension}")
+  end
 
   def extract_dimensions
     tempfile = image_src.queued_for_write[:meme]
