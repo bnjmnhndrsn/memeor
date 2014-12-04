@@ -3,8 +3,8 @@ App.Views.CaptionPanel = Backbone.PanelView.extend({
 	events: {
 		"input input": "updateModel",
 		"click .delete": "delete",
-		"click .expand": "expand",
-		"click": "expand",
+		"click .expand": "select",
+		"click": "select",
 		"click .retract": "retract"
 	},
 	template: JST["captions/panel"],
@@ -12,6 +12,7 @@ App.Views.CaptionPanel = Backbone.PanelView.extend({
 		this.listenTo( this.model, "sync", this.render);
 		this.listenTo( this.model, "destroy", this.remove);
 		this.listenTo( this.model, "select", this.expand);
+		this.listenTo( this.model, "unselect", this.retract);
 	},
 	render: function(){
 		var rendered = this.template({ caption: this.model });
@@ -31,6 +32,13 @@ App.Views.CaptionPanel = Backbone.PanelView.extend({
 			this.model.css(attr, val);
 		}
 		return false;
+	},
+	expand: function(){
+		Backbone.PanelView.prototype.expand.call(this);
+		this.$("input[name='content']").focus();
+	},
+	select: function(){
+		this.model.trigger("beginSelect", [this.model])
 	},
 	delete: function(){
 		this.model.destroy();

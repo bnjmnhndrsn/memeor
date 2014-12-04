@@ -11,7 +11,6 @@ App.Views.CaptionShow = Backbone.View.extend({
 		this.listenTo(this.model, "unselect", this.unselect);
 		this.listenTo(this.model, "change", this.update);
 		this.listenTo(this.model, "align", this.align);
-		this.selected = false;
 	},
 	render: function(){
 		var rendered = this.template({ caption: this.model });
@@ -39,15 +38,13 @@ App.Views.CaptionShow = Backbone.View.extend({
 
 	},
 	triggerSelect: function(event){
-		this.model.trigger("select");
+		this.model.trigger("beginSelect", [this.model]);
 	},
 	select: function(){
 		this.$el.addClass("selected");
-		console.log("select");
 	},
 	unselect: function(){
 		this.$el.removeClass("selected");
-		console.log("unselect");
 	},
 	resize: function(event, ui){
 		var width = ui.element.find(".inner").width() + 20;

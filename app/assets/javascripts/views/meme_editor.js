@@ -20,7 +20,7 @@ App.Views.MemeEditor = Backbone.CompositeView.extend({
 		this.addSubview(".images-panel", this.imagePanel);
 		
 		this.listenTo(this.memeView.model.captions(), "add", this.addCaptionPanel);
-		this.listenTo(this.memeView.model.captions(), "select", this.changeSelected)
+		this.listenTo(this.memeView.model.captions(), "beginSelect", this.changeSelected)
 	},
 	render: function(){
 		var rendered = this.template({ meme: this.model });
@@ -31,11 +31,10 @@ App.Views.MemeEditor = Backbone.CompositeView.extend({
 	addCaptionPanel: function(caption){
 		var view = new App.Views.CaptionPanel({ model: caption });
 		this.$(".caption-panels").append( view.render().$el );
-		caption.trigger("select", caption);
+		caption.trigger("beginSelect", [caption]);
 	},
 	newCaption: function(event){
 		event.preventDefault();
-		this.triggerUnselect();
 		var caption = new App.Models.Caption({ meme: this.memeView.model });
 		caption.styling().set({
 			left: event.offsetX,
@@ -43,14 +42,13 @@ App.Views.MemeEditor = Backbone.CompositeView.extend({
 		});
 		this.memeView.model.captions().add(caption);
 	},
-	triggerUnselect: function(event){
-		this.selected && this.selected.trigger("unselect");
-		this.selected = null;
-		return false;
-	},
-	changeSelected: function(caption){
-		this.selected && this.selected.trigger("unselect");
-		this.selected = caption;
+	changeSelected: function(args){
+		var caption = args[0];
+		if (this.selected !== caption) {
+			this.selected && this.selected.trigger("unselect");
+			this.selected = caption;
+			this.selected.trigger("select");
+		}
 	},
 	save: function(event){
 		event.preventDefault();
