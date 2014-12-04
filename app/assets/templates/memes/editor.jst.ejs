@@ -1,8 +1,12 @@
 <header class="page-header">
 	<h3><%= (meme.isNew()) ? "Make" : "Edit" %> a meme!</h3>
 </header>
-<div class="control-panel col-xs-4"></div>
-<div class="image-panel col-xs-8">
+<div class="control-panel col-xs-6">
+	<div class="meme-panel"></div>
+	<div class="caption-panels"></div>
+	<div class="images-panel"></div>
+</div>
+<div class="image-panel col-xs-6">
 	<div class="meme-container">
 		<div class="options">
 			<button class="save btn-xs redirect btn btn-success">

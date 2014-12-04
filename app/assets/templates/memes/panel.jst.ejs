@@ -1,0 +1,59 @@
+<header><h4>Meme Options</h4></header>
+<div class="expandable">
+	<div class="row">
+		<div class="col-xs-6">
+			<label>Alignment</label>
+			<br>
+			<button name="left" class="btn alignment">
+				<span class="glyphicon glyphicon-align-left"></span>
+			</button>
+			<button name="center" class="btn alignment">
+				<span class="glyphicon glyphicon-align-center"></span>
+			</button>
+			<button name="right" class="btn alignment">
+				<span class="glyphicon glyphicon-align-right"></span>
+			</button>
+			<button name="initial" class="btn alignment">
+				<span class="glyphicon glyphicon-fullscreen"></span>
+			</button>
+		</div>
+		<div class="col-xs-3">	
+			<label>Font size</label>
+			<br>
+			<input type="number" 
+			   class="form-control" 
+			   name="font-size" 
+			   placeholder="size"
+			   value="<%= meme.css('font-size').replace('px', '')  %>"
+			>
+		</div>
+		<div class="col-xs-3">
+			<label>Font color</label>
+			<br>
+			<input type="text" 
+				   class="form-control" 
+				   name="color" 
+				   placeholder="color"
+				   value="<%= meme.css('color') %>"
+			>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-xs-6">
+			<label>Font family</label>
+			<br>
+			<input type="text" 
+				   class="form-control" 
+				   name="font-family" 
+				   placeholder="font family"
+				   value="<%= meme.css('font-family') %>"
+			>
+		</div>
+	</div>
+	<br>
+	<div class="row text-center">
+		<button class="btn btn-success save">Publish Meme</button>
+		<button class="btn btn-danger delete">Delete Meme</button>
+	</div>
+</div>

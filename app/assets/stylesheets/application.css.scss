@@ -153,6 +153,11 @@ body {
 	padding: 5px;
 	background-color: transparent;
 	text-align: center;
+	
+	.panel {
+		border: 1px solid black;
+		padding: 10px;
+	}
 
 	.meme-container {
 		display: inline-block;
@@ -175,12 +180,7 @@ body {
 	}
 
 	.control-panel {
-		border: 1px solid black;
-		border-radius: 5px;
 		background-color: white;
-		height: 500px;
-		vertical-align: top;
-		padding: 10px;
 		
 		ul {
 			list-style-position: inside;
@@ -198,7 +198,7 @@ body {
 
 .image-items {
 	background-color: white;
-	max-height: 250px;
+	max-height: 150px;
 	overflow-y: auto;
 }
 

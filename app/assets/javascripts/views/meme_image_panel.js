@@ -1,17 +1,18 @@
-App.Views.MemeImageForm = Backbone.CompositeView.extend({
+App.Views.MemeImagePanel = Backbone.PanelView.extend({
 	events: {
 		"click .meme-image-item": "changeImage",
 		"submit .create": "createImage"
 	},
-	className: "meme-image-form",
+	className: "meme-image-form panel",
 	template: JST["memes/image_panel"],
 	initialize: function(){
+		this.collection.fetch();
 		
-		this.collection.each(function(meme){
-			this.addMemeView(meme);
+		this.collection.each(function(image){
+			this.addImageView(image);
 		}.bind(this));
 		
-		this.listenTo(this.collection, "add", this.addMemeView);
+		this.listenTo(this.collection, "add", this.addImageView);
 	},
 	render: function(){
 		var rendered = this.template();
@@ -19,8 +20,8 @@ App.Views.MemeImageForm = Backbone.CompositeView.extend({
 		this.attachSubviews();
 		return this;
 	},
-	addMemeView: function(meme){
-		var view = new App.Views.MemeImageItem({ model: meme });
+	addImageView: function(image){
+		var view = new App.Views.MemeImageItem({ model: image });
 		this.addSubview(".image-items", view);
 	},
 	changeImage: function(event){

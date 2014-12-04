@@ -1,4 +1,4 @@
-App.Views.MemeEditor = Backbone.View.extend({
+App.Views.MemeEditor = Backbone.CompositeView.extend({
 	className: "meme-edit row",
 	template: JST["memes/editor"],
 	events: {
@@ -12,36 +12,25 @@ App.Views.MemeEditor = Backbone.View.extend({
 		"click .delete": "delete"
 	},
 	initialize: function(){
+		this.render();
 		this.memeView = new App.Views.MemeShow({ model: this.model });
-		this.memeForm = new App.Views.MemeForm({ model: this.model });
-		this.listenTo(this.memeView.model.captions(), "beginEditing", this.editCaption);
-		this.listenTo(this.model, "change:image", this.openDefaultPanel);
+		this.addSubview(".meme-container", this.memeView);
+		this.memePanel = new App.Views.MemePanel({ model: this.model });
+		this.addSubview(".meme-panel", this.memePanel);
+		this.imagePanel = new App.Views.MemeImagePanel({ model: this.memeView.model, collection: App.Collections.images });
+		this.addSubview(".images-panel", this.imagePanel);
+		
+		this.listenTo(this.memeView.model.captions(), "add", this.addCaptionPanel);
 	},
 	render: function(){
-		this.$el.html( this.template({ meme: this.model }) );
-		this.changePanel( this.memeForm );
-		this.$(".meme-container").append( this.memeView.render().$el );
-		
-		if (this.memeView.model.isNew() && this.memeView.model.image().isNew()){
-			this.changeImage();
-		}
+		var rendered = this.template({ meme: this.model });
+		this.$el.html(rendered);
+		this.attachSubviews();
 		return this;
 	},
-	changePanel: function(view){
-		this._panelView && this._panelView.remove();
-		this._panelView = view;
-		this.$('.control-panel').html( this._panelView.render().$el );
-	},
-	openDefaultPanel: function() {
-		this.changePanel( this.memeForm );
-		this.memeForm.delegateEvents();
-	},
-	editCaption: function(caption){	
-		this.triggerUnselect();
-		this.selected = caption;
-		this.listenTo(this.selected, "endEditing unselect", this.openDefaultPanel)
-		this.triggerSelect();
-		this.changePanel( new App.Views.CaptionForm({model: this.selected}) );
+	addCaptionPanel: function(caption){
+		var view = new App.Views.CaptionForm({ model: caption });
+		this.$(".caption-panels").append( view.render().$el );
 	},
 	newCaption: function(event){
 		event.preventDefault();
@@ -76,12 +65,6 @@ App.Views.MemeEditor = Backbone.View.extend({
 		
 		this.memeView.save(options);
 		
-	},
-	changeImage: function(){
-		event.preventDefault();
-		this.triggerUnselect();
-		App.Collections.images.fetch();
-		this.changePanel( new App.Views.MemeImageForm({ model: this.memeView.model, collection: App.Collections.images }) );
 	},
 	cancel: function(){
 		Backbone.history.navigate("", { trigger: true } );
