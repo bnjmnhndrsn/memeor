@@ -259,6 +259,7 @@ body {
 /*CAPTION SHOW*/
 .caption {
 	border: 1px solid transparent;
+	word-wrap: word;
 }
 
 .caption .inner {
@@ -277,7 +278,7 @@ body {
 }
 
 .selected {
-	border: 1px dotted black;
+	border: 1px dotted white;
 }
 
 /* IMAGES INDEX */

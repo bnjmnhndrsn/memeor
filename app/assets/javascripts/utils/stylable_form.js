@@ -41,6 +41,7 @@ Backbone.StylableForm = Backbone.View.extend({
 			this.$(".alignment").removeClass("btn-primary");
 			$button.addClass("btn-primary");
 		}
+		
 		this.model.align( $button.attr("name") );
 	},
 	highlightAlignedButton: function(){

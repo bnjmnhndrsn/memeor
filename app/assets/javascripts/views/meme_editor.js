@@ -5,6 +5,7 @@ App.Views.MemeEditor = Backbone.View.extend({
 		"dblclick .meme": "newCaption",
 		"click .meme": "triggerUnselect",
 		"click .unselect": "triggerUnselect",
+		"click .image-panel": "triggerUnselect",
 		"click .save": "save",
 		"click .change-image": "changeImage",
 		"click .cancel": "cancel",

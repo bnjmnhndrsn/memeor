@@ -53,8 +53,12 @@ App.Models.Meme = Backbone.Stylable.extend({
 		json.captions_attributes = this.captions().toJSON();
 		return { meme: json };
 	},
-	getAlignment: function(){
-		return "";
+	align: function(alignment){
+		if (this.css("text-align") == alignment) {
+			alignment = "";
+		}
+		this.css("text-align", alignment);
+		this.captions().invoke("align");
 	},
 	width: function(){
 		return this.image().get("width");
