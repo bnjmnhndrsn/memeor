@@ -6,7 +6,7 @@ App.Views.MemeImagePanel = Backbone.PanelView.extend({
 		"click .retract": "retract",
 		"click .panel-header": "toggle"
 	},
-	className: "meme-image-form panel",
+	className: "meme-image-form panel expanded",
 	template: JST["memes/image_panel"],
 	initialize: function(){
 		this.collection.fetch();
@@ -31,7 +31,6 @@ App.Views.MemeImagePanel = Backbone.PanelView.extend({
 	changeImage: function(event){
 		var id = $(event.currentTarget).data("id"),
 			newImage = App.Collections.images.get(id);
-			
 		this.model.setImage(newImage);
 		this.retract();
 		return false;

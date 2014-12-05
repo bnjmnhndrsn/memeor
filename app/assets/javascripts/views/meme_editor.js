@@ -19,8 +19,13 @@ App.Views.MemeEditor = Backbone.CompositeView.extend({
 		this.imagePanel = new App.Views.MemeImagePanel({ model: this.memeView.model, collection: App.Collections.images });
 		this.addSubview(".images-panel", this.imagePanel);
 		
+		this.memeView.model.captions().each(function(caption){
+			this.addCaptionPanel(caption);
+		}.bind(this));
+		
 		this.listenTo(this.memeView.model.captions(), "add", this.addCaptionPanel);
 		this.listenTo(this.memeView.model.captions(), "beginSelect", this.changeSelected)
+		this.listenTo(this.memeView.model.captions(), "endSelect", this.changeSelected)
 	},
 	render: function(){
 		var rendered = this.template({ meme: this.model });
@@ -30,7 +35,8 @@ App.Views.MemeEditor = Backbone.CompositeView.extend({
 	},
 	addCaptionPanel: function(caption){
 		var view = new App.Views.CaptionPanel({ model: caption });
-		this.$(".caption-panels").append( view.render().$el );
+		this.addSubview(".caption-panels", view);
+		view.retract();
 		caption.trigger("beginSelect", [caption]);
 	},
 	newCaption: function(event){
@@ -43,10 +49,12 @@ App.Views.MemeEditor = Backbone.CompositeView.extend({
 		this.memeView.model.captions().add(caption);
 	},
 	changeSelected: function(args){
-		var caption = args[0];
-		if (this.selected !== caption) {
+		if (arguments.length === 0){
 			this.selected && this.selected.trigger("unselect");
-			this.selected = caption;
+			this.selected = null;
+		} else if (this.selected !== args[0]) {
+			this.selected && this.selected.trigger("unselect");
+			this.selected = args[0];
 			this.selected.trigger("select");
 		}
 	},

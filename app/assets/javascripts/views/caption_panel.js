@@ -1,10 +1,8 @@
 App.Views.CaptionPanel = Backbone.PanelView.extend({
-	className: "caption-panel panel",
+	className: "caption-panel panel expanded",
 	events: {
 		"input input": "updateModel",
 		"click .delete": "delete",
-		"click .expand": "select",
-		"click .retract": "retract",
 		"click .panel-header": "toggle"
 	},
 	template: JST["captions/panel"],
@@ -13,6 +11,7 @@ App.Views.CaptionPanel = Backbone.PanelView.extend({
 		this.listenTo( this.model, "destroy", this.remove);
 		this.listenTo( this.model, "select", this.expand);
 		this.listenTo( this.model, "unselect", this.retract);
+		this.expanded = true;
 	},
 	render: function(){
 		var rendered = this.template({ caption: this.model });
@@ -34,8 +33,20 @@ App.Views.CaptionPanel = Backbone.PanelView.extend({
 		return false;
 	},
 	expand: function(){
-		Backbone.PanelView.prototype.expand.call(this);
-		this.$("input[name='content']").focus();
+		if (!this.expanded){
+			this.expanded = true;
+			Backbone.PanelView.prototype.expand.call(this);
+			this.select();
+			this.$("input[name='content']").focus();
+			
+		}
+	},
+	retract: function(){
+		if (this.expanded){
+			this.expanded = false;
+			Backbone.PanelView.prototype.retract.call(this);
+			this.model.trigger("endSelect");	
+		}
 	},
 	select: function(){
 		this.model.trigger("beginSelect", [this.model])

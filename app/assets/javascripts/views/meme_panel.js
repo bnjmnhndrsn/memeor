@@ -1,5 +1,5 @@
 App.Views.MemePanel = Backbone.PanelView.extend({
-	className: "panel",
+	className: "panel expanded",
 	template: JST["memes/panel"],
 	events: {
 		"input input" : "updateModel",
@@ -33,8 +33,8 @@ App.Views.MemePanel = Backbone.PanelView.extend({
 	},
 	align: function(event){
 		var $button = $(event.currentTarget);
-		this.highlightAlignedButton();
 		this.model.align( $button.attr("name") );
+		this.highlightAlignedButton();
 	},
 	highlightAlignedButton: function(){
 		if (this.model.css("text-align")) {
