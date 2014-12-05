@@ -8,7 +8,10 @@ Backbone.Collection = Backbone.Collection.extend({
 			model = new this.model({id: id});
 			model.fetch({
 				success: function(){
-					collection.add(model);
+					if (model.get("public")){
+						collection.add(model);	
+					}
+					
 				}
 			});
 		}

@@ -6,6 +6,7 @@ class MemesController < ApplicationController
       @memes = @memes.limit(params[:limit])
     end
     
+    @memes = @memes.where(public: true)
     render 'index'
   end
     

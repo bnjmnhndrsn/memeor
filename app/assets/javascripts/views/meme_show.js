@@ -69,7 +69,7 @@ App.Views.MemeShow = Backbone.View.extend({
 		var that = this;
 		
 		var success = function(){
-			App.Collections.memes.add(that.model);
+			that.model.get("public") && App.Collections.memes.add(that.model);
 			Backbone.history.navigate("/memes/" + that.model.id, { trigger: true });
 			blockpage.remove();
 		};

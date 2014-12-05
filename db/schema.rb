@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203193103) do
+ActiveRecord::Schema.define(version: 20141205052139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20141203193103) do
   end
 
   create_table "images", force: true do |t|
-    t.string   "title",                  null: false
+    t.string   "title",                                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_src_file_name"
@@ -34,12 +34,13 @@ ActiveRecord::Schema.define(version: 20141203193103) do
     t.datetime "image_src_updated_at"
     t.integer  "width"
     t.integer  "height"
-    t.integer  "user_id",                null: false
+    t.integer  "user_id",                               null: false
+    t.boolean  "public",                 default: true, null: false
   end
 
   create_table "memes", force: true do |t|
     t.string   "title"
-    t.integer  "image_id",                  null: false
+    t.integer  "image_id",                                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "cached_image_file_name"
@@ -47,7 +48,8 @@ ActiveRecord::Schema.define(version: 20141203193103) do
     t.integer  "cached_image_file_size"
     t.datetime "cached_image_updated_at"
     t.text     "styling"
-    t.integer  "user_id",                   null: false
+    t.integer  "user_id",                                  null: false
+    t.boolean  "public",                    default: true, null: false
   end
 
   create_table "users", force: true do |t|

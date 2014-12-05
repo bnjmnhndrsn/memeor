@@ -23,6 +23,8 @@ class ImagesController < ApplicationController
     if params[:limit]
       @images = @images.limit(params[:limit])
     end
+    
+    @images = @images.where(public: true)
     render :index
   end
   

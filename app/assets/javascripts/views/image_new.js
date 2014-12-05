@@ -46,7 +46,7 @@ App.Views.ImageNew = Backbone.View.extend({
 			files: $form.find(":file"),
 			data: values_with_csrf,
 			success: function(){
-				that.collection.add(image);
+				image.get("public") && that.collection.add(image);
 				blockview.remove();
 				Backbone.history.navigate("/images/" + image.id, { trigger: true });
 			} 

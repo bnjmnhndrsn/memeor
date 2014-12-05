@@ -71,7 +71,7 @@ App.Views.MemeImagePanel = Backbone.PanelView.extend({
 			files: $form.find(":file"),
 			data: values_with_csrf,
 			success: function(){
-				that.collection.add(image);
+				image.get("public") && that.collection.add(image);
 				that.model.setImage(image);
 			} 
 		});
