@@ -1,12 +1,21 @@
 App.Views.ImageNew = Backbone.View.extend({
 	events: {
-		"submit form": "submit"
+		"submit form": "submit",
+		"change input": "validate"
 	},
 	template: JST["images/new"],
 	render: function(){
 		var rendered = this.template();
 		this.$el.html( rendered );
 		return this;
+	},
+	validate: function(){
+		$inputs = this.$("input");
+		var isValid = _.all($inputs, function(input){
+			return !!input.value;
+		});
+		isValid && this.$("input[type='submit']").prop("disabled", false);
+		
 	},
 	submit: function(event){
 		event.preventDefault();
