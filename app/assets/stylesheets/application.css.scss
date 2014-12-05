@@ -33,6 +33,23 @@ $pgray: #9E9E9E;
 	border-color: $pdark;
 }
 
+/* CONTENT */
+#content {
+	margin-bottom: 30px;
+}
+
+
+/* FOOTER */
+
+.footer {
+	background-color: $pdark-trans;
+}
+
+.footer-content {
+	text-align: center;
+	margin: 20px 0;
+}
+
 /* LANDING */
 
 .landing-buttons {
