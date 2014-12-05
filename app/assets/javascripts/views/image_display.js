@@ -14,6 +14,7 @@ App.Views.ImageDisplay = Backbone.View.extend({
 		this.memesIndex = new App.Views.MemesIndex({ collection: this.collection });
 	},
 	render: function(){
+		App.Utils.setBGImage(this.model.get("image_src_full"));
 		var editable = App.current_user.id === this.model.get("user_id");
 		var content = this.template({ image: this.model, editable: editable });
 		this.$el.html(content);

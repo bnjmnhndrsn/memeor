@@ -13,6 +13,7 @@ App.Views.MemeDisplay = Backbone.View.extend({
 		this.socialShares = new App.Views.SocialShare({url: url, title: title});
 	},
 	render: function(){
+		App.Utils.setBGImage(this.model.image().get("image_src_full"));
 		var editable = (App.current_user.id == this.model.get("user_id"));
 		var content = this.template({ meme: this.model, editable: editable });
 		this.$el.html(content);
