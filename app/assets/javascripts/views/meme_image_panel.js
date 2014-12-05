@@ -75,6 +75,9 @@ App.Views.MemeImagePanel = Backbone.PanelView.extend({
 			success: function(){
 				image.get("public") && that.collection.add(image);
 				that.model.setImage(image);
+				that.retract();
+				$form.find("input[type='text']").val("");
+				$form.find("input[type='file']").val("");
 			} 
 		});
 		
