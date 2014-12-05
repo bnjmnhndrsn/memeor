@@ -5,7 +5,8 @@ App.Views.MemeImagePanel = Backbone.PanelView.extend({
 		"click .expand": "expand",
 		"click .retract": "retract",
 		"click .panel-header": "toggle",
-		"change input": "validate"
+		"change input": "validate",
+		"input input": "validate"
 	},
 	className: "meme-image-form panel expanded",
 	template: JST["memes/image_panel"],

@@ -1,7 +1,8 @@
 App.Views.ImageNew = Backbone.View.extend({
 	events: {
 		"submit form": "submit",
-		"change input": "validate"
+		"change input": "validate",
+		"input input": "validate"
 	},
 	template: JST["images/new"],
 	render: function(){

@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
   def show
-    @image = Image.includes(:memes).find(params[:id])
+    @image = Image.includes(:memes).where(memes: { public: true }).find(params[:id])
     if @image
       render :show
     else
@@ -41,7 +41,7 @@ class ImagesController < ApplicationController
   private
   
   def image_params
-    params.permit(:title, :image_src)
+    params.permit(:title, :image_src, :public)
   end
   
 end

@@ -4,6 +4,7 @@ App.Views.MemePanel = Backbone.PanelView.extend({
 	events: {
 		"input input" : "updateModel",
 		"input select": "updateModel",
+		"change input[type='checkbox']": "updateModel",
 		"click .alignment": "align",
 		"click .expand": "expand",
 		"click .retract": "retract",
@@ -35,6 +36,8 @@ App.Views.MemePanel = Backbone.PanelView.extend({
 			val = $(event.currentTarget).val();
 		if (attr === "content"){
 			this.model.set("content", val);
+		} else if (attr === "public"){
+			this.model.set("public", $cur.prop("checked"));
 		} else if (attr == "font-size") {
 			this.model.css(attr, val + "px");
 		} else {
