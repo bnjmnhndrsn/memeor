@@ -5,7 +5,7 @@ App.Utils.setBGImage = function(url){
 		var timestamp = App.Utils.BGImageTimestamp = new Date();
 		image.onload = function(){
 			if (timestamp === App.Utils.BGImageTimestamp ){
-				$("#bg-image").css("background-image", val);
+				$("#bg-image").css("background-image", val);			
 			}
 		}
 		image.src = url;

@@ -1,45 +1,49 @@
-<div class="page-header text-center">
-	<h2><%= meme.image().get("title") %></h2>
+<div class="row">
+	<div class="col-xs-12 text-center">
+		<h2><%= meme.image().get("title") %></h2>
+	</div>
 </div>
 <div class="row">
-	<div class="info-container col-xs-6 text-center">
-		<p>
-			<h4>
-				Created <%= meme.get("time_words")%> ago.
-			</h4>
-			<h5>
-				Made with <a href="<%= "/#/images/" + meme.image().id %>">this template.</a>
-			</h5>
-		</p>
-		<br>
-		<p>
-			<div class="form-inline selectable">
-				<input type="text" class="form-control" readonly value="<%= meme.get("cached_image") %>">
-				<span class="glyphicon glyphicon-link"></span>
+	<div class="col-xs-12">
+		<div class="info-container col-xs-6 text-center">
+			<p>
+				<h4>
+					Created <%= meme.get("time_words")%> ago.
+				</h4>
+				<h5>
+					Made with <a href="<%= "/#/images/" + meme.image().id %>">this template.</a>
+				</h5>
+			</p>
+			<br>
+			<p>
+				<div class="form-inline selectable">
+					<input type="text" class="form-control" readonly value="<%= meme.get("cached_image") %>">
+					<span class="glyphicon glyphicon-link"></span>
+				</div>
+			</p>
+			<br>
+			<p>
+				<a 
+				href="<%= "/#/memes/" + meme.id + "/fork" %>"
+				class="btn btn-lg btn-success fork">
+					Fork this meme!
+				</a>
+			</p>
+			<% if (editable) { %>
+			<p>
+				<a 
+				href="<%= "/#/memes/" + meme.id + "/edit" %>"
+				class="btn btn-lg btn-warning edit">
+					Edit this meme!
+				</a>
+			</p>
+			<% } %>
+			<br>
+			<div class="shares">
 			</div>
-		</p>
-		<br>
-		<p>
-			<a 
-			href="<%= "/#/memes/" + meme.id + "/fork" %>"
-			class="btn btn-lg btn-success fork">
-				Fork this meme!
-			</a>
-		</p>
-		<% if (editable) { %>
-		<p>
-			<a 
-			href="<%= "/#/memes/" + meme.id + "/edit" %>"
-			class="btn btn-lg btn-warning edit">
-				Edit this meme!
-			</a>
-		</p>
-		<% } %>
-		<br>
-		<div class="shares">
 		</div>
-	</div>
-	<div class="image-container col-xs-6 text-center">
-	<img src="<%= meme.get("cached_image") %>">
+		<div class="image-container col-xs-6 text-center">
+			<img src="<%= meme.get("cached_image") %>">
+		</div>
 	</div>
 </div>

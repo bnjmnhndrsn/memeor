@@ -1,7 +1,6 @@
 App.Views.ImageIndexItem = Backbone.CompositeView.extend({
 	events: {
-		"mouseenter": "changeBGImage",
-		"mouseleave": "emptyBGImage"
+		"mouseenter": "changeBGImage"
 	},
 	template: JST['images/index_item'],
 	className: "image-index-item col-md-3 col-sm-4 col-xs-6",
@@ -15,8 +14,5 @@ App.Views.ImageIndexItem = Backbone.CompositeView.extend({
 	},
 	changeBGImage: function(){
 		App.Utils.setBGImage(this.model.get("image_src_full"));
-	},
-	emptyBGImage: function(){
-		App.Utils.setBGImage();
 	}
 });
