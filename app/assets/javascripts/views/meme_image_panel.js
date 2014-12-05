@@ -4,7 +4,8 @@ App.Views.MemeImagePanel = Backbone.PanelView.extend({
 		"submit .create": "createImage",
 		"click .expand": "expand",
 		"click .retract": "retract",
-		"click .panel-header": "toggle"
+		"click .panel-header": "toggle",
+		"change input": "validate"
 	},
 	className: "meme-image-form panel expanded",
 	template: JST["memes/image_panel"],
@@ -37,6 +38,14 @@ App.Views.MemeImagePanel = Backbone.PanelView.extend({
 		this.model.setImage(newImage);
 		this.retract();
 		return false;
+	},
+	validate: function(){
+		$inputs = this.$("input");
+		var isValid = _.all($inputs, function(input){
+			return !!input.value;
+		});
+		isValid && this.$("input[type='submit']").prop("disabled", false);
+		
 	},
 	createImage: function(event){
 		event.preventDefault();
