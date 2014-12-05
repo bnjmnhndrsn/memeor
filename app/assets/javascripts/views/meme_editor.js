@@ -61,6 +61,12 @@ App.Views.MemeEditor = Backbone.CompositeView.extend({
 	},
 	save: function(event){
 		event.preventDefault();
+		
+		if (this.model.image().isNew()){
+			this.imagePanel.flash();
+			return;
+		}
+		
 		var $button = $(event.currentTarget);
 		
 		var options = {

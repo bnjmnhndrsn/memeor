@@ -13,12 +13,16 @@ App.Views.MemePanel = Backbone.PanelView.extend({
 	},
 	initialize: function(){
 		this.listenTo( this.model, "sync", this.render);
+		this.listenTo( this.model, "change:image", this.expand);
 	},
 	render: function(){
 		var rendered = this.template({ meme: this.model });
 		this.$el.html( rendered );
 		this.$(".panel-header").html( this.header({title: "Meme Options"}) );
 		this.highlightAlignedButton();
+		if (this.model.image().isNew()){
+			this.retract();
+		}
 		var $colorInput = this.$("input[name='color']");
 		setTimeout(function(){
 			$colorInput.colorpicker();

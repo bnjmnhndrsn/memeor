@@ -3,7 +3,8 @@ App.Views.CaptionPanel = Backbone.PanelView.extend({
 	events: {
 		"input input": "updateModel",
 		"click .delete": "delete",
-		"click .panel-header": "toggle"
+		"click .panel-header": "toggle",
+		"changeColor input": "updateModel"
 	},
 	template: JST["captions/panel"],
 	initialize: function(){
@@ -17,6 +18,10 @@ App.Views.CaptionPanel = Backbone.PanelView.extend({
 		var rendered = this.template({ caption: this.model });
 		this.$el.html(rendered);
 		this.$(".panel-header").html( this.header({title: "Caption"}) );
+		var $colorInput = this.$("input[name='color']");
+		setTimeout(function(){
+			$colorInput.colorpicker();
+		}.bind(this), 1);
 		return this;
 	},
 	updateModel: function(event){

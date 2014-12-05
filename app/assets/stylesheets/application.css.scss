@@ -159,7 +159,11 @@ body {
 		border: 1px solid black;
 		padding: 10px;
 		margin-bottom: 3px;
+		transition: border-color .3s ease;
 		
+		&.flashed {
+			border-color: red;
+		}
 		
 		.panel-header {
 			text-align: left;
@@ -378,6 +382,18 @@ body {
 /* FLASH */
 .flash {
 	position: fixed;
-	top: 70px;
+	top: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	
+	.flash-text {
+		padding: 10px;
+		background-color: $pdark-trans;
+		margin: 75px auto;
+		display: inline-block;
+		font-size: 150%;
+	}
+	
 }
 

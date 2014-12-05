@@ -1,6 +1,7 @@
 App.Views.MemeImageForm = Backbone.CompositeView.extend({
 	events: {
 		"click .meme-image-item": "changeImage",
+		"input": "validate",
 		"submit .create": "createImage"
 	},
 	className: "meme-image-form",

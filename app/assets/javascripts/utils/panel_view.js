@@ -12,6 +12,16 @@ Backbone.PanelView = Backbone.CompositeView.extend({
 		this.$(".expandable").hide();
 		return false;
 	},
+	flash: function(){
+		
+		var $el = this.$el;
+		
+		$el.addClass("flashed");
+		setInterval(function(){
+			$el.removeClass("flashed");
+		}, 1000);
+		
+	},
 	toggle: function(){
 		if (this.$(".expandable").css("display") === "none"){
 			this.expand();

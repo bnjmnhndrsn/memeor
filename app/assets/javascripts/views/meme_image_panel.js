@@ -21,6 +21,9 @@ App.Views.MemeImagePanel = Backbone.PanelView.extend({
 		var rendered = this.template();
 		this.$el.html(rendered);
 		this.$(".panel-header").html( this.header({title: "Image"}) );
+		if (!this.model.image().isNew()){
+			this.retract();
+		}
 		this.attachSubviews();
 		return this;
 	},
