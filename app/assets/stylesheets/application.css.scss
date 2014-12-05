@@ -26,6 +26,13 @@ $pgray: #9E9E9E;
 
 /* GLOBAL */
 
+.loading {
+	height: 128px;
+	width: 128px;
+	background: url('loading.gif') center center transparent;
+}
+
+
 body {
 	min-height: 660px;
 }
