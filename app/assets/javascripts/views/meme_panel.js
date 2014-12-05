@@ -6,7 +6,8 @@ App.Views.MemePanel = Backbone.PanelView.extend({
 		"click .alignment": "align",
 		"click .expand": "expand",
 		"click .retract": "retract",
-		"click .panel-header": "toggle"
+		"click .panel-header": "toggle",
+		"click .add-caption": "newCaption"
 	},
 	initialize: function(){
 		this.listenTo( this.model, "sync", this.render);
@@ -42,5 +43,17 @@ App.Views.MemePanel = Backbone.PanelView.extend({
 			var $button = this.$("button[name='" + this.model.css("text-align") + "']");
 			$button.addClass("btn-primary");
 		}
-	}
+	},
+	newCaption: function(event){
+		event.preventDefault();
+		var caption = new App.Models.Caption({ meme: this.model }),
+			top = this.model.width() ? this.model.height() / 2 : 250,
+			left = this.model.width() ? this.model.width() / 2 : 250;
+		
+		caption.css({
+			left: left + "px",
+			top: top + "px"
+		});
+		this.model.captions().add(caption);
+	},
 });

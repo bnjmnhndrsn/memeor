@@ -7,6 +7,7 @@ App.Views.MemeEditor = Backbone.CompositeView.extend({
 		"click .change-image": "changeImage",
 		"click .cancel": "cancel",
 		"click .delete": "delete",
+		"click .save": "save"
 	},
 	initialize: function(){
 		this.render();

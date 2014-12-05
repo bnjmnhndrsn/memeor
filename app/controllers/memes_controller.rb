@@ -27,7 +27,10 @@ class MemesController < ApplicationController
       return
     end
     
-    if @meme.update(meme_params)
+    @meme.assign_attributes(meme_params)
+    @meme.randomize_file_name
+    
+    if @meme.save
       render json: @meme
     else
       render json: @meme.errors.full_messages, status: :unprocessable_entity

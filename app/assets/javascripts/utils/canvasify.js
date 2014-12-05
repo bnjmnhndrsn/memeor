@@ -23,7 +23,6 @@ App.Utils.Canvasify.prototype.addImage = function($image){
 	imageObj.crossOrigin = 'anonymous';
 	var layer = new Kinetic.Layer();
     imageObj.onload = function(){
-		debugger;
 		var image = new Kinetic.Image({
 			x: 0,
 			y: 0,

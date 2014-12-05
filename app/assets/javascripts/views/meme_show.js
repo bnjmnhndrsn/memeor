@@ -77,8 +77,8 @@ App.Views.MemeShow = Backbone.View.extend({
 		canvasify.toDataUrl(function(dataUrl){
 			
 			that.$el.find("#meme-canvas").empty();
-			debugger;
-			that.model.save({ cached_image: dataUrl}, {
+			dataUrl
+			that.model.save({ cached_image: dataUrl }, {
 				success: success
 			});
 		});
