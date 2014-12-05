@@ -35,6 +35,7 @@ App.Views.ImageNew = Backbone.View.extend({
 	         values[ input.name ] = input.value;
 	    });
 		
+		values["public"] = $form.find("[name='public']").prop("checked");
 
 		values_with_csrf = _.extend({}, values)
     	values_with_csrf[csrf_param] = csrf_token

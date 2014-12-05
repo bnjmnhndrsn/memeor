@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
   def show
-    @image = Image.includes(:memes).where(memes: { public: true }).find(params[:id])
+    @image = Image.includes(:memes).find(params[:id])
     if @image
       render :show
     else
