@@ -7,6 +7,7 @@ var App = {
 	initialize: function(){
 		new App.Routers.Router();
 		Backbone.history.start();
+		App.viewport = ResponsiveBootstrapToolkit;
 	}
 };
 

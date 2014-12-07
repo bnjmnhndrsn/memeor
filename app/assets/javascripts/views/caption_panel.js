@@ -1,10 +1,18 @@
 App.Views.CaptionPanel = Backbone.PanelView.extend({
 	className: "caption-panel panel expanded",
 	events: {
+		"keydown input[name='content']": "print",
 		"input input": "updateModel",
 		"click .delete": "delete",
 		"click .panel-header": "toggle",
-		"changeColor input": "updateModel"
+		"changeColor input": "updateModel",
+		
+	},
+	print: function(event){
+		var code = (event.keyCode ? event.keyCode : event.which);
+		 if (code == 13) { 
+			 this.retract();
+		 }
 	},
 	template: JST["captions/panel"],
 	initialize: function(){
