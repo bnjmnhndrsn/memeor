@@ -36,7 +36,10 @@ App.Utils.Canvasify.prototype.addImage = function($image){
 		this._clearQueue();
 		this._delay = false;
 	}.bind(this);
-	imageObj.src = $image.attr("src");
+	
+	
+	
+	imageObj.src = $image.attr("src").split("?")[0];
 };
 
 App.Utils.Canvasify.prototype.addCaption = function($caption){
