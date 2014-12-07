@@ -32,9 +32,13 @@ App.Views.MemeEditor = Backbone.CompositeView.extend({
 		var rendered = this.template({ meme: this.model });
 		this.$el.html(rendered);
 		this.attachSubviews();
+		setTimeout(function(){
+			this.$(".tooltip-elem").tooltip();
+		}.bind(this), 1);
 		return this;
 	},
 	addCaptionPanel: function(caption){
+		this.$(".meme-container").tooltip("destroy");
 		var view = new App.Views.CaptionPanel({ model: caption });
 		this.addSubview(".caption-panels", view);
 		view.retract();

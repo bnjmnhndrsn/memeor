@@ -37,8 +37,6 @@ App.Utils.Canvasify.prototype.addImage = function($image){
 		this._delay = false;
 	}.bind(this);
 	
-	
-	
 	imageObj.src = $image.attr("src").split("?")[0];
 };
 

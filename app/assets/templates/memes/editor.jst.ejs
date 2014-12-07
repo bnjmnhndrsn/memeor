@@ -8,16 +8,20 @@
 	<div class="images-panel"></div>
 </div>
 <div class="image-panel col-xs-6">
-	<div class="meme-container">
+	<div class="meme-container tooltip-elem" data-toggle="tooltip"
+			 title="Double click to add caption" data-placement="top">
 		<div class="options">
-			<button class="save btn-xs redirect btn btn-success">
+			<button class="save btn-xs redirect btn btn-success tooltip-elem" data-toggle="tooltip"
+			 title="Publish" data-placement="top">
 				<span class="glyphicon glyphicon-ok"></span>
 			</button>
-			<button class="cancel btn-xs btn btn-danger">
+			<button class="cancel btn-xs btn btn-danger tooltip-elem"  data-toggle="tooltip"
+			title="Cancel" data-placement="top">
 				<span class="glyphicon glyphicon-remove"></span>
 			</button>
 		</div>
-		<div class="meme-show-container"></div>
+		<div class="meme-show-container">
+		 </div>
 		<div id="meme-canvas" style="display:none"></div>
 	</div>
 </div>
