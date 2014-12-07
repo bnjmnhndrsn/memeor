@@ -26,6 +26,7 @@ $pgray: #9E9E9E;
 
 /* GLOBAL */
 
+
 .loading {
 	height: 128px;
 	width: 128px;
@@ -33,8 +34,8 @@ $pgray: #9E9E9E;
 }
 
 
-body {
-	min-height: 660px;
+body, html {
+	height: 100%;
 }
 .clearfix {
 	clear: both;
@@ -48,9 +49,12 @@ body {
 
 /* CONTENT */
 #content {
-	margin-bottom: 30px;
-	min-height: 600px;
-	z-index: 1;
+    min-height: 100%;
+     height: auto;
+     /* Negative indent footer by its height */
+     margin: 0 auto -80px;
+     /* Pad bottom by footer height */
+     padding: 0 0 80px;
 }
 
 /* BG IMAGE */
@@ -61,7 +65,7 @@ body {
 	background-color: #D4D4D4;
 	background-size: cover;
 	background-repeat: no-repeat;
-	height: 800px;
+	height: 100%;
 	width: 100%;
 	z-index: -1;
 }
@@ -69,6 +73,8 @@ body {
 /* FOOTER */
 
 .footer {
+	margin-top: 20px;
+	height: 60px;
 	border-top: 1px solid $pgray;
 	background-color: white;
 }
