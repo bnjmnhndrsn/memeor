@@ -2,12 +2,7 @@
 	<h3><%= (meme.isNew()) ? "Make" : "Edit" %> a meme!</h3>
 	<p>Click on the image to place captions. Drag to position them. Use the menus on the left to style them.</p>
 </header>
-<div class="control-panel col-xs-6">
-	<div class="meme-panel"></div>
-	<div class="caption-panels"></div>
-	<div class="images-panel"></div>
-</div>
-<div class="image-panel col-xs-6">
+<div class="image-panel col-md-7 col-sm-12 col-xs-12">
 	<div class="meme-container tooltip-elem" data-toggle="tooltip"
 			 title="Double click to add caption" data-placement="top">
 		<div class="options">
@@ -24,5 +19,10 @@
 		 </div>
 		<div id="meme-canvas" style="display:none"></div>
 	</div>
+</div>
+<div class="control-panel col-md-5 col-sm-12 col-xs-12">
+	<div class="meme-panel"></div>
+	<div class="caption-panels"></div>
+	<div class="images-panel"></div>
 </div>
 
