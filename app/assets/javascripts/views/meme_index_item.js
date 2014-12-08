@@ -3,12 +3,15 @@ App.Views.MemeIndexItem = Backbone.CompositeView.extend({
 		"mouseenter": "changeBGImage"
 	},
 	template: JST['memes/index_item'],
-	className: "meme-index-item col-md-2 col-sm-3 col-xs-4",
+	mobileTemplate: JST['memes/index_item_xs'],
+	className: "meme-index-item text-center col-md-2 col-sm-3 col-xs-12",
 	initialize: function(){
 		this.listenTo(this.model, "change", this.render );
 	},
 	render: function(){
-		var content = this.template({ meme: this.model });
+		var template = App.viewport.is('xs') ? this.mobileTemplate : this.template,
+			content = template({ meme: this.model });
+
 		this.$el.html(content);
 		return this;
 	},
