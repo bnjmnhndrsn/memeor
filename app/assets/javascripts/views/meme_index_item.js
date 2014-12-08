@@ -3,19 +3,23 @@ App.Views.MemeIndexItem = Backbone.CompositeView.extend({
 		"mouseenter": "changeBGImage"
 	},
 	template: JST['memes/index_item'],
-	mobileTemplate: JST['memes/index_item_xs'],
 	className: "meme-index-item text-center col-md-2 col-sm-3 col-xs-12",
 	initialize: function(){
+		this.resizeHandler = this.render.bind(this);
+		$(window).on("viewportResize", this.resizeHandler);
 		this.listenTo(this.model, "change", this.render );
 	},
 	render: function(){
-		var template = App.viewport.is('xs') ? this.mobileTemplate : this.template,
-			content = template({ meme: this.model });
-
+		console.log("rendering")
+		var content = this.template({ meme: this.model, xs: App.viewport.is('xs') });
 		this.$el.html(content);
 		return this;
 	},
 	changeBGImage: function(){
 		App.Utils.setBGImage(this.model.image().get("image_src_full"));
-	}
+	},
+    remove: function() {
+        $(window).off("viewportResize", this.resizeHandler);
+        Backbone.View.prototype.remove.apply(this, arguments);
+    }
 });

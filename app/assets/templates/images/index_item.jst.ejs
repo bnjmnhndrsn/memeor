@@ -1,6 +1,6 @@
 <div class="image-container">
 	<a href="<%= "/#/images/" + image.id %>" >
-		<img src="<%= image.get("image_src_feed") %>">
+		<img src="<%= image.get( (xs) ? "image_src" : "image_src_feed") %>">
 	</a>
 	<div class="title-container"><%= image.get("title") %></div>
 </div>

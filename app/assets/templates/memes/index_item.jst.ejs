@@ -1,6 +1,6 @@
 <div class="meme-container">
 	<a href="<%= "/#/memes/" + meme.id %>" >
-		<img src="<%= meme.get("cached_image_feed") %>">
+		<img src="<%= meme.get( (xs) ? "cached_image" : "cached_image_feed") %>">
 	</a>
 	<div class="button-container">
 		<span><%= meme.get("time_words")%> ago</span>
