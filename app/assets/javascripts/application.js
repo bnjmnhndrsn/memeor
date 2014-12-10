@@ -17,7 +17,7 @@
 //= require jQuery.serializeJSON
 //= require jquery.iframe-transport
 //= require bootstrap-colorpicker.min
-//= require bootstrap-toolkit.min.js
+//= require bootstrap-toolkit.js
 //= require kinetic.js
 //= require underscore
 //= require backbone

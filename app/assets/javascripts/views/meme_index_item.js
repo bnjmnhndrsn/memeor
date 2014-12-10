@@ -5,12 +5,15 @@ App.Views.MemeIndexItem = Backbone.CompositeView.extend({
 	template: JST['memes/index_item'],
 	className: "meme-index-item text-center col-md-2 col-sm-3 col-xs-12",
 	initialize: function(){
-		this.resizeHandler = this.render.bind(this);
+		this.resizeHandler = function(event, sizes){
+			var isChanged = sizes.oldSize !== sizes.newSize && 
+				(sizes.oldSize === "xs" || sizes.newSize === "xs");
+			isChanged && this.render();
+		}.bind(this);
+		
 		$(window).on("viewportResize", this.resizeHandler);
-		this.listenTo(this.model, "change", this.render );
 	},
 	render: function(){
-		console.log("rendering")
 		var content = this.template({ meme: this.model, xs: App.viewport.is('xs') });
 		this.$el.html(content);
 		return this;

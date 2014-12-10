@@ -5,7 +5,12 @@ App.Views.ImageIndexItem = Backbone.CompositeView.extend({
 	template: JST['images/index_item'],
 	className: "image-index-item text-center col-md-3 col-sm-4 col-xs-12",
 	initialize: function(){
-		this.resizeHandler = this.render.bind(this);
+		this.resizeHandler = function(event, sizes){
+			var isChanged = sizes.oldSize !== sizes.newSize && 
+				(sizes.oldSize === "xs" || sizes.newSize === "xs");
+			isChanged && this.render();
+		}.bind(this);
+		
 		$(window).on("viewportResize", this.resizeHandler);
 		this.listenTo(this.model, "change", this.render );
 	},
