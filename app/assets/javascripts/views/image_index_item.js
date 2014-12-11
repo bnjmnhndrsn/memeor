@@ -14,9 +14,12 @@ App.Views.ImageIndexItem = Backbone.CompositeView.extend({
 		return this;
 	},
 	changeBGImage: function(){
-      //  $(window).off("viewportResize", this.resizeHandler);
 		App.Utils.setBGImage(this.model.get("image_src_full"));
 	},
+    remove: function() {
+		App.viewport.removeTarget(this.$el);
+        Backbone.View.prototype.remove.apply(this, arguments);
+    },
 	resizeHandler: function(event, oldSize, newSize){
 		if (oldSize === "xs" || newSize === "xs"){
 			this.render();

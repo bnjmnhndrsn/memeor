@@ -38,7 +38,15 @@
 			//adds target to targets array
 			self._$targets.push( $(target) );
 		},
-		
+		removeTarget: function($target){
+			for (var i = 0; i < self._$targets.length; i++){
+				if ($target.is(self._$targets[i])){
+					self._$targets.splice(i, 1);
+					return true;
+				}
+			}
+			return false;
+		},
 		size: function(){
 			var options = ["xs", "sm", "md", "lg"];
 			for (var i = 0; i < options.length; i++){

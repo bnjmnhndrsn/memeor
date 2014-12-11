@@ -17,7 +17,7 @@ App.Views.MemeIndexItem = Backbone.CompositeView.extend({
 		App.Utils.setBGImage(this.model.image().get("image_src_full"));
 	},
     remove: function() {
-       // $(window).off("viewportResize", this.resizeHandler);
+		App.viewport.removeTarget(this.$el);
         Backbone.View.prototype.remove.apply(this, arguments);
     },
 	resizeHandler: function(event, oldSize, newSize){
