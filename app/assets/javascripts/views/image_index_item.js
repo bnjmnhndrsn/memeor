@@ -1,18 +1,12 @@
 App.Views.ImageIndexItem = Backbone.CompositeView.extend({
 	events: {
-		"mouseenter": "changeBGImage"
+		"mouseenter": "changeBGImage",
+		"viewportResize": "resizeHandler"
 	},
 	template: JST['images/index_item'],
 	className: "image-index-item text-center col-md-3 col-sm-4 col-xs-12",
 	initialize: function(){
-		this.resizeHandler = function(event, sizes){
-			var isChanged = sizes.oldSize !== sizes.newSize && 
-				(sizes.oldSize === "xs" || sizes.newSize === "xs");
-			isChanged && this.render();
-		}.bind(this);
-		
-		$(window).on("viewportResize", this.resizeHandler);
-		this.listenTo(this.model, "change", this.render );
+		App.viewport.registerTarget(this.$el);
 	},
 	render: function(){
 		var content = this.template({ image: this.model, xs: App.viewport.is('xs') });
@@ -20,7 +14,12 @@ App.Views.ImageIndexItem = Backbone.CompositeView.extend({
 		return this;
 	},
 	changeBGImage: function(){
-        $(window).off("viewportResize", this.resizeHandler);
+      //  $(window).off("viewportResize", this.resizeHandler);
 		App.Utils.setBGImage(this.model.get("image_src_full"));
+	},
+	resizeHandler: function(event, oldSize, newSize){
+		if (oldSize === "xs" || newSize === "xs"){
+			this.render();
+		}
 	}
 });
