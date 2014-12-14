@@ -4,37 +4,39 @@
 	</div>
 </div>
 <div class="row">
-	<div class="info-container col-xs-6 text-center">
-	<h3>
-		First added <%= image.get("time_words")%> ago.
-	</h3>
-	<h4>
-		Has been used in <%= image.get("total_memes") %> memes.
-	</h4>
-	<br>
-	<div class="form-inline selectable">
-		<input type="text" class="form-control" readonly value="<%= image.get("image_src") %>">
-		<span class="glyphicon glyphicon-link"></span>
-	</div>
-	<br>
-	<p>
-		<a 
-		href="<%= "/#/memes/new/" + image.id %>"
-		class="btn btn-lg btn-success new">
-			Make a new meme with this image!
-		</a>
-	</p>
-	<% if (editable) { %>
-	<p>
-		<button class="btn btn-danger btn-lg delete">Delete Image</button>
-	</p>
-	<% } %>
-	<br>
-	<div class="shares">
-	</div>
-	</div>
-	<div class="image-container col-xs-6 text-center">
+	<div class="image-container col-md-6 col-sm-12 col-xs-12 text-center">
 		<img src="<%= image.get("image_src") %>">
+	</div>
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		<div class="info-container text-center">
+			<h3>
+				First added <%= image.get("time_words")%> ago.
+			</h3>
+			<h4>
+				Has been used in <%= image.get("total_memes") %> memes.
+			</h4>
+			<br>
+			<div class="form-inline selectable">
+				<input type="text" class="form-control" readonly value="<%= image.get("image_src") %>">
+				<span class="glyphicon glyphicon-link"></span>
+			</div>
+			<br>
+			<p>
+				<a 
+				href="<%= "/#/memes/new/" + image.id %>"
+				class="btn btn-lg btn-success new">
+					Make a new meme with this image!
+				</a>
+			</p>
+			<% if (editable) { %>
+			<p>
+				<button class="btn btn-danger btn-lg delete">Delete Image</button>
+			</p>
+			<% } %>
+			<br>
+			<div class="shares">
+			</div>
+		</div>
 	</div>
 </div>
 <div class="row">

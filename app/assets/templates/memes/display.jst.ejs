@@ -4,8 +4,11 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-xs-12">
-		<div class="info-container col-xs-6 text-center">
+	<div class="image-container col-md-6 col-sm-12 col-xs-12 text-center">
+		<img src="<%= meme.get("cached_image") %>">
+	</div>
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		<div class="info-container text-center">
 			<p>
 				<h4>
 					Created <%= meme.get("time_words")%> ago.
@@ -41,9 +44,6 @@
 			<br>
 			<div class="shares">
 			</div>
-		</div>
-		<div class="image-container col-xs-6 text-center">
-			<img src="<%= meme.get("cached_image") %>">
 		</div>
 	</div>
 </div>

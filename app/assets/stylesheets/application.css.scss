@@ -359,10 +359,6 @@ body {
 
 .meme-display {
 	
-	> div {
-		
-	}
-	
 	.info-container {
 		padding: 10px 10px 20px 10px;
 		border-radius: 5px;
@@ -372,9 +368,10 @@ body {
 	}
 	
 	.image-container {
-		height: 100%;
-
+		
+		padding-bottom: 20px;
 		img {
+			width: 100%;
 			vertical-align: middle;
 			box-shadow: 2px 2px 2px #888888;
 		}
@@ -499,11 +496,14 @@ body {
 	}
 	
 	.image-container {
+		padding-bottom: 15px;
+		height: 100%;
+		line-height: 100%;
+		vertical-align: middle;
 	
 		img {
-			vertical-align: middle;
 			box-shadow: 2px 2px 2px #888888;
-			max-height: 400px;
+			width: 100%;
 		}
 	}
 }
