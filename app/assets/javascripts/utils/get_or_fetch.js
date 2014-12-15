@@ -1,4 +1,4 @@
-Backbone.Collection = Backbone.Collection.extend({
+Backbone.PageableCollection = Backbone.PageableCollection.extend({
 	getOrFetch: function(id){
 		var model, collection = this;
 		

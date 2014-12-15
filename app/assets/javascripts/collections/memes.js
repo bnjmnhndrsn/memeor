@@ -1,6 +1,7 @@
-App.Collections.Memes = Backbone.Collection.extend({
+App.Collections.Memes = Backbone.PageableCollection.extend({
 	model: App.Models.Meme,
-	url: "/memes"
+	url: "/memes",
+	mode: "infinite"
 });
 
 App.Collections.memes = new App.Collections.Memes();

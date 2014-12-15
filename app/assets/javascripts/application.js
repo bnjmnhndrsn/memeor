@@ -21,6 +21,7 @@
 //= require kinetic.js
 //= require underscore
 //= require backbone
+//= require backbone.paginator
 //= require app
 //= require_tree ../templates
 //= require_tree ./utils

@@ -3,12 +3,12 @@ App.Views.ImagesIndex = Backbone.CompositeView.extend({
 	events: {},
 	template: JST["images/index"],
 	initialize: function(){
-		this.collection.each(function(meme){
+		this.collection.fullCollection.each(function(meme){
 			this.addImageView(meme);
 		}.bind(this));
 		
-		this.listenTo(this.collection, "add", this.addImageView);
-		this.listenTo(this.collection, "sort", this.resortImageViews);
+		this.listenTo(this.collection.fullCollection, "add", this.addImageView);
+		this.listenTo(this.collection.fullCollection, "sort", this.resortImageViews);
 	},
 	resortImageViews: function(){
 		var that = this;

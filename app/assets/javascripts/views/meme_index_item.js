@@ -21,7 +21,6 @@ App.Views.MemeIndexItem = Backbone.CompositeView.extend({
         Backbone.View.prototype.remove.apply(this, arguments);
     },
 	resizeHandler: function(event, oldSize, newSize){
-		console.log(arguments);
 		if (oldSize === "xs" || newSize === "xs"){
 			this.render();
 		}
