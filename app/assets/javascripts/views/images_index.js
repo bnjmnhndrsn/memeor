@@ -13,7 +13,7 @@ App.Views.ImagesIndex = Backbone.CompositeView.extend({
 	resortImageViews: function(){
 		var that = this;
 		this.sortSubviews(".images", function(view){
-			return that.collection.comparator(view.model);
+			return that.collection.fullCollection.comparator(view.model);
 		});
 		this.render();
 	},

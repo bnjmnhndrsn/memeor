@@ -20,9 +20,9 @@ class ImagesController < ApplicationController
   
   def index
     @images = (params[:memes_count]) ?  Image.by_memes_count : Image.all.order(:created_at)
-    count = params[:limit].nil? ? 20 : params[:limit]
-    @images = @images.where(public: true).page(params[:page]).per(count)
-    paginate @images
+    limit = params[:limit].nil? ? 12 : params[:limit]
+    @images = @images.where(public: true).page(params[:page]).per(limit)
+    paginate @images, per_page: limit
   end
   
   def destroy
