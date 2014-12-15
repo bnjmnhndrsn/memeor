@@ -19,6 +19,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
 $pdark: #3A3276;
 $pdark-trans: rgba(10, 0, 78, .1);
 $pdark-trans2: rgba(10, 0, 78, .3);
@@ -380,15 +381,31 @@ body {
 	
 }
 
+@-webkit-keyframes blink {
+	50% { border-color: transparent; }
+}
+
+@keyframes blink { 
+	50% { border-color: transparent; }
+}
 
 
 /*CAPTION SHOW*/
 .caption {
-	border: 1px dotted white;
+	border: 2px dotted white;
 	word-wrap: word;
+	min-height: 30px;
 	
-	&.selected{
-		border-color: blue;
+	&.selected {
+	    -webkit-animation-name: blink;
+	     -webkit-animation-duration: 1s;
+	     -webkit-animation-iteration-count: infinite;
+	     -webkit-animation-play-state: running;
+	     /* Standard syntax */
+	     animation-name: blink;
+	     animation-duration: 1s;
+	     animation-iteration-count: infinite;
+	     animation-play-state: running;
 	}
 	
 	.inner {
