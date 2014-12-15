@@ -4,7 +4,10 @@ App.Collections.Images = Backbone.PageableCollection.extend({
 	comparator: function(model){
 		return model.get('created_at');
 	},
-	mode: "infinite"
+	mode: "infinite",
+	state: {
+		pageSize: 24
+	}
 });
 
 App.Collections.images = new App.Collections.Images();

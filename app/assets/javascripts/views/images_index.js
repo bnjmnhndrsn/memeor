@@ -24,6 +24,7 @@ App.Views.ImagesIndex = Backbone.CompositeView.extend({
 		return this;
 	},
 	addImageView: function(image){
+		console.log("add");
 		var view = new App.Views.ImageIndexItem({ model: image });
 		this.addSubview(".images", view);
 	}

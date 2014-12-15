@@ -1,9 +1,9 @@
 class MemesController < ApplicationController
   def index
     @memes = Meme.all.includes(:image).includes(:captions).order('created_at DESC')
-    limit = params[:limit].nil? ? 12 : params[:limit]
-    @memes = @memes.where(public: true).page(params[:page]).per(limit)
-    paginate @memes, per_page: limit
+    per_page = params[:per_page].nil? ? 24 : params[:per_page]
+    @memes = @memes.where(public: true).page(params[:page]).per(per_page)
+    paginate @memes, per_page: per_page
   end
     
   def create

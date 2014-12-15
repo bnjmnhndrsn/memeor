@@ -19,18 +19,16 @@ App.Routers.Router = Backbone.Router.extend({
 		var memes = new App.Collections.Memes(),
 			images = new App.Collections.Images();
 		
-		memes.fetch({
-			data: {
-				limit: 6
-			},
+		
+		//setPageSize performs fetch
+		memes.setPageSize(6, {
 			success: function(collection){
 				App.Collections.memes.add( collection.models );
 			}
 		});
 		
-		images.fetch({
+		images.setPageSize(4, {
 			data: {
-				limit: 4,
 				memes_count: true
 			},
 			success: function(collection){
