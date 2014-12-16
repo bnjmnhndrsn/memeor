@@ -1,9 +1,17 @@
 class MemesController < ApplicationController
   def index
-    @memes = Meme.all.includes(:image).includes(:captions).order('created_at DESC')
+    @memes = Meme.all.includes(:captions).order('created_at DESC')
+    if params[:image_id]
+      @memes = @memes.where(image_id: params[:image_id])
+    else
+      @memes = @memes.includes(:image)
+    end
+
     per_page = params[:per_page].nil? ? 24 : params[:per_page]
     @memes = @memes.where(public: true).page(params[:page]).per(per_page)
-    paginate @memes, per_page: per_page
+    @memes = paginate @memes, per_page: per_page
+    @include_images = !params[:image_id]
+    render :index
   end
     
   def create

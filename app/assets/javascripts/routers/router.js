@@ -21,18 +21,11 @@ App.Routers.Router = Backbone.Router.extend({
 		
 		
 		//setPageSize performs fetch
-		memes.setPageSize(6, {
-			success: function(collection){
-				App.Collections.memes.add( collection.models );
-			}
-		});
+		memes.setPageSize(6);
 		
 		images.setPageSize(4, {
 			data: {
 				memes_count: true
-			},
-			success: function(collection){
-				App.Collections.images.add( collection.models );
 			}
 		});
 		
@@ -86,7 +79,14 @@ App.Routers.Router = Backbone.Router.extend({
 	},
 	imageShow: function(id){
 		var image = App.Collections.images.getOrFetch(id),
-			memes = image.memes();
+			memes = new App.Collections.Memes();
+		
+		memes.setPageSize(12, {
+			data: {
+				image_id: image.id
+			}
+		});
+		
 		var view = new App.Views.ImageDisplay({ model: image, collection: memes });
 		
 		this._switchView(view);
