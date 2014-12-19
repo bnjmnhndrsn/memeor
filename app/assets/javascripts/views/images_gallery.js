@@ -5,9 +5,8 @@ App.Views.ImagesGallery = Backbone.CompositeView.extend({
 	},
 	template: JST["images/gallery"],
 	initialize: function(){
-		var view = new App.Views.ImagesIndex({ collection: this.collection });
-		this.addSubview(".bottom-content", view);
-		this.listenTo(this.collection, "sync", this.render);
+		this.addIndexView();
+		//this.listenTo(this.collection, "sync", this.render);
 	},
 	render: function(){
 		var rendered = this.template({images: this.collection});
@@ -18,24 +17,28 @@ App.Views.ImagesGallery = Backbone.CompositeView.extend({
 	sort: function(event){
 		this.$(".sort").css("font-weight", "normal");
 		$(event.currentTarget).css("font-weight", "bold");
-		var key = $(event.currentTarget).data("sort");
-		this.collection.fullCollection.comparator = this.sortFunctions[key];
-		this.collection.fullCollection.sort()
+		var keys = this.sortFunctions[ $(event.currentTarget).data("sort") ];
+		this.collection.setSorting( keys.sort_by, keys.order, { side: "client" } );
+		this.collection.getPage(1, {
+			fetch: true,
+			success: function(){
+				this.removeSubview(".bottom-content", this.indexView);
+				this.collection.fullCollection.sort();
+				console.log(this.collection.getPage(1).pluck("id"));
+				this.addIndexView();
+			}.bind(this)
+		});
 	},
 	sortFunctions: {
-		newest: function(model){
-			var d = new Date(model.get('updated_at'));
-			return -d;
-		},
-		oldest: function(model){
-			var d = new Date(model.get('updated_at'));
-			return d;
-		},
-		popularity: function(model){
-			return -model.get("total_memes");
-		}
+		newest:  { sort_by: 'created_at', order: 1 },
+		oldest: { sort_by: 'created_at', order: -1 },
+		popularity:  { sort_by: 'memes_count', order: 1 }
 	}, 
 	fetchMore: function(){
 		this.collection.getNextPage();
+	},
+	addIndexView: function(){
+		this.indexView = new App.Views.ImagesIndex({ collection: this.collection });
+		this.addSubview(".bottom-content", this.indexView);
 	}
 });

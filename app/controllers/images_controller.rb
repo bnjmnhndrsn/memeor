@@ -18,7 +18,14 @@ class ImagesController < ApplicationController
   end
 
   def index
-    @images = (params[:memes_count]) ?  Image.by_memes_count : Image.all.order(:created_at)
+    if params[:sort_by] == "created_at"
+      @images = Image.all.order(created_at: params[:order].to_sym)
+    elsif params[:sort_by] == "memes_count"
+      @images = Image.by_memes_count
+    else
+      @images = Image.all
+    end
+    
     per_page = params[:per_page].nil? ? 24 : params[:per_page]
     @images = @images.where(public: true).page(params[:page]).per(per_page)
     paginate @images, per_page: per_page

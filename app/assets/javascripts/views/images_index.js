@@ -3,19 +3,11 @@ App.Views.ImagesIndex = Backbone.CompositeView.extend({
 	events: {},
 	template: JST["images/index"],
 	initialize: function(){
-		this.collection.fullCollection.each(function(meme){
+		this.collection.each(function(meme){
 			this.addImageView(meme);
 		}.bind(this));
 		
 		this.listenTo(this.collection.fullCollection, "add", this.addImageView);
-		this.listenTo(this.collection.fullCollection, "sort", this.resortImageViews);
-	},
-	resortImageViews: function(){
-		var that = this;
-		this.sortSubviews(".images", function(view){
-			return that.collection.fullCollection.comparator(view.model);
-		});
-		this.render();
 	},
 	render: function(){
 		var rendered = this.template();
@@ -24,7 +16,7 @@ App.Views.ImagesIndex = Backbone.CompositeView.extend({
 		return this;
 	},
 	addImageView: function(image){
-		console.log("add");
+		//console.log(image.id);
 		var view = new App.Views.ImageIndexItem({ model: image });
 		this.addSubview(".images", view);
 	}

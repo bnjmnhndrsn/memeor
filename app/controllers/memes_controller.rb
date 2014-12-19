@@ -1,5 +1,6 @@
 class MemesController < ApplicationController
   def index
+    
     @memes = Meme.all.includes(:captions).order('created_at DESC')
     if params[:image_id]
       @memes = @memes.where(image_id: params[:image_id])
