@@ -12,12 +12,11 @@ App.Views.MemeImagePanel = Backbone.PanelView.extend({
 	template: JST["memes/image_panel"],
 	initialize: function(){
 		this.collection.fetch();
-		
 		this.collection.each(function(image){
 			this.addImageView(image);
 		}.bind(this));
-		
-		this.listenTo(this.collection, "add", this.addImageView);
+		debugger;
+		this.listenTo(this.collection.fullCollection, "add", this.addImageView);
 	},
 	render: function(){
 		var rendered = this.template();
@@ -30,6 +29,7 @@ App.Views.MemeImagePanel = Backbone.PanelView.extend({
 		return this;
 	},
 	addImageView: function(image){
+		debugger;
 		var view = new App.Views.MemeImageItem({ model: image });
 		this.addSubview(".image-items", view);
 	},

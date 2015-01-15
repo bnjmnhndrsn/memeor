@@ -6,7 +6,7 @@ App.Views.ImagesGallery = Backbone.CompositeView.extend({
 	template: JST["images/gallery"],
 	initialize: function(){
 		this.addIndexView();
-		//this.listenTo(this.collection, "sync", this.render);
+		this.listenTo(this.collection, "sync", this.render);
 	},
 	render: function(){
 		var rendered = this.template({images: this.collection});
@@ -18,13 +18,13 @@ App.Views.ImagesGallery = Backbone.CompositeView.extend({
 		this.$(".sort").css("font-weight", "normal");
 		$(event.currentTarget).css("font-weight", "bold");
 		var keys = this.sortFunctions[ $(event.currentTarget).data("sort") ];
+		this.collection = new App.Collections.Images();
 		this.collection.setSorting( keys.sort_by, keys.order, { side: "client" } );
 		this.collection.getPage(1, {
 			fetch: true,
 			success: function(){
 				this.removeSubview(".bottom-content", this.indexView);
 				this.collection.fullCollection.sort();
-				console.log(this.collection.getPage(1).pluck("id"));
 				this.addIndexView();
 			}.bind(this)
 		});

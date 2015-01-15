@@ -6,7 +6,7 @@ App.Collections.Images = Backbone.PageableCollection.extend({
 	},
 	mode: "infinite",
 	state: {
-		pageSize: 24
+		pageSize: 12
 	}
 });
 

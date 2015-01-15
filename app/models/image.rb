@@ -18,8 +18,7 @@ class Image < ActiveRecord::Base
     .select('images.*')
     .joins(:memes)
     .group("images.id")
-    .having("COUNT(memes.id) > 0")
-    .order("COUNT(memes.id) DESC")
+    .order("COALESCE(COUNT(memes.id), 0) DESC")
   end
   
   private

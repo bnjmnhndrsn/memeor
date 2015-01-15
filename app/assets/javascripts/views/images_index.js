@@ -2,7 +2,11 @@ App.Views.ImagesIndex = Backbone.CompositeView.extend({
 	className: "row",
 	events: {},
 	template: JST["images/index"],
-	initialize: function(){
+	initialize: function(options){
+		if (!this.collection) {
+			
+		}
+		
 		this.collection.each(function(meme){
 			this.addImageView(meme);
 		}.bind(this));
