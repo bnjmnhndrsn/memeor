@@ -6,7 +6,8 @@ App.Views.MemeImagePanel = Backbone.PanelView.extend({
 		"click .retract": "retract",
 		"click .panel-header": "toggle",
 		"change input": "validate",
-		"input input": "validate"
+		"input input": "validate",
+		"click .fetch-more button": "fetchMore"
 	},
 	className: "meme-image-form panel expanded",
 	template: JST["memes/image_panel"],
@@ -15,11 +16,11 @@ App.Views.MemeImagePanel = Backbone.PanelView.extend({
 		this.collection.each(function(image){
 			this.addImageView(image);
 		}.bind(this));
-		debugger;
+		
 		this.listenTo(this.collection.fullCollection, "add", this.addImageView);
 	},
 	render: function(){
-		var rendered = this.template();
+		var rendered = this.template({ images: this.collection });
 		this.$el.html(rendered);
 		this.$(".panel-header").html( this.header({title: "Image"}) );
 		if (!this.model.image().isNew()){
@@ -29,7 +30,6 @@ App.Views.MemeImagePanel = Backbone.PanelView.extend({
 		return this;
 	},
 	addImageView: function(image){
-		debugger;
 		var view = new App.Views.MemeImageItem({ model: image });
 		this.addSubview(".image-items", view);
 	},
@@ -39,6 +39,9 @@ App.Views.MemeImagePanel = Backbone.PanelView.extend({
 		this.model.setImage(newImage);
 		this.retract();
 		return false;
+	},
+	fetchMore: function(){
+		this.collection.getNextPage();
 	},
 	validate: function(){
 		$inputs = this.$("input");
